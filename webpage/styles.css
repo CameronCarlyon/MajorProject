@@ -138,17 +138,10 @@
   margin: 0px;
 }
 
-.ek-nav-bar {
-  background-color: #333;
-  position: relative;
-  height: 55px;
-  width: 100%;
-  min-width: 320px;
-}
+/* NAV BAR CONTAINER */
 
 .ek-nav-bar-logo {
   background-color: #d71921;
-  position: absolute;
   height: 125px;
   width: 90px;
   z-index: 3;
@@ -161,8 +154,62 @@
   display: block;
   position: relative;
   top: 48%;
-  width: 90%;
+  width: 86%;
 }
+
+/* nav bar list primary */
+
+.ek-nav-bar {
+  background-color: #333;
+  position: relative;
+  height: 55px;
+  width: 100%;
+  min-width: 320px;
+  box-sizing: border-box;
+  padding-left: 14%;
+  padding-right: 14%;
+}
+
+.ek-nav-bar li {
+  text-decoration: none;
+  color: white;
+  list-style-type: none;
+  overflow: hidden;
+}
+
+.ek-nav-bar-primary li,
+.ek-nav-bar-secondary li {
+  display: inline-block;
+}
+
+.ek-nav-bar-megalinks {
+  display: flex;
+  align-items: center;
+}
+
+.ek-nav-bar li * {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+}
+
+.ek-nav-bar li:hover {
+  background-color: #212121;
+}
+
+/* nav bar list secondary */
+
+.ek-nav-bar-secondary {
+  border-right: none;
+}
+
+.ek-nav-bar-megalinks:last-child {
+  border-right: none;
+}
+
+/* HERO CONTAINER */
 
 .hero-container {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
@@ -177,6 +224,9 @@
 .hero-text {
   color: white;
   text-align: center;
+  max-width: 120px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .hero-container h1 {
@@ -194,4 +244,8 @@
   font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: 3rem;
   margin: -1rem 0;
+}
+
+.hero-fly-better {
+  text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
 }
