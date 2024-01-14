@@ -171,11 +171,9 @@ a {
 .ek-nav-bar {
   background-color: #333;
   height: 55px;
-  /* box-sizing: border-box; */
   padding-left: 13.5%;
   padding-right: 13.5%;
   display: flex;
-  /* justify-content: space-between; */
   text-decoration: none;
   color: white;
   overflow: hidden;
@@ -194,6 +192,7 @@ a {
   height: 100%;
   padding: 0px 5px 0px 5px;
   text-decoration: none;
+  min-width: fit-content;
 }
 
 .ek-nav-bar-icon i {
@@ -226,7 +225,7 @@ a {
   background-repeat: no-repeat;
   display: grid;
   height: 50rem;
-  padding: 2% 13.5% 0% 13.5%;
+  padding: 2rem 13.5% 0% 13.5%;
 }
 
 .hero-fly-better {
