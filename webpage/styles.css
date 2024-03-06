@@ -227,7 +227,7 @@
   background-position: center;
   background-repeat: no-repeat;
   display: grid;
-  height: 93.7vh;
+  height: 60vh;
 }
 
 .hero-fly-better {
@@ -259,6 +259,7 @@
 .hero-container h3 {
   font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: 2rem;
+  text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
   margin: -1rem 0;
   font-style: italic;
   text-align: left;
@@ -283,9 +284,33 @@
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
+.box-container {
+  display: flex;
+  background-color: #f0f0f4;
+}
+
 .white-box {
   background-color: white;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 5rem;
   margin: 13rem;
+}
+
+.white-box h3 {
+    font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
+    font-size: 2rem;   
+}
+
+/* FOOTER */
+
+.footer-container {
+  font-family: "Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 0.7rem;
+  font-style: normal;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  display: flex;
+  padding-left: 13rem;
+  padding-right: 13rem;
 }
