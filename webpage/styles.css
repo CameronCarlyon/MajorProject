@@ -168,30 +168,49 @@
   box-sizing: border-box;
   padding-left: 14%;
   padding-right: 14%;
+  display: flex;
+}
+
+.ek-nav-bar-megalinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: fit-content;
 }
 
 .ek-nav-bar li {
   text-decoration: none;
   color: white;
-  list-style-type: none;
   overflow: hidden;
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .ek-nav-bar-primary li,
 .ek-nav-bar-secondary li {
-  display: inline-block;
-}
-
-.ek-nav-bar-megalinks {
   display: flex;
   align-items: center;
 }
 
+.ek-nav-bar-primary {
+  display: flex;
+  padding-left: 1rem;
+  order: 1;
+}
+
+.ek-nav-bar-secondary {
+  display: flex;
+  order: 2;
+}
+
 .ek-nav-bar li * {
-  display: block;
+  display: flex;
+  align-items: center;
   color: white;
   text-align: center;
-  padding: 18px 16px;
+  padding: 18px 10px;
   text-decoration: none;
 }
 
@@ -199,53 +218,74 @@
   background-color: #212121;
 }
 
-/* nav bar list secondary */
-
-.ek-nav-bar-secondary {
-  border-right: none;
-}
-
-.ek-nav-bar-megalinks:last-child {
-  border-right: none;
-}
-
 /* HERO CONTAINER */
 
 .hero-container {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
-    url("web-media/emirates-777.jpg");
+    url("assets/emirates-777.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   display: grid;
-  height: 60vh;
+  height: 93.7vh;
+}
+
+.hero-fly-better {
+  display: flex;
+  justify-content: right;
+  height: 50px;
+  padding-top: 2rem;
+  padding-right: 13rem;
 }
 
 .hero-text {
   color: white;
-  text-align: center;
-  max-width: 120px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 13rem;
+  padding-right: 13rem;
 }
 
 .hero-container h1 {
   text-transform: uppercase;
   font-family: Heroic-Medium, Arial Narrow Bold, Franklin Gothic Medium,
     Franklin Gothic, Arial Narrow, HelveticaNeue, Helvetica, arial, sans-serif;
-  font-size: 6rem;
+  font-size: 5rem;
   letter-spacing: -5px;
-  margin: -1rem 0;
   font-weight: 400;
   text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+  font-style: italic;
+  text-align: left;
 }
 
 .hero-container h3 {
   font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   margin: -1rem 0;
+  font-style: italic;
+  text-align: left;
+  margin-bottom: 1rem;
 }
 
-.hero-fly-better {
-  text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+.btn a {
+  background-color: #d71921;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: white;
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  max-width: fit-content;
+  padding: 1rem 2rem;
+  margin-left: 13rem;
+}
+
+.btn a:hover {
+  box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+}
+
+.white-box {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 5rem;
+  margin: 13rem;
 }
