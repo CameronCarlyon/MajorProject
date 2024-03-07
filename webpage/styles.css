@@ -141,30 +141,27 @@
 /* NAV BAR CONTAINER */
 
 .ek-nav-bar-logo {
+  position: relative;
   background-color: #d71921;
   min-height: 125px;
   min-width: 90px;
-  z-index: 3;
   box-sizing: border-box;
 }
 
 .ek-nav-bar-logo img {
-  /* margin: 0 auto;
-  border: none;
-  display: block;
-  position: relative;
-  top: 48%;
-  width: 86%; */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 7px;
+  padding-bottom: 10px;
 }
-
-/* nav bar list primary */
 
 .ek-nav-bar {
   background-color: #333;
   height: 55px;
-  box-sizing: border-box;
-  padding-left: 13rem;
-  padding-right: 13rem;
+  /* box-sizing: border-box; */
+  padding-left: 13%;
+  padding-right: 13%;
   display: flex;
   justify-content: space-between;
   text-decoration: none;
@@ -174,22 +171,25 @@
     Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 700;
   font-size: 14px;
+  overflow-x: visible;
+  overflow-y: visible;
 }
 
 .ek-nav-bar * {
   display: flex;
   align-items: center;
   color: white;
-  padding: 18px 5px;
+  padding: 10px 5px;
   text-decoration: none;
-}
-
-#ek-nav-bar-secondary {
-  margin-left: 15rem;
 }
 
 .ek-nav-bar-asset *:hover {
   background-color: #212121;
+}
+
+.ek-nav-bar-links {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* HERO CONTAINER */
@@ -201,7 +201,7 @@
   background-position: center;
   background-repeat: no-repeat;
   display: grid;
-  height: 60vh;
+  height: 100vh;
 }
 
 .hero-fly-better {
@@ -209,13 +209,13 @@
   justify-content: right;
   height: 50px;
   padding-top: 2rem;
-  padding-right: 13rem;
+  padding-right: 13%;
 }
 
 .hero-text {
   color: white;
-  padding-left: 13rem;
-  padding-right: 13rem;
+  padding-left: 13%;
+  padding-right: 13%;
 }
 
 .hero-container h1 {
@@ -259,9 +259,9 @@
   cursor: not-allowed;
 }
 
-.box-container {
-  display: flex;
+.disclaimer-container {
   background-color: #f0f0f4;
+  height: 50vh;
 }
 
 .content-box {
@@ -269,7 +269,7 @@
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.2rem;
   padding: 5rem;
-  margin: 13rem;
+  margin: 13%;
   text-align: center;
 }
 
@@ -284,7 +284,9 @@
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.4rem;
+  letter-spacing: 0.4rem;
   text-transform: uppercase;
+  color: #5b5b66;
 }
 
 .content-box h2 {
@@ -293,15 +295,35 @@
   text-align: center;
 }
 
+.content-box p {
+  font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue,
+    Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+.box-container {
+  background-color: #f0f0f4;
+  display: flex;
+}
+
 /* FOOTER */
 
-/* .footer-container {
+.footer-container {
   font-family: "Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: 0.7rem;
   font-style: normal;
   background-color: #333;
   color: white;
-  display: flex;
+  display: flexbox;
   padding-left: 13rem;
   padding-right: 13rem;
-} */
+}
+
+.ek-footer-logo {
+  background-color: #d71921;
+  min-height: 125px;
+  min-width: 90px;
+  z-index: 3;
+  box-sizing: border-box;
+}
