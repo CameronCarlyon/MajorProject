@@ -142,43 +142,31 @@
 
 .ek-nav-bar-logo {
   background-color: #d71921;
-  height: 125px;
-  width: 90px;
+  min-height: 125px;
+  min-width: 90px;
   z-index: 3;
   box-sizing: border-box;
 }
 
 .ek-nav-bar-logo img {
-  margin: 0 auto;
+  /* margin: 0 auto;
   border: none;
   display: block;
   position: relative;
   top: 48%;
-  width: 86%;
+  width: 86%; */
 }
 
 /* nav bar list primary */
 
 .ek-nav-bar {
   background-color: #333;
-  position: relative;
   height: 55px;
-  width: 100%;
-  min-width: 320px;
   box-sizing: border-box;
-  padding-left: 14%;
-  padding-right: 14%;
-  display: flex;
-}
-
-.ek-nav-bar-megalinks {
+  padding-left: 13rem;
+  padding-right: 13rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  max-height: fit-content;
-}
-
-.ek-nav-bar li {
   text-decoration: none;
   color: white;
   overflow: hidden;
@@ -188,33 +176,19 @@
   font-size: 14px;
 }
 
-.ek-nav-bar-primary li,
-.ek-nav-bar-secondary li {
-  display: flex;
-  align-items: center;
-}
-
-.ek-nav-bar-primary {
-  display: flex;
-  padding-left: 1rem;
-  order: 1;
-}
-
-.ek-nav-bar-secondary {
-  display: flex;
-  order: 2;
-}
-
-.ek-nav-bar li * {
+.ek-nav-bar * {
   display: flex;
   align-items: center;
   color: white;
-  text-align: center;
-  padding: 18px 10px;
+  padding: 18px 5px;
   text-decoration: none;
 }
 
-.ek-nav-bar li:hover {
+#ek-nav-bar-secondary {
+  margin-left: 15rem;
+}
+
+.ek-nav-bar-asset *:hover {
   background-color: #212121;
 }
 
@@ -282,6 +256,7 @@
 
 .btn a:hover {
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+  cursor: not-allowed;
 }
 
 .box-container {
@@ -289,28 +264,44 @@
   background-color: #f0f0f4;
 }
 
-.white-box {
+.content-box {
   background-color: white;
-  border-radius: 0.5rem;
+  box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
   padding: 5rem;
   margin: 13rem;
+  text-align: center;
 }
 
-.white-box h3 {
-    font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
-    font-size: 2rem;   
+.content-box:hover {
+  box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.content-box h3 {
+  font-family: "HelveticaNeue", "Helvetica Neue Bold", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4rem;
+  text-transform: uppercase;
+}
+
+.content-box h2 {
+  font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 2rem;
+  text-align: center;
 }
 
 /* FOOTER */
 
-.footer-container {
+/* .footer-container {
   font-family: "Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: 0.7rem;
   font-style: normal;
   background-color: #333;
   color: white;
-  width: 100%;
   display: flex;
   padding-left: 13rem;
   padding-right: 13rem;
-}
+} */
