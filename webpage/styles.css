@@ -133,6 +133,10 @@
   unicode-range: u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -163,7 +167,7 @@
   padding-left: 13.5%;
   padding-right: 13.5%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   text-decoration: none;
   color: white;
   overflow: hidden;
@@ -193,6 +197,10 @@
   justify-content: space-between;
 }
 
+#ek-nav-bar-secondary {
+  float: right;
+}
+
 /* HERO CONTAINER */
 
 .hero-container {
@@ -203,20 +211,17 @@
   background-repeat: no-repeat;
   display: grid;
   height: 100vh;
+  padding: 2% 13.5% 0% 13.5%;
 }
 
 .hero-fly-better {
   display: flex;
   justify-content: right;
   height: 50px;
-  padding-top: 2rem;
-  padding-right: 13%;
 }
 
 .hero-text {
   color: white;
-  padding-left: 13%;
-  padding-right: 13%;
 }
 
 .hero-container h1 {
@@ -252,7 +257,6 @@
   font-size: 14px;
   max-width: fit-content;
   padding: 1rem 2rem;
-  margin-left: 13rem;
 }
 
 .btn a:hover {
@@ -260,9 +264,12 @@
   cursor: not-allowed;
 }
 
-.disclaimer-container {
+#disclaimer {
+  display: flex;
+  justify-content: center;
   background-color: #f0f0f4;
-  height: 50vh;
+  height: 100vh;
+  padding: 33% 13.5% 33% 13.5%;
 }
 
 .content-box {
@@ -270,7 +277,6 @@
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.2rem;
   padding: 5rem;
-  margin: 13%;
   text-align: center;
 }
 
@@ -305,13 +311,17 @@
 
 /* FOOTER */
 
+#footer-disclaimer {
+  color: #a9a9a9;
+}
+
 .footer-container {
   font-family: "Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   font-style: normal;
   background-color: #333;
   color: white;
-  display: flexbox;
+  display: flex;
   padding-left: 13rem;
   padding-right: 13rem;
 }
@@ -320,6 +330,17 @@
   background-color: #d71921;
   min-height: 125px;
   min-width: 90px;
-  z-index: 3;
   box-sizing: border-box;
+}
+
+.ek-footer-logo img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 7px;
+  padding-bottom: 10px;
+}
+
+.ek-award-container {
+  width: 100%;
 }
