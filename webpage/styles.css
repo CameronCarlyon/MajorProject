@@ -160,8 +160,8 @@
   background-color: #333;
   height: 55px;
   /* box-sizing: border-box; */
-  padding-left: 13%;
-  padding-right: 13%;
+  padding-left: 13.5%;
+  padding-right: 13.5%;
   display: flex;
   justify-content: space-between;
   text-decoration: none;
@@ -175,11 +175,12 @@
   overflow-y: visible;
 }
 
-.ek-nav-bar * {
+.ek-nav-bar-links * {
   display: flex;
   align-items: center;
   color: white;
-  padding: 10px 5px;
+  height: 100%;
+  padding: 0px 5px 0px 5px;
   text-decoration: none;
 }
 
@@ -300,11 +301,6 @@
     Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: 1.2rem;
   font-weight: 200;
-}
-
-.box-container {
-  background-color: #f0f0f4;
-  display: flex;
 }
 
 /* FOOTER */
