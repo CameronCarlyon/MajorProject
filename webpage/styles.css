@@ -188,17 +188,24 @@ html {
   text-decoration: none;
 }
 
+.ek-nav-bar-icon i {
+  display: flex;
+  text-align: center;
+}
+
 .ek-nav-bar-asset *:hover {
   background-color: #212121;
 }
 
 .ek-nav-bar-links {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  padding-left: 1rem;
 }
 
 #ek-nav-bar-secondary {
-  float: right;
+  justify-content: end;
 }
 
 /* HERO CONTAINER */
