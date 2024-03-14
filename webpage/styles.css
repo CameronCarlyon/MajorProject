@@ -142,6 +142,10 @@ html {
   margin: 0px;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* NAV BAR CONTAINER */
 
 .ek-nav-bar-logo {
@@ -214,10 +218,10 @@ html {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
     url("assets/emirates-777.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: right center;
   background-repeat: no-repeat;
   display: grid;
-  height: 100vh;
+  height: 50rem;
   padding: 2% 13.5% 0% 13.5%;
 }
 
@@ -262,7 +266,7 @@ html {
     Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 700;
   font-size: 14px;
-  max-width: fit-content;
+  /* max-width: fit-content; */
   padding: 1rem 2rem;
 }
 
@@ -271,13 +275,25 @@ html {
   cursor: not-allowed;
 }
 
-#disclaimer {
+#disclaimer-container {
   display: flex;
   justify-content: center;
   background-color: #f0f0f4;
-  height: 100vh;
+  /* min-height: 100vh; */
   padding: 33% 13.5% 33% 13.5%;
 }
+
+.disclaimer-box {
+  background-color: white;
+  box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  padding: 5rem;
+  text-align: center;
+}
+
+/* CONTACT CONTAINER */
+
+/* CONTENT BOXES */
 
 .content-box {
   background-color: white;
@@ -291,7 +307,7 @@ html {
   box-shadow: 0 0 0.6rem 0 rgba(0, 0, 0, 0.5);
 }
 
-.content-box h3 {
+.box-sub-title {
   font-family: "HelveticaNeue", "Helvetica Neue Bold", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
   text-align: center;
@@ -303,17 +319,29 @@ html {
   color: #5b5b66;
 }
 
-.content-box h2 {
+.box-title {
   font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: 2rem;
   text-align: center;
+  color: black;
 }
 
-.content-box p {
+.box-description {
   font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue,
     Helvetica, Arial, Lucida Grande, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 200;
+  color: black;
+}
+
+/* QUESTION */
+
+#questionnaire-container {
+  display: inline-block;
+  justify-content: center;
+  background-color: #f0f0f4;
+  /* min-height: 100vh; */
+  padding: 33% 13.5% 33% 13.5%;
 }
 
 /* FOOTER */
