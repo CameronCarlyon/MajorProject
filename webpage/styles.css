@@ -146,6 +146,10 @@ a {
   text-decoration: none;
 }
 
+#feature-unavailable {
+  cursor: not-allowed;
+}
+
 /* NAV BAR CONTAINER */
 
 .ek-nav-bar-logo {
@@ -272,14 +276,12 @@ a {
 
 .btn a:hover {
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
-  cursor: not-allowed;
 }
 
 #disclaimer-container {
   display: flex;
   justify-content: center;
   background-color: #f0f0f4;
-  /* min-height: 100vh; */
   padding: 33% 13.5% 33% 13.5%;
 }
 
@@ -293,14 +295,16 @@ a {
 
 /* CONTACT CONTAINER */
 
-/* CONTENT BOXES */
+/* QUESTIONNAIRE CONTAINER */
 
 .content-box {
   background-color: white;
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.2rem;
-  padding: 5rem;
+  padding: 3rem;
   text-align: center;
+  width: 20%;
+  min-width: 20%;
 }
 
 .content-box:hover {
@@ -311,8 +315,8 @@ a {
   font-family: "HelveticaNeue", "Helvetica Neue Bold", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
   text-align: center;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 900;
   line-height: 1.4rem;
   letter-spacing: 0.4rem;
   text-transform: uppercase;
@@ -321,7 +325,7 @@ a {
 
 .box-title {
   font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   color: black;
 }
@@ -329,19 +333,17 @@ a {
 .box-description {
   font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue,
     Helvetica, Arial, Lucida Grande, sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 200;
   color: black;
 }
 
-/* QUESTION */
-
 #questionnaire-container {
-  display: inline-block;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   background-color: #f0f0f4;
-  /* min-height: 100vh; */
-  padding: 33% 13.5% 33% 13.5%;
+  padding: 5% 13.5% 5% 13.5%;
 }
 
 /* FOOTER */
