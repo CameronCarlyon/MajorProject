@@ -228,7 +228,7 @@ a {
   background-position: right center;
   background-repeat: no-repeat;
   display: grid;
-  height: 50rem;
+  height: 40rem;
   padding: 2rem 13.5% 0% 13.5%;
 }
 
@@ -264,6 +264,10 @@ a {
   margin-bottom: 1rem;
 }
 
+.btn {
+  padding: 2rem 0rem 2rem 0rem;
+}
+
 .btn a {
   background-color: #d71921;
   border-radius: 0.5rem;
@@ -294,6 +298,33 @@ a {
   text-align: center;
 }
 
+/* GITHUB CONTAINER */
+
+#github-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+    url("assets/emirates-crew.jpg");
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  display: grid;
+  height: 20rem;
+  padding: 2rem 13.5% 0% 13.5%;
+  text-align: center;
+}
+
+#github-container * {
+  color: white;
+}
+
+#github-container, .box-sub-title {
+  color: blue);
+}
+
+#github-container a {
+  background-color: white;
+  color: #333;
+}
+
 /* CONTACT CONTAINER */
 
 #contact-form-container {
@@ -308,7 +339,7 @@ a {
 
 #contact-form-text {
   text-align: left;
-  width: 50%;
+  width: 30%;
 }
 
 /* QUESTIONNAIRE CONTAINER */
