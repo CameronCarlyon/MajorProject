@@ -264,10 +264,6 @@ a {
   margin-bottom: 1rem;
 }
 
-.btn {
-  padding: 2rem 0rem 2rem 0rem;
-}
-
 .btn a {
   background-color: #d71921;
   border-radius: 0.5rem;
@@ -284,18 +280,25 @@ a {
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
+/* DISCLAIMER CONTAINER */
+
 #disclaimer-container {
   display: flex;
   justify-content: center;
-  padding: 33% 13.5% 33% 13.5%;
+  padding: 30svh 13.5% 30svh 13.5%;
 }
 
 .disclaimer-box {
   background-color: white;
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.2rem;
-  padding: 5rem;
+  padding: 3rem;
   text-align: center;
+}
+
+.disclaimer-box .box-description {
+  padding: 1rem 0rem 2rem 0rem;
+  max-width: 15rem;
 }
 
 /* GITHUB CONTAINER */
@@ -307,17 +310,22 @@ a {
   background-position: right center;
   background-repeat: no-repeat;
   display: grid;
-  height: 20rem;
+  height: 27rem;
   padding: 2rem 13.5% 0% 13.5%;
   text-align: center;
 }
 
-#github-container * {
+#github-container div {
   color: white;
+  padding: 0.2rem;
 }
 
-#github-container, .box-sub-title {
-  color: blue);
+#github-container .box-sub-title {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#github-container .box-title {
+  font-size: 3rem;
 }
 
 #github-container a {
@@ -351,7 +359,8 @@ a {
   padding: 3rem;
   text-align: center;
   width: 20%;
-  min-width: 20%;
+  min-width: min-content;
+  max-width: max-content;
 }
 
 .content-box:hover {
