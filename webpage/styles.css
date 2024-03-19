@@ -152,7 +152,8 @@ a {
 }
 
 a:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  text-decoration: underline;
 }
 
 #feature-unavailable {
@@ -385,15 +386,15 @@ a:hover {
 }
 
 .box-title {
-  font-family: Emirates-Bold, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-family: Emirates-Bold, Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 1.5rem;
   text-align: center;
   color: black;
 }
 
 .box-description {
-  font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue,
-    Helvetica, Arial, Lucida Grande, sans-serif;
+  font-family: HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 1rem;
   font-weight: 200;
   color: black;
@@ -423,15 +424,19 @@ a:hover {
 
 .ek-award-container {
   width: 88%;
-  height: 5rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 2rem 0rem 2rem 0rem;
+  padding-top: 2rem;
+}
+
+.ek-award-container img {
+  height: 5rem;
+  padding-bottom: 2rem;
 }
 
 .footer-information {
   display: flex;
-  justify-content: space-between;
 }
 
 .copyright-disclaimer {
@@ -441,7 +446,7 @@ a:hover {
 }
 
 .copyright-disclaimer * {
-  padding: 0.5rem 0rem 0.5rem 0rem;
+  margin: 1rem 0rem 1rem 0rem;
 }
 
 #footer-copyright {
