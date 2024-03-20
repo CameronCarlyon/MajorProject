@@ -151,13 +151,20 @@ a {
   color: white;
 }
 
-a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  text-decoration: underline;
-}
-
 #feature-unavailable {
   cursor: not-allowed;
+}
+
+.btn a {
+  background-color: #d71921;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: white;
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 1rem 2rem;
 }
 
 /* NAV BAR CONTAINER */
@@ -270,93 +277,11 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.btn a {
-  background-color: #d71921;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  color: white;
-  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 1rem 2rem;
-}
-
 .btn a:hover {
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
-/* DISCLAIMER CONTAINER */
-
-#disclaimer-container {
-  display: flex;
-  justify-content: center;
-  padding: 30svh 13.5% 30svh 13.5%;
-}
-
-.disclaimer-box {
-  background-color: white;
-  box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
-  border-radius: 0.2rem;
-  padding: 3rem;
-  text-align: center;
-}
-
-.disclaimer-box .box-description {
-  padding: 1rem 0rem 2rem 0rem;
-  max-width: 15rem;
-}
-
-/* GITHUB CONTAINER */
-
-#github-container {
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
-    url("assets/emirates-crew.jpg");
-  background-size: cover;
-  background-position: right center;
-  background-repeat: no-repeat;
-  display: grid;
-  height: 27rem;
-  padding: 2rem 13.5% 0% 13.5%;
-  margin: 5% 0% 5% 0%;
-  text-align: center;
-}
-
-#github-container div {
-  color: white;
-  padding: 0.2rem;
-}
-
-#github-container .box-sub-title {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-#github-container .box-title {
-  font-size: 3rem;
-}
-
-#github-container a {
-  background-color: white;
-  color: #333;
-}
-
-/* CONTACT CONTAINER */
-
-#contact-form-container {
-  padding: 0% 13.5% 0% 13.5%;
-}
-
-.contact-body {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#contact-form-text {
-  text-align: left;
-  width: 30%;
-}
-
-/* QUESTIONNAIRE CONTAINER */
+/* SURVEY CONTAINER */
 
 .content-box {
   background-color: white;
@@ -404,7 +329,93 @@ a:hover {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 5% 13.5% 5% 13.5%;
+  padding: 4rem 13.5% 4rem 13.5%;
+}
+
+/* DISCLAIMER CONTAINER */
+
+#disclaimer-container {
+  display: flex;
+  justify-content: center;
+  padding: 30svh 13.5% 30svh 13.5%;
+}
+
+.disclaimer-box {
+  background-color: white;
+  box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.disclaimer-box .box-description {
+  padding: 1rem 0rem 2rem 0rem;
+  max-width: 15rem;
+}
+
+/* GITHUB CONTAINER */
+
+#github-container {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
+    url("assets/emirates-crew.jpg");
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  display: grid;
+  height: 27rem;
+  padding: 2rem 13.5% 0% 13.5%;
+  text-align: center;
+}
+
+#github-container div {
+  color: white;
+  padding: 0.2rem;
+}
+
+#github-container .box-sub-title {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#github-container .box-title {
+  font-size: 3rem;
+}
+
+#github-container a {
+  background-color: white;
+  color: #333;
+}
+
+/* CONTACT CONTAINER */
+
+#contact-form-container {
+  padding: 4rem 13.5% 4rem 13.5%;
+}
+
+.contact-body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#contact-form-text {
+  text-align: left;
+  width: 20%;
+}
+
+input,
+textarea {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: #333 solid 1px;
+  padding: 1rem;
+  margin: 1%;
+  font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande,
+    sans-serif;
+  font-size: 1rem;
+}
+
+.contact-form-section .btn {
+  float: right;
 }
 
 /* FOOTER */
@@ -452,6 +463,11 @@ a:hover {
 #footer-copyright {
   font-size: 0.75rem;
   font-weight: 700;
+}
+
+#footer-copyright a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  text-decoration: underline;
 }
 
 .ek-footer-logo {
