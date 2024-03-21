@@ -208,7 +208,6 @@ a {
   color: white;
   height: 100%;
   padding: 0px 5px 0px 5px;
-  text-decoration: none;
   min-width: fit-content;
 }
 
@@ -241,8 +240,8 @@ a {
   background-position: right center;
   background-repeat: no-repeat;
   display: grid;
-  height: 40rem;
-  padding: 2rem 13.5% 0% 13.5%;
+  height: 35rem;
+  padding: 2rem 13.5% 2% 13.5%;
 }
 
 .hero-fly-better {
@@ -265,6 +264,7 @@ a {
   text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
   font-style: italic;
   text-align: left;
+  line-height: 5rem;
 }
 
 .hero-container h3 {
@@ -350,7 +350,7 @@ a {
 
 .disclaimer-box .box-description {
   padding: 1rem 0rem 2rem 0rem;
-  max-width: 15rem;
+  /* max-width: 15rem; */
 }
 
 /* GITHUB CONTAINER */
@@ -391,15 +391,24 @@ a {
   padding: 4rem 13.5% 4rem 13.5%;
 }
 
-.contact-body {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+#contact-form {
+  text-align: left;
+  justify-content: left;
+}
+
+#contact-form .box-title {
+  padding-bottom: 1rem;
+  max-width: fit-content;
+}
+
+.divider {
+  display: block;
+  width: 60px;
+  border-top: 2px solid #d71921;
 }
 
 #contact-form-text {
   text-align: left;
-  width: 20%;
 }
 
 input,
@@ -484,4 +493,21 @@ textarea {
   top: 0;
   padding: 7px;
   padding-top: 10px;
+}
+
+@media screen and (max-width: 1130px) {
+  .ek-nav-bar-links {
+    visibility: hidden;
+  }
+  .hero-text h3 {
+    font-size: 1.4rem;
+  }
+  #github-container {
+    margin: 2rem 13.5% 2% 13.5%;
+    box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.2rem;
+  }
+  #contact-form .box-description {
+    text-align: center;
+  }
 }
