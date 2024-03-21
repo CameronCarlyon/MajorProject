@@ -277,9 +277,49 @@ a {
   margin-bottom: 1rem;
 }
 
+.hero-container .btn {
+  /* temp */
+}
+
 .btn a:hover {
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
 }
+
+/* DISCLAIMER CONTAINER */
+
+#disclaimer-container {
+  /* position: fixed; */
+  display: flex;
+  justify-content: center;
+  padding: 30svh 13.5% 30svh 13.5%;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  display: none;
+}
+
+.disclaimer-box {
+  background-color: white;
+  box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  padding: 3rem;
+  text-align: center;
+  max-width: 20rem;
+}
+
+.disclaimer-box .box-description {
+  padding: 1rem 0rem 2rem 0rem;
+  /* max-width: 15rem; */
+}
+
+/* .disclaimer-background {
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+} */
 
 /* SURVEY CONTAINER */
 
@@ -290,8 +330,6 @@ a {
   padding: 3rem;
   text-align: center;
   width: 20%;
-  min-width: min-content;
-  max-width: max-content;
 }
 
 .content-box:hover {
@@ -325,32 +363,11 @@ a {
   color: black;
 }
 
-#questionnaire-container {
+.questionnaire-container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 4rem 13.5% 4rem 13.5%;
-}
-
-/* DISCLAIMER CONTAINER */
-
-#disclaimer-container {
-  display: flex;
-  justify-content: center;
-  padding: 30svh 13.5% 30svh 13.5%;
-}
-
-.disclaimer-box {
-  background-color: white;
-  box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
-  border-radius: 0.2rem;
-  padding: 3rem;
-  text-align: center;
-}
-
-.disclaimer-box .box-description {
-  padding: 1rem 0rem 2rem 0rem;
-  /* max-width: 15rem; */
 }
 
 /* GITHUB CONTAINER */
@@ -389,11 +406,13 @@ a {
 
 #contact-form-container {
   padding: 4rem 13.5% 4rem 13.5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 #contact-form {
   text-align: left;
-  justify-content: left;
 }
 
 #contact-form .box-title {
@@ -407,24 +426,24 @@ a {
   border-top: 2px solid #d71921;
 }
 
-#contact-form-text {
-  text-align: left;
-}
-
 input,
 textarea {
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   border: #333 solid 1px;
-  padding: 1rem;
-  margin: 1%;
   font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande,
     sans-serif;
   font-size: 1rem;
+  color: #333;
 }
 
 .contact-form-section .btn {
   float: right;
+}
+
+/* MISC CONTAINER */
+
+.misc-container {
 }
 
 /* FOOTER */
@@ -501,6 +520,10 @@ textarea {
   }
   .hero-text h3 {
     font-size: 1.4rem;
+  }
+  .content-box {
+    width: 100%;
+    padding: 5rem;
   }
   #github-container {
     margin: 2rem 13.5% 2% 13.5%;
