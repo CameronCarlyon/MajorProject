@@ -231,6 +231,19 @@ a {
   justify-content: end;
 }
 
+#ek-nav-bar-overflow {
+  display: none;
+  text-align: center;
+}
+
+#ek-nav-bar-btn-menu {
+  text-transform: uppercase;
+  border: #666 solid 1px;
+  border-radius: 3px;
+  height: 60%;
+  cursor: pointer;
+}
+
 /* HERO CONTAINER */
 
 .hero-container {
@@ -277,10 +290,6 @@ a {
   margin-bottom: 1rem;
 }
 
-.hero-container .btn {
-  /* temp */
-}
-
 .btn a:hover {
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
 }
@@ -298,28 +307,14 @@ a {
   display: none;
 }
 
-.disclaimer-box {
+.content-box-large {
+  box-sizing: border-box;
   background-color: white;
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.2rem;
-  padding: 3rem;
-  text-align: center;
-  max-width: 20rem;
+  padding: 2rem;
+  margin: 5rem 0rem;
 }
-
-.disclaimer-box .box-description {
-  padding: 1rem 0rem 2rem 0rem;
-  /* max-width: 15rem; */
-}
-
-/* .disclaimer-background {
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-} */
 
 /* SURVEY CONTAINER */
 
@@ -351,7 +346,7 @@ a {
 .box-title {
   font-family: Emirates-Bold, Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 1.5rem;
-  text-align: center;
+  /* text-align: center; */
   color: black;
 }
 
@@ -402,35 +397,51 @@ a {
   color: #333;
 }
 
-/* CONTACT CONTAINER */
+/* MISC CONTAINER */
+
+.misc-container {
+  padding: 0rem 13.5% 0rem 13.5%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+  /* height: 100%; */
+}
 
 #contact-form-container {
-  padding: 4rem 13.5% 4rem 13.5%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  width: 100%;
 }
 
 #contact-form {
   text-align: left;
+  max-height: 100%;
 }
 
-#contact-form .box-title {
-  padding-bottom: 1rem;
-  max-width: fit-content;
+#contact-form-input input,
+textarea {
+  min-width: 100%;
+  box-shadow: inset 4px 4px 0 0 #f2f2f2;
+  padding: 1rem;
+  margin: 0.5rem 0rem;
+}
+
+#contact-form-input input:hover,
+textarea:hover {
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5), inset 0 0 4px #a9a9a9;
 }
 
 .divider {
   display: block;
   width: 60px;
   border-top: 2px solid #d71921;
+  margin: 1rem 0rem;
 }
 
 input,
 textarea {
-  width: 100%;
+  box-sizing: border-box;
+  width: auto;
   border-radius: 0.2rem;
-  border: #333 solid 1px;
+  border: #666 solid 1px;
   font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande,
     sans-serif;
   font-size: 1rem;
@@ -438,12 +449,33 @@ textarea {
 }
 
 .contact-form-section .btn {
+  margin-top: 1.4rem;
   float: right;
 }
 
-/* MISC CONTAINER */
+.vertical-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 5rem 0rem;
+}
 
-.misc-container {
+.vertical-container .content-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+}
+
+.vertical-container .content-box .divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+.vertical-container .content-box * {
+  padding: 0.5rem;
 }
 
 /* FOOTER */
@@ -515,8 +547,21 @@ textarea {
 }
 
 @media screen and (max-width: 1130px) {
-  .ek-nav-bar-links {
-    visibility: hidden;
+  #ek-nav-bar-primary,
+  #ek-nav-bar-secondary {
+    display: none;
+  }
+  .hero-container {
+    height: 20rem;
+  }
+  .hero-text h1 {
+    font-size: 3rem;
+    letter-spacing: -3px;
+    font-weight: 400;
+    text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
+    font-style: italic;
+    text-align: left;
+    line-height: 3rem;
   }
   .hero-text h3 {
     font-size: 1.4rem;
@@ -524,6 +569,14 @@ textarea {
   .content-box {
     width: 100%;
     padding: 5rem;
+    margin: 1rem 0;
+  }
+  .content-box-large {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .vertical-container .content-box {
+    width: 100%;
   }
   #github-container {
     margin: 2rem 13.5% 2% 13.5%;
@@ -532,5 +585,14 @@ textarea {
   }
   #contact-form .box-description {
     text-align: center;
+  }
+  #ek-nav-bar-overflow {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+  }
+  .misc-container {
+    flex-wrap: wrap;
+    flex-direction: column;
   }
 }
