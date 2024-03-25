@@ -255,7 +255,7 @@ a {
   background-repeat: no-repeat;
   display: grid;
   height: 35rem;
-  padding: 2rem 13.5% 2% 13.5%;
+  padding: 2rem 13.5%;
 }
 
 .hero-fly-better {
@@ -298,7 +298,6 @@ a {
 /* DISCLAIMER CONTAINER */
 
 #disclaimer-container {
-  /* position: fixed; */
   display: flex;
   justify-content: center;
   padding: 30svh 13.5% 30svh 13.5%;
@@ -426,6 +425,14 @@ textarea {
   box-shadow: inset 4px 4px 0 0 #f2f2f2;
   padding: 1rem;
   margin: 0.5rem 0rem;
+  box-sizing: border-box;
+  width: auto;
+  border-radius: 0.2rem;
+  border: #666 solid 1px;
+  font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande,
+    sans-serif;
+  font-size: 1rem;
+  color: #333;
 }
 
 #contact-form-input input:hover,
@@ -438,18 +445,6 @@ textarea:hover {
   width: 60px;
   border-top: 2px solid #d71921;
   margin: 1rem 0rem;
-}
-
-input,
-textarea {
-  box-sizing: border-box;
-  width: auto;
-  border-radius: 0.2rem;
-  border: #666 solid 1px;
-  font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande,
-    sans-serif;
-  font-size: 1rem;
-  color: #333;
 }
 
 .contact-form-section .btn {
@@ -554,11 +549,11 @@ textarea {
     display: none;
   }
   .hero-container {
-    height: 20rem;
-    margin-bottom: 1.5rem;
+    height: 25rem;
+    margin-bottom: 3rem;
   }
   .hero-text h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     letter-spacing: -3px;
     font-weight: 400;
     text-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
@@ -567,6 +562,7 @@ textarea {
     line-height: 3rem;
   }
   .hero-text h3 {
+    padding-top: 1rem;
     font-size: 1.4rem;
   }
   .questionnaire-container {
@@ -574,7 +570,7 @@ textarea {
   }
   .content-box {
     width: 100%;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
   }
   .content-box-large {
     width: 100%;
@@ -595,15 +591,17 @@ textarea {
   }
   .vertical-container .content-box {
     padding: 5rem 0rem;
-    width: 45%;
+    width: 49%;
+    height: auto;
   }
   #github-container {
-    margin: 1rem 13.5% 1rem 13.5%;
+    margin: 1rem 13.5%;
     box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
     border-radius: 0.2rem;
   }
   #contact-form {
     justify-content: center;
+    margin: 0.5rem 0rem;
   }
   #contact-form .box-description,
   .box-title {
@@ -617,9 +615,10 @@ textarea {
   .misc-container {
     flex-wrap: wrap;
     flex-direction: column;
+    margin: 0.5rem 0rem;
   }
-  footer {
-    margin-top: 1.5rem;
+  .footer-container {
+    margin-top: 2rem;
   }
 }
 
@@ -628,7 +627,6 @@ textarea {
     flex-direction: column;
   }
   .vertical-container .content-box {
-    background-color: #d71921;
     width: 100%;
   }
 }
