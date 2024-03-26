@@ -313,7 +313,6 @@ a {
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.2rem;
   padding: 2rem;
-  margin-right: 1.5%;
   min-height: 100%;
 }
 
@@ -375,13 +374,12 @@ a {
   background-repeat: no-repeat;
   display: grid;
   height: 27rem;
-  padding: 2rem 13.5% 0% 13.5%;
+  padding: 2rem 2rem;
   text-align: center;
 }
 
 #github-container div {
   color: white;
-  padding: 0.2rem;
 }
 
 #github-container .box-sub-title {
@@ -400,7 +398,7 @@ a {
 /* MISC CONTAINER */
 
 .misc-container {
-  padding: 0rem 13.5% 0rem 13.5%;
+  padding: 0rem 13.5%;
   display: flex;
   justify-content: space-around;
   margin: 4rem 0rem;
@@ -408,6 +406,10 @@ a {
 
 #contact-form-container {
   width: 100%;
+}
+
+#contact-form-container .content-box-large {
+  margin-right: 10px;
 }
 
 #contact-form {
@@ -457,12 +459,16 @@ textarea:hover {
   justify-content: space-between;
 }
 
+.vertical-container .content-box:first-child {
+  margin-bottom: 10px;
+}
+
 .vertical-container .content-box {
   display: flex;
   justify-content: center;
   align-items: center;
   width: auto;
-  height: auto;
+  height: 100%;
 }
 
 .vertical-container .content-box .divider {
