@@ -155,6 +155,10 @@ a {
   cursor: not-allowed;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .btn a {
   background-color: #d71921;
   border-radius: 0.5rem;
@@ -362,6 +366,7 @@ a {
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 4rem 13.5% 4rem 13.5%;
+  gap: 10px;
 }
 
 /* GITHUB CONTAINER */
@@ -402,14 +407,11 @@ a {
   display: flex;
   justify-content: space-around;
   margin: 4rem 0rem;
+  gap: 10px;
 }
 
 #contact-form-container {
   width: 100%;
-}
-
-#contact-form-container .content-box-large {
-  margin-right: 10px;
 }
 
 #contact-form {
@@ -457,10 +459,7 @@ textarea:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.vertical-container .content-box:first-child {
-  margin-bottom: 10px;
+  gap: 10px;
 }
 
 .vertical-container .content-box {
@@ -576,7 +575,6 @@ textarea:hover {
   }
   .content-box {
     width: 100%;
-    margin: 0.5rem 0;
   }
   .content-box-large {
     width: 100%;
@@ -604,10 +602,6 @@ textarea:hover {
     margin: 1rem 13.5%;
     box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
     border-radius: 0.2rem;
-  }
-  #contact-form {
-    justify-content: center;
-    margin: 0.5rem 0rem;
   }
   #contact-form .box-description,
   .box-title {
