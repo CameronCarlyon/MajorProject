@@ -159,7 +159,8 @@ a {
   cursor: pointer;
 }
 
-.btn a {
+.btn a,
+button {
   background-color: #d71921;
   border-radius: 0.5rem;
   text-decoration: none;
@@ -170,6 +171,8 @@ a {
   font-size: 14px;
   padding: 1rem 2rem;
   box-sizing: border-box;
+  border: 0px;
+  cursor: pointer;
 }
 
 /* NAV BAR CONTAINER */
@@ -295,7 +298,8 @@ a {
   margin-bottom: 1rem;
 }
 
-.btn a:hover {
+.btn a:hover,
+button:hover {
   box-shadow: 0.1rem 0.1rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
@@ -410,6 +414,35 @@ a {
   gap: 10px;
 }
 
+.full-size-container {
+  padding: 0rem 13.5%;
+  display: flex;
+  justify-content: space-around;
+  margin: 5rem 0rem;
+  height: 50vh;
+  align-items: center;
+}
+
+.alert-box {
+  background-color: white;
+  box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
+  border-radius: 0.2rem;
+  padding: 3rem;
+  text-align: center;
+  height: fit-content;
+}
+
+.alert-box .divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.alert-box * {
+  padding: 0.3rem;
+}
+
 #contact-form-container {
   width: 100%;
 }
@@ -492,7 +525,7 @@ textarea:hover {
   font-style: normal;
   background-color: #333;
   color: white;
-  padding: 0% 13.5% 0% 13.5%;
+  padding: 0% 13.5%;
 }
 
 .ek-award-container {
