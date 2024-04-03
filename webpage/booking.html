@@ -21,7 +21,7 @@
         </div></a>
         <div class="ek-nav-bar-links">
             <div id="ek-nav-bar-primary" class="ek-nav-bar-asset">
-            <div><a href="#">BOOK</a></div>
+            <div id="nav-current"><a href="#">BOOK</a></div>
             <div><a href="#">MANAGE</a></div>
             <div><a href="#">EXPERIENCE</a></div>
             <div><a href="#">WHERE WE FLY</a></div>
@@ -63,29 +63,56 @@
       </div>
     </header>
     <main>
+      <div class="ek-sub-nav-bar">
+        <a href="./index.html" draggable="false"><div class="ek-nav-bar-logo-horizontal">
+          <img src="assets/emirates-logo-horizontal.svg" alt="Emirates Airline logo" draggable="false" />
+        </div></a>
+        <div class="booking-tabs">
+          <div class="tabOption" onclick="openTab(event, 'flights')" id="defaultTab"><span class="material-symbols-outlined">
+            travel
+            </span><p>Flights</p></div>
+          <div class="tabOption" onclick="openTab(event, 'passengers')"><i class="fa-solid fa-user"></i><p>Passengers</p></div>
+          <div class="tabOption" onclick="openTab(event, 'seating')"><span class="material-symbols-outlined">
+            airline_seat_recline_extra
+            </span><p>Seating</p></div>
+          <div class="tabOption" onclick="openTab(event, 'summary')"><i class="fa-solid fa-ticket-simple"></i><p>Summary</p></div>
+        </div>
+      </div>
       <div id="booking-container">
         <div class="booking-window">
-          <div class="booking-tabs">
-            <div class="tab-option" onclick="openTab(event, Flight)"><span class="material-symbols-outlined">
-              travel
-              </span><p>Flight</p></div>
-            <div class="tab-option" onclick="openTab(event, Passengers)"><i class="fa-solid fa-user"></i><p>Passengers</p></div>
-            <div class="tab-option" onclick="openTab(event, Seats)"><span class="material-symbols-outlined">
-              airline_seat_recline_extra
-              </span><p>Seats</p></div>
-            <div class="tab-option" onclick="openTab(event, Confirmation)"><i class="fa-solid fa-ticket-simple"></i><p>Confirmation</p></div>
-          </div>
-          <div id="flight" class="tabContent">
-          <p>Flight tab content.</p>
+          
+          <div id="flights" class="tabContent">
+          <form>
+            <input type="search" placeholder="Departure airport">
+            <input type="search" placeholder="Arrival airport">
+            <input type="date">
+            <input type="range">
+            <input type="radio" placeholder="One-way">
+            <input type="radio" placeholder="Return">
+          </form>
+          <button onclick="openTab(event,'passengers')">Continue to Passengers</button>
           </div>
           <div id="passengers" class="tabContent">
-          <p>Passengers tab content.</p>
+          <form>
+            <h3>Passenger 1</h3>
+            <p>Make sure the names you enter exactly match your passport, and please use English characters only. Names can’t be changed once you have completed your booking.</p>
+            <input type="text" placeholder="First name">
+            <input type="text" placeholder="Last name">
+          </form>
+          <h3>Your Frequent Flyer benefits</h3>
+          <p>Add your Emirates Skywards number to avail <a href="#">exclusive Skywards benefits</a>. You can also add a partner airline membership number to earn Miles for this flight. </p>
+          <form>
+            <input type="text" placeholder="Frequent flyer number">
+          </form>
+          <button onclick="openTab(event,'seating')">Continue to Seating</button>
           </div>
-          <div id="seats" class="tabContent">
+          <div id="seating" class="tabContent">
           <p>Seats tab content.</p>
+          <button onclick="openTab(event,'summary')">Continue to your Summary</button>
           </div>
-          <div id="confirmation" class="tabContent">
-          <p>Confirmation tab content.</p>
+          <div id="summary" class="tabContent">
+          <p>Summary tab content.</p>
+          <button>Book Flight</button>
           </div>
         </div>    
       </div>

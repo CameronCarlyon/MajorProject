@@ -183,6 +183,21 @@ button {
   min-height: 125px;
   min-width: 90px;
   box-sizing: border-box;
+  z-index: 4;
+}
+
+.ek-nav-bar-logo-horizontal {
+  /* position: relative; */
+  background-color: #d71921;
+  min-height: 100%;
+  min-width: 90px;
+  align-items: center;
+  /* box-sizing: border-box; */
+}
+
+.ek-nav-bar-logo-horizontal img {
+  display: flex;
+  justify-content: center;
 }
 
 .ek-nav-bar-logo img {
@@ -196,8 +211,7 @@ button {
 .ek-nav-bar {
   background-color: #333;
   height: 55px;
-  padding-left: 13.5%;
-  padding-right: 13.5%;
+  padding: 0% 13.5%;
   display: flex;
   text-decoration: none;
   color: white;
@@ -250,6 +264,21 @@ button {
   border-radius: 3px;
   height: 60%;
   cursor: pointer;
+}
+
+.ek-sub-nav-bar {
+  display: flex;
+  z-index: 3;
+  padding: 0% 13.5%;
+  background-color: #f9f9f9;
+  height: 50px;
+  border-bottom: 1px solid hsla(0, 0%, 40%, 0.5);
+  position: sticky;
+  top: 0;
+}
+
+#nav-current {
+  background-color: #212121;
 }
 
 /* HERO CONTAINER */
@@ -568,7 +597,6 @@ textarea:hover {
 .ek-footer-logo {
   position: relative;
   background-color: #d71921;
-  max-height: auto;
   min-width: 90px;
   box-sizing: border-box;
 }
@@ -584,49 +612,47 @@ textarea:hover {
 /* BOOKING */
 
 #booking-container {
+  z-index: 0;
   padding: 5rem 13.5%;
 }
 
 .booking-tabs {
-  width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  border-bottom: 0.1rem solid #d8d8d8;
+  width: 100%;
 }
 
 .booking-window {
   display: flex;
   flex-wrap: wrap;
   border: 0.1rem solid #d8d8d8;
-  /* border-radius: 10px; */
+  border-radius: 10px;
 }
 
-.tab-option {
+.tabOption {
   display: flex;
   position: relative;
-  justify-content: space-evenly;
+  width: 100%;
+  justify-content: center;
   align-items: center;
   color: #666;
-  background-color: #fff;
-  font-family: "HelveticaNeue", "Helvetica Neue Bold", "Helvetica Neue",
-    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "HelveticaNeue-Medium", Helvetica, Arial, Lucida Grande,
+    sans-serif;
   text-align: center;
-  font-weight: 200;
+  font-weight: 500;
   width: 100%;
-  padding: 0rem 1rem;
   cursor: pointer;
   border-right: 0.1rem solid #d8d8d8;
 }
 
-.tab-option:last-child {
-  border-right: none;
+.tabOption p {
+  padding: 20px 15px;
 }
 
-.tab-option * {
+.tabOption * {
   padding: 1rem 0rem;
 }
 
-.tab-option p::after {
+/* .tabOption p::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -634,16 +660,15 @@ textarea:hover {
   width: 100%;
   height: 5px;
   background-color: #d71921;
-  display: none;
-}
+  display: block;
+} */
 
-.tab-option:hover {
+.tabOption:hover {
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
   z-index: 1;
-  /* border-bottom: #d71921 solid 5px; */
 }
 
-.tab-option.active {
+.tabOption.active {
   background-color: #d71921;
 }
 
@@ -652,6 +677,7 @@ textarea:hover {
   padding: 5%;
   width: 100%;
   z-index: 2;
+  display: none;
 }
 
 @media screen and (max-width: 1130px) {
@@ -726,6 +752,9 @@ textarea:hover {
   .footer-container {
     margin-top: 2rem;
   }
+  .tabOption p {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -734,8 +763,5 @@ textarea:hover {
   }
   .vertical-container .content-box {
     width: 100%;
-  }
-  .tab-option p {
-    display: none;
   }
 }
