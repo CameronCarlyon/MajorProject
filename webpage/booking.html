@@ -79,45 +79,92 @@
         </div>
       </div>
       <div id="booking-container">
-        <div class="booking-window">
-          
           <div id="flights" class="tabContent">
-          <form>
-            <input type="search" placeholder="Departure airport">
-            <input type="search" placeholder="Arrival airport">
-            <input type="date">
-            <input type="range">
-            <input type="radio" placeholder="One-way">
-            <input type="radio" placeholder="Return">
-          </form>
-          <button onclick="openTab(event,'passengers')">Continue to Passengers</button>
+            <div class="box-sub-title">Book a flight
+            </div>
+            <div class="box-title">Make it an incredible journey </div>
+            <div class="box-description">Search for Emirates flights and book online. See our routes and schedules, and discover more about the experience you can look forward to on board.</div>
+            <div class="booking-window">
+              <form>
+              <div class="flights-primary">
+                <input class="input" type="search" placeholder="Travelling from" required>
+                <input class="input" type="search" placeholder="Going to" required>
+                <input class="date-btn" type="date" required>
+                <button class="form-btn" onclick="openTab(event,'passengers')">Search</button>
+              </div>
+            </form>
+            </div>
+          
           </div>
           <div id="passengers" class="tabContent">
-          <form>
-            <h3>Passenger 1</h3>
-            <p>Make sure the names you enter exactly match your passport, and please use English characters only. Names can’t be changed once you have completed your booking.</p>
-            <input type="text" placeholder="First name">
-            <input type="text" placeholder="Last name">
-          </form>
-          <h3>Your Frequent Flyer benefits</h3>
-          <p>Add your Emirates Skywards number to avail <a href="#">exclusive Skywards benefits</a>. You can also add a partner airline membership number to earn Miles for this flight. </p>
-          <form>
-            <input type="text" placeholder="Frequent flyer number">
-          </form>
-          <button onclick="openTab(event,'seating')">Continue to Seating</button>
+            <h3 class="box-sub-title">Passengers</h3>
+            <h2 class="box-title">Your Details</h2>
+            <p class="box-description">
+              Please fill out the following details for each person you are booking for and ensure that the names entered here exactly match your passport. Names cannot be changed once you have completed your booking.</p>
+            <div class="booking-window">
+              <h1 class="box-title">Passenger 1</h1>
+              <form>
+                <input class="input" type="text" placeholder="First name">
+                <input class="input" type="text" placeholder="Last name">
+              </form>
+              <h3>Your Frequent Flyer benefits</h3>
+              <p>Add your Emirates Skywards number to avail <a href="#">exclusive Skywards benefits</a>. You can also add a partner airline membership number to earn Miles for this flight. </p>
+              <form>
+                <input type="text" placeholder="Frequent flyer number">
+              <button onclick="openTab(event,'seating')">Continue to Seating</button>
+            </form>
+            </div>
+            <img class="add-icon" src="assets/add_circle_FILL1_wght400_GRAD0_opsz24.svg">
           </div>
           <div id="seating" class="tabContent">
-          <p>Seats tab content.</p>
-          <button onclick="openTab(event,'summary')">Continue to your Summary</button>
+            <div class="box-sub-title">Seating</div>
+            <div class="box-title">Choose Your Seat, Visualise Your Journey</div>
+            <div class="box-description">Choose your perfect seat with confidence through our intuitive booking system. Welcome to a new era of personalised flying.</div>
+            <div class="seating-container">
+              <div class="seating-left">
+                <div class="seating-details">
+                  <div class="box-sub-title">Seating Class</div>
+              <div class="box-title">Seat Number</div>
+              <div class="box-description">Amenities</div>
+            </div>
+            <div class="seating-visualisation"></div>
+              </div>
+            <div class="seating-map"></div>
+            </div>
           </div>
           <div id="summary" class="tabContent">
-          <p>Summary tab content.</p>
-          <button>Book Flight</button>
+          <div class="box-sub-title">Summary</div>
+          <div class="box-title">Your Booking</div>
+          <div class="booking-window">
+            <h3>Flight Details</h3>
+            <p>Origin Airport</p><p>to</p><p>Destination Airport</p>
+            <h3>Passenger Details</h3>
+            <p>Title</p><p>First name</p><p>Last name</p>
+            <h3>Seating</h3>
+            <p>1A</p>
+            <p>Cabin Class</p>
+            <h3>Total</h3>
+            <p>£0.00</p>
+            <button>Book Flight</button>
+          </div>
           </div>
         </div>    
       </div>
     </main>
     <footer>
+      <div class="footer-nav-container">
+        <a href="index.html">Emirates</a>
+        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+        <a href="booking.html">Book a flight</a> 
+        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+        <a href="#">Flights</a>
+        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+        <a href="#">Passengers</a>
+        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+        <a href="#">Seating</a>
+        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+        <a href="#">Summary</a>
+      </div>
         <div class="footer-container">
             <div class="ek-award-container">
                 <img src="assets/apex-world-class-airline.svg">

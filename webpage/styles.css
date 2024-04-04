@@ -148,7 +148,6 @@ body {
 
 a {
   text-decoration: none;
-  color: white;
 }
 
 #feature-unavailable {
@@ -157,6 +156,25 @@ a {
 
 .btn {
   cursor: pointer;
+}
+
+.input {
+  box-shadow: inset 4px 4px 0 0 #f2f2f2;
+  padding: 1rem;
+  margin: 0.5rem 0rem;
+  box-sizing: border-box;
+  width: auto;
+  border-radius: 0.2rem;
+  border: #666 solid 1px;
+  font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande,
+    sans-serif;
+  font-size: 1rem;
+  color: #333;
+}
+
+.checkbox {
+  padding: 1rem;
+  color: #d71921;
 }
 
 .btn a,
@@ -175,6 +193,12 @@ button {
   cursor: pointer;
 }
 
+.form-btn {
+  border-radius: 3px;
+  height: 100%;
+  max-width: fit-content;
+}
+
 /* NAV BAR CONTAINER */
 
 .ek-nav-bar-logo {
@@ -187,12 +211,11 @@ button {
 }
 
 .ek-nav-bar-logo-horizontal {
-  /* position: relative; */
+  display: flex;
   background-color: #d71921;
   min-height: 100%;
   min-width: 90px;
   align-items: center;
-  /* box-sizing: border-box; */
 }
 
 .ek-nav-bar-logo-horizontal img {
@@ -544,6 +567,43 @@ textarea:hover {
 
 /* FOOTER */
 
+.footer-nav-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: left;
+  padding: 0% 13.5%;
+  width: 100%;
+  color: #000000;
+  background-color: #282828;
+  font-family: "Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
+  text-align: left;
+  align-items: center;
+  font-size: 0.9rem;
+  height: max-content;
+}
+
+.footer-nav-container a:first-child {
+  font-family: "Emirates-Bold", Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 1.3rem;
+}
+
+.footer-nav-container a {
+  color: #fff;
+  padding: 1rem;
+  height: 100%;
+}
+
+.footer-nav-container a:hover {
+  text-decoration: underline;
+  background-color: rgba(0,0,0,.05);
+}
+
+.chevron {
+  color: #fff;
+  height: 0.7rem;
+  filter: invert(84%) sepia(8%) saturate(14%) hue-rotate(340deg) brightness(100%) contrast(94%);
+}
+
 #footer-disclaimer {
   color: #a9a9a9;
 }
@@ -612,8 +672,12 @@ textarea:hover {
 /* BOOKING */
 
 #booking-container {
-  z-index: 0;
   padding: 5rem 13.5%;
+  background: url("assets/seating-charts-background-w2530x1648.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  height: 100svh;
 }
 
 .booking-tabs {
@@ -622,10 +686,33 @@ textarea:hover {
 }
 
 .booking-window {
-  display: flex;
-  flex-wrap: wrap;
   border: 0.1rem solid #d8d8d8;
-  border-radius: 10px;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.flights-primary {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 20px;
+  padding: 2%;
+}
+
+.flights-primary * {
+  width: 100%;
+}
+
+.flights-primary .date-btn {
+  width: 70px;
+  height: 50px;
+}
+
+.add-icon {
+  filter: invert(12%) sepia(96%) saturate(5147%) hue-rotate(352deg)
+    brightness(93%) contrast(90%);
+  height: 50px;
+  cursor: pointer;
 }
 
 .tabOption {
@@ -652,32 +739,57 @@ textarea:hover {
   padding: 1rem 0rem;
 }
 
-/* .tabOption p::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background-color: #d71921;
-  display: block;
-} */
-
 .tabOption:hover {
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 
 .tabOption.active {
+  border-bottom: #d71921;
+}
+
+.tabOption.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
   background-color: #d71921;
+  display: block;
 }
 
 .tabContent {
-  background-color: #fff;
-  padding: 5%;
   width: 100%;
   z-index: 2;
   display: none;
+  text-align: center;
+  gap: 1rem;
+}
+
+.seating-container {
+  display: flex;
+  /* padding: 5%; */
+}
+
+.seating-left {
+  width: 100%;
+}
+
+.seating-details {
+  border: red solid 1px;
+  text-align: left;
+}
+
+.seating-visualisation {
+  border: green solid 1px;
+  background-color: #212121;
+  height: 500px;
+}
+
+.seating-map {
+  border: blue solid 1px;
+  width: 30%;
 }
 
 @media screen and (max-width: 1130px) {

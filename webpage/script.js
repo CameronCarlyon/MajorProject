@@ -10,11 +10,11 @@ function openTab(evt, tabName) {
   for (i = 0; i < tabContents.length; i++) {
     tabContents[i].style.display = "none";
   }
-  // tabOption = document.getElementsByClassName("tabOption p::after");
-  // for (i = 0; i < tabOption.length; i++) {
-  //   tabOption[i].style.display = "none";
-  // }
+  tabOption = document.getElementsByClassName("tabOption");
+  for (i = 0; i < tabOption.length; i++) {
+    tabOption[i].classList.remove("active");
+  }
   console.log(tabName);
-  // document.getElementById("defaultTab").click();
   document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.classList.add("active");
 }
