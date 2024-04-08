@@ -252,8 +252,12 @@ button {
   align-items: center;
   color: white;
   height: 100%;
-  padding: 0px 5px 0px 5px;
   min-width: fit-content;
+}
+
+.ek-nav-bar-icon *,
+.ek-nav-bar-links * {
+  padding: 0px 5px 0px 5px;
 }
 
 .ek-nav-bar-icon i {
@@ -569,17 +573,13 @@ textarea:hover {
 
 .footer-nav-container {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: left;
   padding: 0% 13.5%;
-  width: 100%;
-  color: #000000;
   background-color: #282828;
-  font-family: "Helvetica Neue", Helvetica, Arial, Lucida Grande, sans-serif;
-  text-align: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   align-items: center;
   font-size: 0.9rem;
   height: max-content;
+  overflow-x: scroll;
 }
 
 .footer-nav-container a:first-child {
@@ -588,20 +588,23 @@ textarea:hover {
 }
 
 .footer-nav-container a {
-  color: #fff;
-  padding: 1rem;
+  color: #d4d4d5;
+  padding: 1rem 0rem;
   height: 100%;
+  min-width: max-content;
 }
 
 .footer-nav-container a:hover {
   text-decoration: underline;
-  background-color: rgba(0,0,0,.05);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .chevron {
   color: #fff;
   height: 0.7rem;
-  filter: invert(84%) sepia(8%) saturate(14%) hue-rotate(340deg) brightness(100%) contrast(94%);
+  filter: invert(84%) sepia(8%) saturate(14%) hue-rotate(340deg)
+    brightness(100%) contrast(94%);
+  padding: 0rem 1rem;
 }
 
 #footer-disclaimer {
@@ -669,10 +672,34 @@ textarea:hover {
   padding-top: 10px;
 }
 
+.copyright-disclaimer a {
+  color: #fff;
+}
+
 /* BOOKING */
 
+.tab-header-text * {
+  color: #333;
+}
+
+.tab-header-text .box-sub-title {
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  color: #666;
+}
+
+.tab-header-text .box-title {
+  font-size: 3rem;
+}
+
+.tab-header-text .box-description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 1rem 0rem 3rem 0rem;
+}
+
 #booking-container {
-  padding: 5rem 13.5%;
+  padding: 3rem 13.5%;
   background: url("assets/seating-charts-background-w2530x1648.png");
   background-size: cover;
   background-position: center;
@@ -761,10 +788,11 @@ textarea:hover {
 
 .tabContent {
   width: 100%;
+  height: 100%;
+  align-items: center;
   z-index: 2;
   display: none;
   text-align: center;
-  gap: 1rem;
 }
 
 .seating-container {
@@ -773,7 +801,7 @@ textarea:hover {
 }
 
 .seating-left {
-  width: 100%;
+  /* width: 65%; */
 }
 
 .seating-details {
@@ -789,7 +817,7 @@ textarea:hover {
 
 .seating-map {
   border: blue solid 1px;
-  width: 30%;
+  width: 100%;
 }
 
 @media screen and (max-width: 1130px) {
@@ -860,9 +888,6 @@ textarea:hover {
     flex-wrap: wrap;
     flex-direction: column;
     margin: 0.5rem 0rem;
-  }
-  .footer-container {
-    margin-top: 2rem;
   }
   .tabOption p {
     display: none;
