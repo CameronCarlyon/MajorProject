@@ -819,7 +819,7 @@ textarea:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+
   border: blue solid 1px;
   width: 100%;
   gap: 8px;
