@@ -797,7 +797,6 @@ textarea:hover {
 
 .seating-container {
   display: flex;
-  /* padding: 5%; */
 }
 
 .seating-left {
@@ -833,13 +832,32 @@ textarea:hover {
 
 .economy-row {
   display: flex;
-  gap: 30px;
 }
 
 .economy-row-section {
   display: inline-flex;
   justify-content: center;
-  gap: 8px;
+  gap: 7px;
+}
+
+.row-number {
+  color: #656665;
+  display: flex;
+  align-items: center;
+  padding: 0px 5px;
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.facility {
+  height: 42px;
+  width: 119px;
+  background-color: #f9f9fa;
+  border: 0.5px #e3e3e3 solid;
+  border-radius: 0.4rem;
 }
 
 .seat {
