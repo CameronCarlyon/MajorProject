@@ -818,16 +818,25 @@ textarea:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   border: blue solid 1px;
   width: 100%;
+}
+
+.cabin {
+  display: flex;
+  padding: 20px;
   gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  border-left: #e0e1e0 30px solid;
+  border-right: #e0e1e0 30px solid;
 }
 
 .seating-map img {
   width: 200%;
   height: 200%;
-  filter: invert(17%) sepia(9%) saturate(9%) hue-rotate(357deg) brightness(50%) contrast(89%);
+  filter: invert(17%) sepia(9%) saturate(9%) hue-rotate(357deg) brightness(50%)
+    contrast(89%);
 }
 
 .economy-row {
@@ -866,9 +875,8 @@ textarea:hover {
   background-color: white;
   border: 0.5px #a1a1a2 solid;
   border-radius: 0.4rem;
-  box-shadow: 0.0rem 0.0rem 0.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  
 }
 
 .seat:hover {
