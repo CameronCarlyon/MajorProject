@@ -830,6 +830,7 @@ textarea:hover {
   align-items: center;
   border-left: #e0e1e0 30px solid;
   border-right: #e0e1e0 30px solid;
+  background-color: white;
 }
 
 .seating-map img {
