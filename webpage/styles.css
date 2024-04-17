@@ -207,7 +207,7 @@ button {
   min-height: 125px;
   min-width: 90px;
   box-sizing: border-box;
-  z-index: 4;
+  z-index: 999;
 }
 
 .ek-nav-bar-logo-horizontal {
@@ -295,7 +295,7 @@ button {
 
 .ek-sub-nav-bar {
   display: flex;
-  z-index: 3;
+  z-index: 998;
   padding: 0% 13.5%;
   background-color: #f9f9f9;
   height: 50px;
@@ -704,7 +704,7 @@ textarea:hover {
   background-size: cover;
   background-position: center;
   background-repeat: repeat;
-  height: 100svh;
+
 }
 
 .booking-tabs {
@@ -844,6 +844,11 @@ textarea:hover {
   display: flex;
 }
 
+.facility-row {
+  display: flex;
+  gap: 50px;
+}
+
 .economy-row-section {
   display: inline-flex;
   justify-content: center;
@@ -863,6 +868,10 @@ textarea:hover {
 }
 
 .facility {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #616162;
   height: 42px;
   width: 119px;
   background-color: #f9f9fa;
