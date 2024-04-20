@@ -869,6 +869,7 @@ textarea:hover {
 
 .facility {
   display: flex;
+  margin: 5px 0px;
   justify-content: center;
   align-items: center;
   color: #616162;
