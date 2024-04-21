@@ -801,16 +801,18 @@ textarea:hover {
 
 .seating-left {
   width: 65%;
+  max-height: 750px;
+  background-color: white;
+  position: sticky;
+  top: 10%;
+  border-radius: 0.5rem;
 }
 
 .seating-details {
-  border: red solid 1px;
   text-align: left;
 }
 
 .seating-visualisation {
-  border: green solid 1px;
-  background-color: #212121;
   height: 500px;
 }
 
@@ -818,7 +820,6 @@ textarea:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: blue solid 1px;
   width: 100%;
 }
 
@@ -842,6 +843,14 @@ textarea:hover {
 
 .economy-row {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.economy-row-front {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .facility-row {
