@@ -97,6 +97,7 @@
               </div>
             </form>
             </div>
+            <!-- <div class="booking-window"><div class="box-description">Please note that the content provided on this website is for educational and demonstrative purposes only. This website is a student project created for academic purposes only and is not affiliated with or endorsed by The Emirates Group or any related entities.</div></div> -->
           </div>
           <div id="passengers" class="tabContent">
             <div class="tab-header-text">
@@ -129,8 +130,8 @@
             <div class="seating-container">
               <div class="seating-left">
                 <div class="seating-details">
-                  <div class="box-sub-title">Seating Class</div>
-                  <div class="box-title">Seat Number</div>
+                  <div class="box-title">Seat 1A</div>
+                  <div class="box-sub-title">Economy Class</div>
                 </div>
                 <div class="seating-visualisation">
                   <div id="viewer" style="width: 100%; height: 100%;"></div>
@@ -151,8 +152,8 @@
                     });
                   </script>
                 </div>
-                <div>
-                  <div class="box-description">Amenities</div>
+                <div class="seating-details">
+                  <div class="row-number">Amenities</div>
                   <span class="material-symbols-outlined">
                     tv_gen
                     </span>
@@ -162,29 +163,47 @@
                       <span class="material-symbols-outlined">
                         redeem
                         </span>
-                  <button class="form-btn" onclick="openTab(event,'summary')">Select Seat</button>
+                  <button class="form-btn" onclick="openTab(event,'summary')">Select This Seat</button>
                 </div>
               </div>
             <div class="seating-map">
               <div class="cabin">
                 <p class="row-number">Economy Class</p>
+                <div class="seat-collum">
+                  <div class="seat-collum-outer">
+                    <p class="seat-designation-letter">A</p>
+                    <p class="seat-designation-letter">B</p>
+                    <p class="seat-designation-letter">C</p>
+                  </div>
+                  <div class="seat-collum-inner">
+                    <p class="seat-designation-letter">D</p>
+                    <p class="seat-designation-letter">E</p>
+                    <p class="seat-designation-letter">F</p>
+                    <p class="seat-designation-letter">G</p>
+                  </div>
+                  <div class="seat-collum-outer">
+                    <p class="seat-designation-letter">H</p>
+                    <p class="seat-designation-letter">J</p>
+                    <p class="seat-designation-letter">K</p>
+                  </div>
+                </div>
                 <div class="economy-row">
                   <div class="economy-row-section">
                     <div class="seat" id="seat-17A"></div>
-                    <div class="seat" id="seat-17B"></div>
+                    <div class="seat" id="seat-17B"><i class="fa-solid fa-baby"></i></div>
                     <div class="seat" id="seat-17C"></div>
                   </div>
                   <p class="row-number">17</p>
                   <div class="economy-row-section">
                     <div class="seat" id="seat-17D"></div>
-                    <div class="seat" id="seat-17E"></div>
+                    <div class="seat" id="seat-17E"><i class="fa-solid fa-baby"></i></div>
                     <div class="seat" id="seat-17F"></div>
                     <div class="seat" id="seat-17G"></div>
                   </div>
                   <p class="row-number">17</p>
                   <div class="economy-row-section">
                     <div class="seat" id="seat-17H"></div>
-                    <div class="seat" id="seat-17J"></div>
+                    <div class="seat" id="seat-17J"><i class="fa-solid fa-baby"></i></div>
                     <div class="seat" id="seat-17K"></div>
                   </div>
                 </div>
@@ -268,13 +287,13 @@
                     <div class="seat" id="seat-19K"></div>
                   </div>
                 </div>
-                <div class="facility-row">
+                <div class="facility-container">
                   <div class="facility"><span class="material-symbols-outlined">
                   wc
                   </span><span class="material-symbols-outlined">
                     accessible
                     </span></div>
-                  <div class="facility" style: "width=200px"><span class="material-symbols-outlined">
+                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
                     wc
                     </span><span class="material-symbols-outlined">
                       accessible
@@ -285,15 +304,15 @@
                         accessible
                         </span></div>
                 </div>
-                <div class="economy-row">
+                <div class="economy-row-inner">
+                  <p class="row-number">23</p>
                   <div class="economy-row-section">
-                    <p class="row-number">23</p>
-                    <div class="seat" id="seat-23D"></div>
+                    <div class="seat" id="seat-23D"><i class="fa-solid fa-baby"></i></div>
                     <div class="seat" id="seat-23E"></div>
                     <div class="seat" id="seat-23F"></div>
-                    <div class="seat" id="seat-23G"></div>
-                    <p class="row-number">23</p>
+                    <div class="seat" id="seat-23G"><i class="fa-solid fa-baby"></i></div>
                   </div>
+                  <p class="row-number">23</p>
                 </div>
                 <div class="economy-row">
                   <div class="economy-row-section">
@@ -555,13 +574,13 @@
                     <div class="seat" id="seat-36K"></div>
                   </div>
                 </div>
-                <div class="facility-row">
+                <div class="facility-container">
                   <div class="facility"><span class="material-symbols-outlined">
                   wc
                   </span><span class="material-symbols-outlined">
                     accessible
                     </span></div>
-                  <div class="facility"><span class="material-symbols-outlined">
+                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
                     skillet
                     </span></div>
                     <div class="facility"><span class="material-symbols-outlined">
@@ -570,7 +589,7 @@
                         accessible
                         </span></div>
                 </div>
-                <div class="economy-row-front">
+                <div class="economy-row-outer">
                   <div class="economy-row-section">
                     <div class="seat" id="seat-37A"></div>
                     <div class="seat" id="seat-37B"></div>
@@ -594,10 +613,10 @@
                   </div>
                   <p class="row-number">38</p>
                   <div class="economy-row-section">
-                    <div class="seat" id="seat-38D"></div>
+                    <div class="seat" id="seat-38D"><i class="fa-solid fa-baby"></i></div>
                     <div class="seat" id="seat-38E"></div>
                     <div class="seat" id="seat-38F"></div>
-                    <div class="seat" id="seat-38G"></div>
+                    <div class="seat" id="seat-38G"><i class="fa-solid fa-baby"></i></div>
                   </div>
                   <p class="row-number">38</p>
                   <div class="economy-row-section">
@@ -614,14 +633,20 @@
                   </div>
                   <p class="row-number">39</p>
                   <div class="economy-row-section">
-                    <div class="seat" id="seat-39D"></div>
+                    <div class="seat" id="seat-39D"><span class="material-symbols-outlined">
+                        accessible
+                        </span></div>
                     <div class="seat" id="seat-39E"></div>
                     <div class="seat" id="seat-39F"></div>
-                    <div class="seat" id="seat-39G"></div>
+                    <div class="seat" id="seat-39G"><span class="material-symbols-outlined">
+                        accessible
+                        </span></div>
                   </div>
                   <p class="row-number">39</p>
                   <div class="economy-row-section">
-                    <div class="seat" id="seat-39H"></div>
+                    <div class="seat" id="seat-39H"><span class="material-symbols-outlined">
+                        accessible
+                        </span></div>
                     <div class="seat" id="seat-39J"></div>
                     <div class="seat" id="seat-39K"></div>
                   </div>
@@ -835,6 +860,27 @@
                     <div class="seat" id="seat-50J"></div>
                     <div class="seat" id="seat-50K"></div>
                   </div>
+                </div>
+                <div class="facility-container">
+                  <div class="facility"><span class="material-symbols-outlined">
+                    skillet
+                    </span></div>
+                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
+                      wc
+                    </span><span class="material-symbols-outlined">
+                        accessible
+                    </span></div>
+                </div>
+                <div class="facility-container">
+                  <div class="facility"><span class="material-symbols-outlined">
+                    skillet
+                    </span></div>
+                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
+                    skillet
+                    </span></div>
+                    <div class="facility"><span class="material-symbols-outlined">
+                      skillet
+                      </span></div>
                 </div>
               </div>
             </div>
