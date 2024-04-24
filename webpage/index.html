@@ -6,7 +6,6 @@
     <title>An Integrated Product Visualisation and Ticketing System
        | Cameron Carlyon</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js"></script>
     <script
       src="https://kit.fontawesome.com/5996a0cc2a.js"
       crossorigin="anonymous"
@@ -70,18 +69,20 @@
           <h1>An Integrated Product Visualisation and Ticketing System</h1>
           <h3>Developed by Cameron Carlyon</h3>
         </div>
-        <div class="btn"><a href="#disclaimer-container" id="feature-unavailable">Try it out!</a></div>
+        <div class="btn" id="open-modal"><a id="open-disclaimer">Try it out!</a></div>
     </div>
-    <div id="disclaimer-container">
-      <div class="disclaimer-background">
-        <div class="content-box-large">
-          <h3 class="box-sub-title">Disclaimer</h3>
-          <h2 class="box-title">Please Note</h2>
-          <p class="box-description">The content provided on this website is for educational and demonstrative purposes only. This website is a student project created for academic purposes only and is not affiliated with or endorsed by The Emirates Group or any related entities.</p>
-          <div class="btn"><a href="#" id="feature-unavailable">Acknowledge</a></div>
-      </div>
-      </div>
-    </div>
+    <dialog class="modal" id="disclaimer-modal">
+        <h2 class="box-title">Please Note</h2>
+        <span class="divider"></span>
+        <p class="box-description">The content provided on this website is for educational and demonstrative purposes only. This website is a student project created for academic purposes only and is not affiliated with or endorsed by The Emirates Group or any related entities.</p>
+        <div class="btn"><a href="./booking.html" id="feature-available">Acknowledge</a></div>
+    </dialog>
+    <dialog class="modal" id="feature-unavailable-modal">
+      <h2 class="box-title">Feature Unavailable</h2>
+      <span class="divider"></span>
+      <p class="box-description">Apologies for the inconvenience, however this feature is currently either unavailable or in-development.<br><br>Please check back later or explore other available features. Thank you for your patience!</p>
+      <div class="btn"><a id="close-modal">Dismiss</a></div>
+  </dialog>
     <div class="questionnaire-container">
       <a href="https://forms.gle/L1YGgURh2XkgGWvh6" class="content-box" id="feature-available">
         <div>
@@ -97,8 +98,8 @@
             <p class="box-description">Engage with the Production Survey to provide real-time feedback so as to bring your ideas to life. This feedback will help refine the project throughout its development phase.</p>
         </div>
       </a>
-      <a href="#" class="content-box" id="feature-unavailable">
-        <div>
+      <a class="content-box">
+        <div class="feature-unavailable">
           <h3 class="box-sub-title">Survey</h3>
           <h2 class="box-title">Post-Production</h2>
           <p class="box-description">Reflect on the finalised product by participating in the Post-Production Survey. Your feedback would be much appreciated as it will aid the writting of the project dissertation.</p>
@@ -140,16 +141,16 @@
         </div>
       </div>
       <div class="vertical-container">
-        <a href="#" class="content-box" id="feature-unavailable">
-        <div>
+        <a class="content-box">
+        <div class="feature-unavailable">
             <h3 class="box-sub-title">Reading</h3>
             <h2 class="box-title">Dissertation</h2>
             <span class="divider"></span>
             <p class="box-description">Read more</p>
         </div>
       </a>
-      <a href="#" class="content-box" id="feature-unavailable">
-        <div>
+      <a class="content-box">
+        <div class="feature-unavailable">
             <h3 class="box-sub-title">Reading</h3>
             <h2 class="box-title">Documentation</h2>
             <span class="divider"></span>
@@ -177,5 +178,6 @@
           </div>
         </div>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>

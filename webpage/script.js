@@ -1,3 +1,22 @@
+const disclaimer = document.querySelector("#disclaimer-modal");
+const featureUnavailable = document.querySelector("#feature-unavailable-modal");
+const closeModal = document.querySelector("#close-modal");
+
+const openDisclaimer = document.querySelector("#open-modal");
+const openFeatureUnavailable = document.querySelector(".feature-unavailable");
+
+openDisclaimer.addEventListener("click", () => {
+  disclaimer.showModal();
+});
+
+openFeatureUnavailable.addEventListener("click", () => {
+  featureUnavailable.showModal();
+});
+
+closeModal.addEventListener("click", () => {
+  featureUnavailable.close();
+});
+
 function defaultTab() {
   document.getElementById("defaultTab").click();
 }
