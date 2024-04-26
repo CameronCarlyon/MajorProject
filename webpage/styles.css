@@ -723,11 +723,13 @@ textarea:hover {
 }
 
 .booking-tabs {
+  background-color: white;
   display: flex;
   width: 100%;
 }
 
 .booking-window {
+  text-align: left;
   border: 0.1rem solid #d8d8d8;
   border-radius: 3px;
   background-color: #fff;
@@ -820,23 +822,72 @@ textarea:hover {
 }
 
 .seating-left {
+  display: flex;
+  flex-direction: column;
   width: 65%;
-  max-height: 740px;
+  max-height: 85vh;
   background-color: white;
   position: sticky;
   top: 10%;
   border: 0.1rem solid #d8d8d8;
   border-radius: 3px;
-  box-shadow: 0 4px 100px 0 rgba(0,0,0,.1);
+  box-shadow: 0 4px 100px 0 rgba(0, 0, 0, 0.1);
+  overflow-y: scroll;
 }
 
 .seating-details {
+  flex-wrap: nowrap;
   text-align: center;
+  align-items: flex-start;
+  padding: 1rem;
+  gap: 10px;
+}
+
+.amenity-details {
+  display: flex;
+  flex-wrap: nowrap;
   padding: 1rem;
 }
 
+.amenities {
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+}
+
+.select-btn {
+  background-color: white;
+  padding-left: 0.5rem;
+}
+
 .seating-visualisation {
-  height: 500px;
+  height: 100%;
+}
+
+.amenity {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #656665;
+  max-width: fit-content;
+  padding: 0.7rem;
+  border: #e8e8e8 solid 1px;
+  border-radius: 0.5rem;
+}
+
+.amenity:hover {
+  background-color: #f2f2f2;
+}
+
+.amenity-unavailable {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #e8e8e8;
+  max-width: fit-content;
+  padding: 0.7rem;
+  border: #e8e8e8 solid 1px;
+  border-radius: 0.5rem;
 }
 
 .seating-map {
@@ -909,11 +960,12 @@ textarea:hover {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  gap: 5px;
 }
 
 .economy-row-outer {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
 }
 
@@ -937,7 +989,6 @@ textarea:hover {
   color: #656665;
   display: flex;
   align-items: center;
-  padding: 0px 5px;
   font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue",
     Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 700;

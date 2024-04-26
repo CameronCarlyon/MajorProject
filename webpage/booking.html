@@ -97,7 +97,9 @@
               </div>
             </form>
             </div>
-            <div class="booking-window"><div class="box-description">Please note that this website and product visualisation features are currently under active development. As such, please be aware that you may encounter unexpected behaviour, incomplete features or changes in functionality. Your patience and understanding are greatly appreciated. <br><br>If you would like to submit feedback, the <u><a href="https://forms.gle/tATkD8G4e83c3SnE9">Production Survey</a></u> is currently open for responses. Your support would be greatly appreciated.</div></div>
+            <div class="booking-window">
+              <h2 class="box-title">Disclaimer</h2>
+                <span class="divider"></span><div class="box-description">Please note that this website and product visualisation features are currently under active development. As such, please be aware that you may encounter unexpected behaviour, incomplete features or changes in functionality. Your patience and understanding are greatly appreciated. <br><br>If you would like to submit feedback, the <u><a href="https://forms.gle/tATkD8G4e83c3SnE9">Production Survey</a></u> is currently open for responses. Your support would be greatly appreciated.</div></div>
           </div>
           <div id="passengers" class="tabContent">
             <div class="tab-header-text">
@@ -152,18 +154,31 @@
                     });
                   </script>
                 </div>
-                <div class="seating-details">
-                  <div class="row-number">Amenities</div>
-                  <span class="material-symbols-outlined">
+                <div class="amenity-details">
+                  <div class="amenities">
+                    <div class="amenity" id="amenity-ife"><span class="material-symbols-outlined">
                     tv_gen
-                    </span>
-                    <span class="material-symbols-outlined">
+                    </span></div>
+                  <div class="amenity" id="amenity-food"><span class="material-symbols-outlined">
                       restaurant
-                      </span>
-                      <span class="material-symbols-outlined">
+                    </span></div>
+                  <div class="amenity" id="amenity-amenitykit"><span class="material-symbols-outlined">
                         redeem
-                        </span>
-                  <button class="form-btn" onclick="openTab(event,'summary')">Select This Seat</button>
+                    </span></div>
+                  <div class="amenity-unavailable">
+                    <span class="material-symbols-outlined">
+                      airline_seat_individual_suite
+                      </span>
+                  </div>
+                  <div class="amenity-unavailable">
+                    <span class="material-symbols-outlined">
+                      bathroom
+                      </span>
+                  </div>
+                  </div>
+                  <div class="select-btn">
+                    <button class="form-btn" onclick="openTab(event,'summary')">Select</button>
+                  </div>
                 </div>
               </div>
             <div class="seating-map">
@@ -594,12 +609,12 @@
                     <div class="seat" id="seat-37A"></div>
                     <div class="seat" id="seat-37B"></div>
                     <div class="seat" id="seat-37C"></div>
-                    <p class="row-number">37</p>
+                    
                   </div>
-                  
-                  
+                  <p class="row-number">37</p>
+                  <p class="row-number">37</p>
                   <div class="economy-row-section">
-                    <p class="row-number">37</p>
+                    
                     <div class="seat" id="seat-37H"></div>
                     <div class="seat" id="seat-37J"></div>
                     <div class="seat" id="seat-37K"></div>
