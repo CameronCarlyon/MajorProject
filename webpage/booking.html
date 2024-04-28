@@ -6,6 +6,7 @@
     <title>An Integrated Product Visualisation and Ticketing System
        | Cameron Carlyon</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
     <script src="script.js" defer></script>
     <script
       src="https://kit.fontawesome.com/5996a0cc2a.js"
@@ -80,10 +81,12 @@
       </div>
       <div id="booking-container">
           <div id="flights" class="tabContent">
-            <div class="box-sub-title">Book a flight
+            <div class="tab-header-text">
+              <div class="box-sub-title">Book a flight
+              </div>
+              <div class="box-title">Make it an incredible journey </div>
+              <div class="box-description">Search for Emirates flights and book online.</div>
             </div>
-            <div class="box-title">Make it an incredible journey </div>
-            <div class="box-description">Search for Emirates flights and book online. See our routes and schedules, and discover more about the experience you can look forward to on board.</div>
             <div class="booking-window">
               <form>
               <div class="flights-primary">
@@ -94,13 +97,17 @@
               </div>
             </form>
             </div>
-          
+            <div class="booking-window">
+              <h2 class="box-title">Disclaimer</h2>
+                <span class="divider"></span><div class="box-description">Please note that this website and product visualisation features are currently under active development. As such, please be aware that you may encounter unexpected behaviour, incomplete features or changes in functionality. Your patience and understanding are greatly appreciated. <br><br>If you would like to submit feedback, the <u><a href="https://forms.gle/tATkD8G4e83c3SnE9">Production Survey</a></u> is currently open for responses. Your support would be greatly appreciated.</div></div>
           </div>
           <div id="passengers" class="tabContent">
-            <h3 class="box-sub-title">Passengers</h3>
-            <h2 class="box-title">Your Details</h2>
-            <p class="box-description">
+            <div class="tab-header-text">
+              <h3 class="box-sub-title">Passengers</h3>
+              <h2 class="box-title">Your Details</h2>
+              <p class="box-description">
               Please fill out the following details for each person you are booking for and ensure that the names entered here exactly match your passport. Names cannot be changed once you have completed your booking.</p>
+            </div>
             <div class="booking-window">
               <h1 class="box-title">Passenger 1</h1>
               <form>
@@ -117,24 +124,789 @@
             <img class="add-icon" src="assets/add_circle_FILL1_wght400_GRAD0_opsz24.svg">
           </div>
           <div id="seating" class="tabContent">
-            <div class="box-sub-title">Seating</div>
-            <div class="box-title">Choose Your Seat, Visualise Your Journey</div>
-            <div class="box-description">Choose your perfect seat with confidence through our intuitive booking system. Welcome to a new era of personalised flying.</div>
+            <div class="tab-header-text">
+              <div class="box-sub-title">Seating</div>
+              <div class="box-title">Choose Your Seat, Visualise Your Journey</div>
+              <div class="box-description">Choose your perfect seat with confidence through our intuitive booking system. <br>Welcome to a new era of personalised flying.</div>
+            </div>
             <div class="seating-container">
               <div class="seating-left">
                 <div class="seating-details">
-                  <div class="box-sub-title">Seating Class</div>
-              <div class="box-title">Seat Number</div>
-              <div class="box-description">Amenities</div>
-            </div>
-            <div class="seating-visualisation"></div>
+                  <div class="box-title">Seat 1A</div>
+                  <div class="box-sub-title">Economy Class</div>
+                </div>
+                <div class="seating-visualisation">
+                  <div id="viewer" style="width: 100%; height: 100%;"></div>
+                  <script type="importmap">
+                    {
+                        "imports": {
+                            "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+                            "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js"
+                        }
+                    }
+                  </script>
+                  <script type="module">
+                    import { Viewer } from '@photo-sphere-viewer/core';
+
+                    const viewer = new Viewer({
+                        container: document.querySelector('#viewer'),
+                        panorama: './assets/renders/CabinVisualisationDemo.png',
+                    });
+                  </script>
+                </div>
+                <div class="amenity-details">
+                  <div class="amenities">
+                    <div class="amenity" id="amenity-ife"><span class="material-symbols-outlined">
+                    tv_gen
+                    </span></div>
+                  <div class="amenity" id="amenity-food"><span class="material-symbols-outlined">
+                      restaurant
+                    </span></div>
+                  <div class="amenity" id="amenity-amenitykit"><span class="material-symbols-outlined">
+                        redeem
+                    </span></div>
+                  <div class="amenity-unavailable">
+                    <span class="material-symbols-outlined">
+                      airline_seat_individual_suite
+                      </span>
+                  </div>
+                  <div class="amenity-unavailable">
+                    <span class="material-symbols-outlined">
+                      bathroom
+                      </span>
+                  </div>
+                  </div>
+                  <div class="select-btn">
+                    <button class="form-btn" onclick="openTab(event,'summary')">Select</button>
+                  </div>
+                </div>
               </div>
-            <div class="seating-map"></div>
+            <div class="seating-map">
+              <div class="cabin">
+                <p class="row-number">Economy Class</p>
+                <div class="seat-collum">
+                  <div class="seat-collum-outer">
+                    <p class="seat-designation-letter">A</p>
+                    <p class="seat-designation-letter">B</p>
+                    <p class="seat-designation-letter">C</p>
+                  </div>
+                  <div class="seat-collum-inner">
+                    <p class="seat-designation-letter">D</p>
+                    <p class="seat-designation-letter">E</p>
+                    <p class="seat-designation-letter">F</p>
+                    <p class="seat-designation-letter">G</p>
+                  </div>
+                  <div class="seat-collum-outer">
+                    <p class="seat-designation-letter">H</p>
+                    <p class="seat-designation-letter">J</p>
+                    <p class="seat-designation-letter">K</p>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-17A"></div>
+                    <div class="seat" id="seat-17B"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-17C"></div>
+                  </div>
+                  <p class="row-number">17</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-17D"></div>
+                    <div class="seat" id="seat-17E"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-17F"></div>
+                    <div class="seat" id="seat-17G"></div>
+                  </div>
+                  <p class="row-number">17</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-17H"></div>
+                    <div class="seat" id="seat-17J"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-17K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-18A"></div>
+                    <div class="seat" id="seat-18B"></div>
+                    <div class="seat" id="seat-18C"></div>
+                  </div>
+                  <p class="row-number">18</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-18D"></div>
+                    <div class="seat" id="seat-18E"></div>
+                    <div class="seat" id="seat-18F"></div>
+                    <div class="seat" id="seat-18G"></div>
+                  </div>
+                  <p class="row-number">18</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-18H"></div>
+                    <div class="seat" id="seat-18J"></div>
+                    <div class="seat" id="seat-18K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-19A"></div>
+                    <div class="seat" id="seat-19B"></div>
+                    <div class="seat" id="seat-19C"></div>
+                  </div>
+                  <p class="row-number">19</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-19D"></div>
+                    <div class="seat" id="seat-19E"></div>
+                    <div class="seat" id="seat-19F"></div>
+                    <div class="seat" id="seat-19G"></div>
+                  </div>
+                  <p class="row-number">19</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-19H"></div>
+                    <div class="seat" id="seat-19J"></div>
+                    <div class="seat" id="seat-19K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-20A"></div>
+                    <div class="seat" id="seat-20B"></div>
+                    <div class="seat" id="seat-20C"></div>
+                  </div>
+                  <p class="row-number">20</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-20D"></div>
+                    <div class="seat" id="seat-20E"></div>
+                    <div class="seat" id="seat-20F"></div>
+                    <div class="seat" id="seat-20G"></div>
+                  </div>
+                  <p class="row-number">20</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-20H"></div>
+                    <div class="seat" id="seat-20J"></div>
+                    <div class="seat" id="seat-20K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-21A"></div>
+                    <div class="seat" id="seat-21B"></div>
+                    <div class="seat" id="seat-21C"></div>
+                  </div>
+                  <p class="row-number">21</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-21D"></div>
+                    <div class="seat" id="seat-21E"></div>
+                    <div class="seat" id="seat-21F"></div>
+                    <div class="seat" id="seat-21G"></div>
+                  </div>
+                  <p class="row-number">21</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-19H"></div>
+                    <div class="seat" id="seat-19J"></div>
+                    <div class="seat" id="seat-19K"></div>
+                  </div>
+                </div>
+                <div class="facility-container">
+                  <div class="facility"><span class="material-symbols-outlined">
+                  wc
+                  </span><span class="material-symbols-outlined">
+                    accessible
+                    </span></div>
+                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
+                    wc
+                    </span><span class="material-symbols-outlined">
+                      accessible
+                      </span></div>
+                    <div class="facility"><span class="material-symbols-outlined">
+                      wc
+                      </span><span class="material-symbols-outlined">
+                        accessible
+                        </span></div>
+                </div>
+                <div class="economy-row-inner">
+                  <p class="row-number">23</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-23D"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-23E"></div>
+                    <div class="seat" id="seat-23F"></div>
+                    <div class="seat" id="seat-23G"><i class="fa-solid fa-baby"></i></div>
+                  </div>
+                  <p class="row-number">23</p>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-24A"></div>
+                    <div class="seat" id="seat-24B"></div>
+                    <div class="seat" id="seat-24C"></div>
+                  </div>
+                  <p class="row-number">24</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-24D"></div>
+                    <div class="seat" id="seat-24E"></div>
+                    <div class="seat" id="seat-24F"></div>
+                    <div class="seat" id="seat-24G"></div>
+                  </div>
+                  <p class="row-number">24</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-24H"></div>
+                    <div class="seat" id="seat-24J"></div>
+                    <div class="seat" id="seat-24K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-25A"></div>
+                    <div class="seat" id="seat-25B"></div>
+                    <div class="seat" id="seat-25C"></div>
+                  </div>
+                  <p class="row-number">25</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-25D"></div>
+                    <div class="seat" id="seat-25E"></div>
+                    <div class="seat" id="seat-25F"></div>
+                    <div class="seat" id="seat-25G"></div>
+                  </div>
+                  <p class="row-number">25</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-25H"></div>
+                    <div class="seat" id="seat-25J"></div>
+                    <div class="seat" id="seat-25K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-26A"></div>
+                    <div class="seat" id="seat-26B"></div>
+                    <div class="seat" id="seat-26C"></div>
+                  </div>
+                  <p class="row-number">26</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-26D"></div>
+                    <div class="seat" id="seat-26E"></div>
+                    <div class="seat" id="seat-26F"></div>
+                    <div class="seat" id="seat-26G"></div>
+                  </div>
+                  <p class="row-number">26</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-26H"></div>
+                    <div class="seat" id="seat-26J"></div>
+                    <div class="seat" id="seat-26K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-27A"></div>
+                    <div class="seat" id="seat-27B"></div>
+                    <div class="seat" id="seat-27C"></div>
+                  </div>
+                  <p class="row-number">27</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-27D"></div>
+                    <div class="seat" id="seat-27E"></div>
+                    <div class="seat" id="seat-27F"></div>
+                    <div class="seat" id="seat-27G"></div>
+                  </div>
+                  <p class="row-number">27</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-27H"></div>
+                    <div class="seat" id="seat-27J"></div>
+                    <div class="seat" id="seat-27K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-28A"></div>
+                    <div class="seat" id="seat-28B"></div>
+                    <div class="seat" id="seat-28C"></div>
+                  </div>
+                  <p class="row-number">28</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-28D"></div>
+                    <div class="seat" id="seat-28E"></div>
+                    <div class="seat" id="seat-28F"></div>
+                    <div class="seat" id="seat-28G"></div>
+                  </div>
+                  <p class="row-number">28</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-28H"></div>
+                    <div class="seat" id="seat-28J"></div>
+                    <div class="seat" id="seat-28K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-29A"></div>
+                    <div class="seat" id="seat-29B"></div>
+                    <div class="seat" id="seat-29C"></div>
+                  </div>
+                  <p class="row-number">29</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-29D"></div>
+                    <div class="seat" id="seat-29E"></div>
+                    <div class="seat" id="seat-29F"></div>
+                    <div class="seat" id="seat-29G"></div>
+                  </div>
+                  <p class="row-number">29</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-29H"></div>
+                    <div class="seat" id="seat-29J"></div>
+                    <div class="seat" id="seat-29K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-30A"></div>
+                    <div class="seat" id="seat-30B"></div>
+                    <div class="seat" id="seat-30C"></div>
+                  </div>
+                  <p class="row-number">30</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-30D"></div>
+                    <div class="seat" id="seat-30E"></div>
+                    <div class="seat" id="seat-30F"></div>
+                    <div class="seat" id="seat-30G"></div>
+                  </div>
+                  <p class="row-number">30</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-30H"></div>
+                    <div class="seat" id="seat-30J"></div>
+                    <div class="seat" id="seat-30K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-31A"></div>
+                    <div class="seat" id="seat-31B"></div>
+                    <div class="seat" id="seat-31C"></div>
+                  </div>
+                  <p class="row-number">31</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-31D"></div>
+                    <div class="seat" id="seat-31E"></div>
+                    <div class="seat" id="seat-31F"></div>
+                    <div class="seat" id="seat-31G"></div>
+                  </div>
+                  <p class="row-number">31</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-31H"></div>
+                    <div class="seat" id="seat-31J"></div>
+                    <div class="seat" id="seat-31K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-32A"></div>
+                    <div class="seat" id="seat-32B"></div>
+                    <div class="seat" id="seat-32C"></div>
+                  </div>
+                  <p class="row-number">32</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-32D"></div>
+                    <div class="seat" id="seat-32E"></div>
+                    <div class="seat" id="seat-32F"></div>
+                    <div class="seat" id="seat-32G"></div>
+                  </div>
+                  <p class="row-number">32</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-32H"></div>
+                    <div class="seat" id="seat-32J"></div>
+                    <div class="seat" id="seat-32K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-33A"></div>
+                    <div class="seat" id="seat-33B"></div>
+                    <div class="seat" id="seat-33C"></div>
+                  </div>
+                  <p class="row-number">33</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-33D"></div>
+                    <div class="seat" id="seat-33E"></div>
+                    <div class="seat" id="seat-33F"></div>
+                    <div class="seat" id="seat-33G"></div>
+                  </div>
+                  <p class="row-number">33</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-33H"></div>
+                    <div class="seat" id="seat-33J"></div>
+                    <div class="seat" id="seat-33K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-34A"></div>
+                    <div class="seat" id="seat-34B"></div>
+                    <div class="seat" id="seat-34C"></div>
+                  </div>
+                  <p class="row-number">34</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-34D"></div>
+                    <div class="seat" id="seat-34E"></div>
+                    <div class="seat" id="seat-34F"></div>
+                    <div class="seat" id="seat-34G"></div>
+                  </div>
+                  <p class="row-number">34</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-34H"></div>
+                    <div class="seat" id="seat-34J"></div>
+                    <div class="seat" id="seat-34K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-35A"></div>
+                    <div class="seat" id="seat-35B"></div>
+                    <div class="seat" id="seat-35C"></div>
+                  </div>
+                  <p class="row-number">35</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-35D"></div>
+                    <div class="seat" id="seat-35E"></div>
+                    <div class="seat" id="seat-35F"></div>
+                    <div class="seat" id="seat-35G"></div>
+                  </div>
+                  <p class="row-number">35</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-35H"></div>
+                    <div class="seat" id="seat-35J"></div>
+                    <div class="seat" id="seat-35K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-36A"></div>
+                    <div class="seat" id="seat-36B"></div>
+                    <div class="seat" id="seat-36C"></div>
+                  </div>
+                  <p class="row-number">36</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-36D"></div>
+                    <div class="seat" id="seat-36E"></div>
+                    <div class="seat" id="seat-36F"></div>
+                    <div class="seat" id="seat-36G"></div>
+                  </div>
+                  <p class="row-number">36</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-36H"></div>
+                    <div class="seat" id="seat-36J"></div>
+                    <div class="seat" id="seat-36K"></div>
+                  </div>
+                </div>
+                <div class="facility-container">
+                  <div class="facility"><span class="material-symbols-outlined">
+                  wc
+                  </span><span class="material-symbols-outlined">
+                    accessible
+                    </span></div>
+                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
+                    skillet
+                    </span></div>
+                    <div class="facility"><span class="material-symbols-outlined">
+                      wc
+                      </span><span class="material-symbols-outlined">
+                        accessible
+                        </span></div>
+                </div>
+                <div class="economy-row-outer">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-37A"></div>
+                    <div class="seat" id="seat-37B"></div>
+                    <div class="seat" id="seat-37C"></div>
+                    
+                  </div>
+                  <p class="row-number">37</p>
+                  <p class="row-number">37</p>
+                  <div class="economy-row-section">
+                    
+                    <div class="seat" id="seat-37H"></div>
+                    <div class="seat" id="seat-37J"></div>
+                    <div class="seat" id="seat-37K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-38A"></div>
+                    <div class="seat" id="seat-38B"></div>
+                    <div class="seat" id="seat-38C"></div>
+                  </div>
+                  <p class="row-number">38</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-38D"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-38E"></div>
+                    <div class="seat" id="seat-38F"></div>
+                    <div class="seat" id="seat-38G"><i class="fa-solid fa-baby"></i></div>
+                  </div>
+                  <p class="row-number">38</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-38H"></div>
+                    <div class="seat" id="seat-38J"></div>
+                    <div class="seat" id="seat-38K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-39A"></div>
+                    <div class="seat" id="seat-39B"></div>
+                    <div class="seat" id="seat-39C"></div>
+                  </div>
+                  <p class="row-number">39</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-39D"><span class="material-symbols-outlined">
+                        accessible
+                        </span></div>
+                    <div class="seat" id="seat-39E"></div>
+                    <div class="seat" id="seat-39F"></div>
+                    <div class="seat" id="seat-39G"><span class="material-symbols-outlined">
+                        accessible
+                        </span></div>
+                  </div>
+                  <p class="row-number">39</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-39H"><span class="material-symbols-outlined">
+                        accessible
+                        </span></div>
+                    <div class="seat" id="seat-39J"></div>
+                    <div class="seat" id="seat-39K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-40A"></div>
+                    <div class="seat" id="seat-40B"></div>
+                    <div class="seat" id="seat-40C"></div>
+                  </div>
+                  <p class="row-number">40</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-40D"></div>
+                    <div class="seat" id="seat-40E"></div>
+                    <div class="seat" id="seat-40F"></div>
+                    <div class="seat" id="seat-40G"></div>
+                  </div>
+                  <p class="row-number">40</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-40H"></div>
+                    <div class="seat" id="seat-40J"></div>
+                    <div class="seat" id="seat-40K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-41A"></div>
+                    <div class="seat" id="seat-41B"></div>
+                    <div class="seat" id="seat-41C"></div>
+                  </div>
+                  <p class="row-number">41</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-41D"></div>
+                    <div class="seat" id="seat-41E"></div>
+                    <div class="seat" id="seat-41F"></div>
+                    <div class="seat" id="seat-41G"></div>
+                  </div>
+                  <p class="row-number">41</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-41H"></div>
+                    <div class="seat" id="seat-41J"></div>
+                    <div class="seat" id="seat-41K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-42A"></div>
+                    <div class="seat" id="seat-42B"></div>
+                    <div class="seat" id="seat-42C"></div>
+                  </div>
+                  <p class="row-number">42</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-42D"></div>
+                    <div class="seat" id="seat-42E"></div>
+                    <div class="seat" id="seat-42F"></div>
+                    <div class="seat" id="seat-42G"></div>
+                  </div>
+                  <p class="row-number">42</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-42H"></div>
+                    <div class="seat" id="seat-42J"></div>
+                    <div class="seat" id="seat-42K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-43A"></div>
+                    <div class="seat" id="seat-43B"></div>
+                    <div class="seat" id="seat-43C"></div>
+                  </div>
+                  <p class="row-number">43</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-43D"></div>
+                    <div class="seat" id="seat-43E"></div>
+                    <div class="seat" id="seat-43F"></div>
+                    <div class="seat" id="seat-43G"></div>
+                  </div>
+                  <p class="row-number">43</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-43H"></div>
+                    <div class="seat" id="seat-43J"></div>
+                    <div class="seat" id="seat-43K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-44A"></div>
+                    <div class="seat" id="seat-44B"></div>
+                    <div class="seat" id="seat-44C"></div>
+                  </div>
+                  <p class="row-number">44</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-44D"></div>
+                    <div class="seat" id="seat-44E"></div>
+                    <div class="seat" id="seat-44F"></div>
+                    <div class="seat" id="seat-44G"></div>
+                  </div>
+                  <p class="row-number">44</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-44H"></div>
+                    <div class="seat" id="seat-44J"></div>
+                    <div class="seat" id="seat-44K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-45A"></div>
+                    <div class="seat" id="seat-45B"></div>
+                    <div class="seat" id="seat-45C"></div>
+                  </div>
+                  <p class="row-number">45</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-45D"></div>
+                    <div class="seat" id="seat-45E"></div>
+                    <div class="seat" id="seat-45F"></div>
+                    <div class="seat" id="seat-45G"></div>
+                  </div>
+                  <p class="row-number">45</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-45H"></div>
+                    <div class="seat" id="seat-45J"></div>
+                    <div class="seat" id="seat-45K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-46A"></div>
+                    <div class="seat" id="seat-46B"></div>
+                  </div>
+                  <div class="economy-row-section">
+                    <p class="row-number">46</p>
+                    <div class="seat" id="seat-46D"></div>
+                    <div class="seat" id="seat-46E"></div>
+                    <div class="seat" id="seat-46F"></div>
+                    <div class="seat" id="seat-46G"></div>
+                    <p class="row-number">46</p>
+                  </div>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-46J"></div>
+                    <div class="seat" id="seat-46K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-47A"></div>
+                    <div class="seat" id="seat-47B"></div>
+                  </div>
+                  <p class="row-number">47</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-47D"></div>
+                    <div class="seat" id="seat-47E"></div>
+                    <div class="seat" id="seat-47F"></div>
+                    <div class="seat" id="seat-47G"></div>
+                  </div>
+                  <p class="row-number">47</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-47J"></div>
+                    <div class="seat" id="seat-47K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-48A"></div>
+                    <div class="seat" id="seat-48B"></div>
+                  </div>
+                  <p class="row-number">48</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-48D"></div>
+                    <div class="seat" id="seat-48E"></div>
+                    <div class="seat" id="seat-48F"></div>
+                    <div class="seat" id="seat-48G"></div>
+                  </div>
+                  <p class="row-number">48</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-48J"></div>
+                    <div class="seat" id="seat-48K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-49A"></div>
+                    <div class="seat" id="seat-49B"></div>
+                  </div>
+                  <p class="row-number">49</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-49D"></div>
+                    <div class="seat" id="seat-49E"></div>
+                    <div class="seat" id="seat-49F"></div>
+                    <div class="seat" id="seat-49G"></div>
+                  </div>
+                  <p class="row-number">49</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-49J"></div>
+                    <div class="seat" id="seat-49K"></div>
+                  </div>
+                </div>
+                <div class="economy-row">
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-50A"></div>
+                    <div class="seat" id="seat-50B"></div>
+                  </div>
+                  <p class="row-number">50</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-50D"></div>
+                    <div class="seat" id="seat-50E"></div>
+                    <div class="seat" id="seat-50F"></div>
+                    <div class="seat" id="seat-50G"></div>
+                  </div>
+                  <p class="row-number">50</p>
+                  <div class="economy-row-section">
+                    <div class="seat" id="seat-50J"></div>
+                    <div class="seat" id="seat-50K"></div>
+                  </div>
+                </div>
+                <div class="facility-container">
+                  <div class="facility"><span class="material-symbols-outlined">
+                    skillet
+                    </span></div>
+                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
+                      wc
+                    </span><span class="material-symbols-outlined">
+                        accessible
+                    </span></div>
+                </div>
+                <div class="facility-container">
+                  <div class="facility"><span class="material-symbols-outlined">
+                    skillet
+                    </span></div>
+                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
+                    skillet
+                    </span></div>
+                    <div class="facility"><span class="material-symbols-outlined">
+                      skillet
+                      </span></div>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
           <div id="summary" class="tabContent">
-          <div class="box-sub-title">Summary</div>
-          <div class="box-title">Your Booking</div>
+            <div class="tab-header-text">
+              <div class="box-sub-title">Summary</div>
+              <div class="box-title">Your Booking</div>
+              <div class="box-description">Here are the details for your flight!</div>
+            </div>
           <div class="booking-window">
             <h3>Flight Details</h3>
             <p>Origin Airport</p><p>to</p><p>Destination Airport</p>
@@ -152,19 +924,19 @@
       </div>
     </main>
     <footer>
-      <div class="footer-nav-container">
-        <a href="index.html">Emirates</a>
-        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-        <a href="booking.html">Book a flight</a> 
-        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-        <a href="#">Flights</a>
-        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-        <a href="#">Passengers</a>
-        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-        <a href="#">Seating</a>
-        <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-        <a href="#">Summary</a>
-      </div>
+        <div class="footer-nav-container">
+          <a href="index.html">Emirates</a>
+          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="booking.html">Book a flight</a> 
+          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#">Flights</a>
+          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#">Passengers</a>
+          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#">Seating</a>
+          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#">Summary</a>
+        </div>
         <div class="footer-container">
             <div class="ek-award-container">
                 <img src="assets/apex-world-class-airline.svg">
