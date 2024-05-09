@@ -1038,6 +1038,13 @@ textarea:hover {
   background-color: #f2f2f2;
 }
 
+/* Photo Sphere Viewer */
+
+.psv-navbar {
+  background: transparent !important;
+  justify-content: end;
+}
+
 @media screen and (max-width: 1130px) {
   #ek-nav-bar-primary,
   #ek-nav-bar-secondary {

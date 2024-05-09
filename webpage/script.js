@@ -1,24 +1,37 @@
-const disclaimer = document.querySelector("#disclaimer-modal");
-const featureUnavailable = document.querySelector("#feature-unavailable-modal");
-const closeModal = document.querySelector("#close-modal");
+try {
+  const disclaimer = document.querySelector("#disclaimer-modal");
+  const featureUnavailable = document.querySelector(
+    "#feature-unavailable-modal"
+  );
+  const closeModal = document.querySelector("#close-modal");
 
-const openDisclaimer = document.querySelector("#open-modal");
-const openFeatureUnavailable = document.querySelector(".feature-unavailable");
+  const openDisclaimer = document.querySelector("#open-modal");
+  const openFeatureUnavailable = document.querySelector(".feature-unavailable");
 
-openDisclaimer.addEventListener("click", () => {
-  disclaimer.showModal();
-});
+  openDisclaimer.addEventListener("click", () => {
+    disclaimer.showModal();
+  });
 
-openFeatureUnavailable.addEventListener("click", () => {
-  featureUnavailable.showModal();
-});
+  openFeatureUnavailable.addEventListener("click", () => {
+    featureUnavailable.showModal();
+  });
 
-closeModal.addEventListener("click", () => {
-  featureUnavailable.close();
-});
+  closeModal.addEventListener("click", () => {
+    featureUnavailable.close();
+  });
+} catch (Exception) {
+  console.log("No modals found.");
+}
 
 function defaultTab() {
   document.getElementById("defaultTab").click();
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
 defaultTab();
@@ -36,4 +49,5 @@ function openTab(evt, tabName) {
   console.log(tabName);
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.classList.add("active");
+  scrollToTop();
 }

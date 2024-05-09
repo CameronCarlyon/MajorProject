@@ -111,6 +111,15 @@
             <div class="booking-window">
               <h1 class="box-title">Passenger 1</h1>
               <form>
+                <div class="dropdown">
+                  <select class="input" aria-placeholder="Title">
+                    <option value="0">Test</option>
+                    <option value="1">Mr</option>
+                    <option value="2">Ms</option>
+                    <option value="3">Mrs</option>
+                    <option value="4">Prefer not to say</option>
+                  </select>
+                </div>
                 <input class="input" type="text" placeholder="First name">
                 <input class="input" type="text" placeholder="Last name">
               </form>
@@ -150,7 +159,12 @@
 
                     const viewer = new Viewer({
                         container: document.querySelector('#viewer'),
-                        panorama: './assets/renders/CabinVisualisationDemo.png',
+                        panorama: './assets/renders/CabinVisualisationDemo6.png',
+                        defaultZoomLvl: 0,
+                        mousewheel: true,
+                        navbar: [
+                          'fullscreen',
+                      ],
                     });
                   </script>
                 </div>
