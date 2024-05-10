@@ -156,17 +156,32 @@
                   </script>
                   <script type="module">
                     import { Viewer } from '@photo-sphere-viewer/core';
-
+                
                     const viewer = new Viewer({
                         container: document.querySelector('#viewer'),
-                        panorama: './assets/renders/CabinVisualisationDemo6.png',
+                        panorama: './assets/renders/CabinVisualisationDemo7.png',
                         defaultZoomLvl: 0,
                         mousewheel: true,
                         navbar: [
-                          'fullscreen',
-                      ],
+                            'fullscreen',
+                        ],
                     });
-                  </script>
+                    const seatPanorama = document.querySelectorAll('.seat');
+                    seatPanorama.forEach(seatDiv => {
+                        seatDiv.addEventListener('click', function() {
+                            const seatNumber = seatDiv.id.replace('seat-', '');
+                            const panoramaSource = `./assets/panoramas/${seatNumber}.png`; 
+                            viewer.setPanorama(panoramaSource);
+                            seatPanorama.forEach(div => {
+                                div.classList.remove('active');
+                                div.textContent = '';
+                            });
+                            seatDiv.classList.remove('active');
+                            seatDiv.classList.add('active');
+                            seatDiv.textContent = `${seatNumber}`;
+                        });
+                    });
+                </script>
                 </div>
                 <div class="amenity-details">
                   <div class="amenities">
