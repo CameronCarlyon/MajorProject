@@ -51,3 +51,60 @@ function openTab(evt, tabName) {
   evt.currentTarget.classList.add("active");
   scrollToTop();
 }
+
+// Passenger Information Section
+document.addEventListener("DOMContentLoaded", () => {
+  const addPassengerIcon = document.getElementById("add-icon");
+  const passengerSectionContainer = document.getElementById("passenger-info-container");
+
+  addPassengerIcon.addEventListener("click", () => {
+    console.log("Pressed new passenger button");
+
+    // Get the number of current passenger sections
+    const passengerCount = passengerSectionContainer.children.length;
+
+    // Clone the passenger info box
+    const newPassengerSection = document
+      .getElementById("passenger-info-box")
+      .cloneNode(true);
+
+    // Update the id and header for the new passenger section
+    const newPassengerId = `passenger-info-box-${passengerCount + 1}`;
+    newPassengerSection.id = newPassengerId;
+    newPassengerSection.querySelector("h3").innerText = `Passenger ${passengerCount + 1}`;
+
+    // Optionally, reset input values in the cloned section
+    const inputs = newPassengerSection.querySelectorAll("input, select");
+    inputs.forEach((input) => {
+      if (input.tagName.toLowerCase() === "input") {
+        input.value = "";
+      } else if (input.tagName.toLowerCase() === "select") {
+        input.selectedIndex = 0;
+      }
+    });
+
+    // Append the new passenger section to the parent container
+    passengerSectionContainer.appendChild(newPassengerSection);
+
+    // Remove the button from all but the last passenger-info-box
+    const passengerBoxes = passengerSectionContainer.querySelectorAll(".booking-window");
+    passengerBoxes.forEach((box, index) => {
+      const buttonContainer = box.querySelector(".button-container");
+      if (buttonContainer) {
+        buttonContainer.remove();
+      }
+      if (index === passengerBoxes.length - 1) {
+        // Ensure the last one has the button container
+        const newButtonContainer = document.createElement("div");
+        newButtonContainer.classList.add("button-container");
+        const newButton = document.createElement("button");
+        newButton.textContent = "Continue to Seating";
+        newButton.setAttribute("onclick", "openTab(event,'seating')");
+        newButtonContainer.appendChild(newButton);
+        box.appendChild(newButtonContainer);
+      }
+    });
+  });
+});
+
+
