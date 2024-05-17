@@ -1121,7 +1121,7 @@ textarea:hover {
   border-radius: 0.4rem;
   box-shadow: 0rem 0rem 0.5rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue";
+  font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
 }
