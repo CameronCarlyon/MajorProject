@@ -145,13 +145,19 @@ body {
   padding: 0px;
   margin: 0px;
 }
+
 .modal {
-  margin: auto 37.3rem;
+  /* margin: auto 13.5%; */
   padding: 2rem;
   border: 0;
   border-radius: 0.2rem;
   text-align: center;
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.modal div {
+  max-width: 15%;
 }
 
 .modal p {
@@ -174,6 +180,10 @@ a {
 }
 
 .feature-unavailable {
+  cursor: not-allowed;
+}
+
+#feature-unavailable {
   cursor: not-allowed;
 }
 

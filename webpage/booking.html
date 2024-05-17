@@ -79,6 +79,12 @@
           <div class="tabOption" onclick="openTab(event, 'summary')"><i class="fa-solid fa-ticket-simple"></i><p>Summary</p></div>
         </div>
       </div>
+      <dialog class="modal" id="seat-unavailable-modal">
+        <h2 class="box-title">Seat Visualisation Not Available</h2>
+        <span class="divider"></span>
+        <p class="box-description">Apologies for the inconvenience, however the seat that you are trying to view is currently in-development.<br><br>Please explore other available seats or feel free to check back later to view this seat. Thank you for your patience!</p>
+        <div class="btn"><a id="close-modal">Dismiss</a></div>
+    </dialog>
       <div id="booking-container">
           <div id="flights" class="tabContent">
             <div class="tab-header-text">
@@ -114,7 +120,7 @@
                 <h3>Passenger 1</h3>
                 <p class="box-description">Make sure the names you enter exactly match your passport, and please use English characters only. Names can’t be changed once you have completed your booking.</p>
                 <div class="dropdown">
-                  <select class="input" aria-placeholder="Title" required>
+                  <select id="passenger-title-input" class="input" aria-placeholder="Title" required>
                     <option value="0">Title</option>
                     <option value="1">Mr.</option>
                     <option value="2">Ms.</option>
@@ -123,8 +129,8 @@
                   </select>
                 </div>
                 <div class="input-line">
-                  <input class="input" type="text" placeholder="First name" required>
-                <input class="input" type="text" placeholder="Last name" required>
+                  <input id="passenger-fname-input" class="input" type="text" placeholder="First name" required>
+                <input id="passenger-lname-input" class="input" type="text" placeholder="Last name" required>
                 </div>
                 <h3>Your Frequent Flyer benefits</h3>
                 <span class="divider"></span>
@@ -184,6 +190,7 @@
                     });
                     const seatPanorama = document.querySelectorAll('.seat');
                     const seatNumberDisplay = document.getElementById('seat-number');
+                    const seatNumberSummary = document.getElementById('passenger-seat');
                     seatPanorama.forEach(seatDiv => {
                         seatDiv.addEventListener('click', function() {
                             const seatNumber = seatDiv.id.replace('seat-', '');
@@ -197,6 +204,7 @@
                             seatDiv.classList.add('active');
                             seatDiv.textContent = `${seatNumber}`;
                             seatNumberDisplay.textContent = `Seat ${seatNumber}`;
+                            seatNumberSummary.textContent = `Seat ${seatNumber}`;
                         });
                     });
                 </script>
@@ -948,14 +956,14 @@
             </div>
           <div id="summary-window" class="booking-window">
             <div>
-              <p id="origin-airport"><b>Origin Airport</b></p><p>to</p><p id="destination-details">Destination Airport</p>
+              <p id="origin-airport"><b>Origin Airport</b></p><span class="divider"></span><p id="destination-details"><b>Destination Airport</b></p>
             </div>
-            <h3>Passenger Details</h3>
             <div id="passenger-details">
               <p id="passenger-title">Title</p><p id="passenger-fname">First name</p><p id="passenger-lname">Last name</p>
               <p id="passenger-class">Economy Class</p>
-              <p>Seat</p><p id="passenger-seat">1A</p>
             </div>
+            <p id="passenger-seat"><i>No seat selected</i></p>
+            <span class="divider"></span>
             <h3>Total</h3>
             <div>
               <p>£0.00</p>

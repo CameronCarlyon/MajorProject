@@ -3,6 +3,7 @@ try {
   const featureUnavailable = document.querySelector(
     "#feature-unavailable-modal"
   );
+  const seatUnavailable = document.querySelector("#seat-unavailable-modal");
   const closeModal = document.querySelector("#close-modal");
 
   const openDisclaimer = document.querySelector("#open-modal");
@@ -107,4 +108,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Seat unavailable to preview
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Function to change the ID of seats 19A and above
+  function updateSeatIds() {
+    const seatElements = document.querySelectorAll(".seat");
+    seatElements.forEach(seat => {
+      const seatId = seat.id;
+      const seatNumber = parseInt(seatId.match(/\d+/)[0]); // Extract the seat number
+
+      if (seatNumber >= 19) {
+        seat.id = "feature-unavailable";
+      }
+    });
+  }
+
+  // Call the function to update seat IDs
+  updateSeatIds();
+});
