@@ -106,31 +106,47 @@
               <h3 class="box-sub-title">Passengers</h3>
               <h2 class="box-title">Your Details</h2>
               <p class="box-description">
-              Please fill out the following details for each person you are booking for and ensure that the names entered here exactly match your passport. Names cannot be changed once you have completed your booking.</p>
+              Tell us about yourself.</p>
             </div>
-            <div class="booking-window">
-              <h1 class="box-title">Passenger 1</h1>
+            <div id="passenger-info-container">
+              <div id="passenger-info-box" class="booking-window">
               <form>
+                <h3>Passenger 1</h3>
+                <p class="box-description">Make sure the names you enter exactly match your passport, and please use English characters only. Names can’t be changed once you have completed your booking.</p>
                 <div class="dropdown">
-                  <select class="input" aria-placeholder="Title">
-                    <option value="0">Test</option>
-                    <option value="1">Mr</option>
-                    <option value="2">Ms</option>
-                    <option value="3">Mrs</option>
+                  <select class="input" aria-placeholder="Title" required>
+                    <option value="0">Title</option>
+                    <option value="1">Mr.</option>
+                    <option value="2">Ms.</option>
+                    <option value="3">Mrs.</option>
                     <option value="4">Prefer not to say</option>
                   </select>
                 </div>
-                <input class="input" type="text" placeholder="First name">
-                <input class="input" type="text" placeholder="Last name">
-              </form>
-              <h3>Your Frequent Flyer benefits</h3>
-              <p>Add your Emirates Skywards number to avail <a href="#">exclusive Skywards benefits</a>. You can also add a partner airline membership number to earn Miles for this flight. </p>
-              <form>
-                <input type="text" placeholder="Frequent flyer number">
-              <button onclick="openTab(event,'seating')">Continue to Seating</button>
+                <div class="input-line">
+                  <input class="input" type="text" placeholder="First name" required>
+                <input class="input" type="text" placeholder="Last name" required>
+                </div>
+                <h3>Your Frequent Flyer benefits</h3>
+                <span class="divider"></span>
+                <p>Add your Emirates Skywards number to avail <a href="#">exclusive Skywards benefits</a>. You can also add a partner airline membership number to earn Miles for this flight. </p>
+                <div class="input-line">
+                  <div class="dropdown">
+                  <select class="input" aria-placeholder="Title">
+                    <option value="0">Airline/Programme</option>
+                    <option value="1">None</option>
+                    <option value="2">Emirates & flydubai / Skywards</option>
+                    <option value="3">Qantas / Frequent Flyer</option>
+                  </select>
+                </div>
+                <input class="input" type="text" placeholder="Frequent flyer number">
+                </div>
+                <div class="button-container">
+                  <button onclick="openTab(event,'seating')">Continue to Seating</button>
+                </div>
             </form>
             </div>
-            <img class="add-icon" src="assets/add_circle_FILL1_wght400_GRAD0_opsz24.svg">
+            </div>
+            <img id="add-icon" class="add-icon" src="assets/add_circle_FILL1_wght400_GRAD0_opsz24.svg">
           </div>
           <div id="seating" class="tabContent">
             <div class="tab-header-text">
@@ -141,7 +157,7 @@
             <div class="seating-container">
               <div class="seating-left">
                 <div class="seating-details">
-                  <div class="box-title">Seat 1A</div>
+                  <div id="seat-number" class="box-title">Select a Seat</div>
                   <div class="box-sub-title">Economy Class</div>
                 </div>
                 <div class="seating-visualisation">
@@ -167,6 +183,7 @@
                         ],
                     });
                     const seatPanorama = document.querySelectorAll('.seat');
+                    const seatNumberDisplay = document.getElementById('seat-number');
                     seatPanorama.forEach(seatDiv => {
                         seatDiv.addEventListener('click', function() {
                             const seatNumber = seatDiv.id.replace('seat-', '');
@@ -179,6 +196,7 @@
                             seatDiv.classList.remove('active');
                             seatDiv.classList.add('active');
                             seatDiv.textContent = `${seatNumber}`;
+                            seatNumberDisplay.textContent = `Seat ${seatNumber}`;
                         });
                     });
                 </script>
@@ -234,20 +252,20 @@
                 <div class="economy-row">
                   <div class="economy-row-section">
                     <div class="seat" id="seat-17A"></div>
-                    <div class="seat" id="seat-17B"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-17B"></div>
                     <div class="seat" id="seat-17C"></div>
                   </div>
                   <p class="row-number">17</p>
                   <div class="economy-row-section">
                     <div class="seat" id="seat-17D"></div>
-                    <div class="seat" id="seat-17E"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-17E"></div>
                     <div class="seat" id="seat-17F"></div>
                     <div class="seat" id="seat-17G"></div>
                   </div>
                   <p class="row-number">17</p>
                   <div class="economy-row-section">
                     <div class="seat" id="seat-17H"></div>
-                    <div class="seat" id="seat-17J"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-17J"></div>
                     <div class="seat" id="seat-17K"></div>
                   </div>
                 </div>
@@ -349,14 +367,14 @@
                         </span></div>
                 </div>
                 <div class="economy-row-inner">
-                  <p class="row-number">23</p>
                   <div class="economy-row-section">
-                    <div class="seat" id="seat-23D"><i class="fa-solid fa-baby"></i></div>
+                    <p class="row-number">23</p>
+                    <div class="seat" id="seat-23D"></div>
                     <div class="seat" id="seat-23E"></div>
                     <div class="seat" id="seat-23F"></div>
-                    <div class="seat" id="seat-23G"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-23G"></div>
+                    <p class="row-number">23</p>
                   </div>
-                  <p class="row-number">23</p>
                 </div>
                 <div class="economy-row">
                   <div class="economy-row-section">
@@ -638,12 +656,10 @@
                     <div class="seat" id="seat-37A"></div>
                     <div class="seat" id="seat-37B"></div>
                     <div class="seat" id="seat-37C"></div>
-                    
+                    <p class="row-number">37</p>
                   </div>
-                  <p class="row-number">37</p>
-                  <p class="row-number">37</p>
                   <div class="economy-row-section">
-                    
+                    <p class="row-number">37</p>
                     <div class="seat" id="seat-37H"></div>
                     <div class="seat" id="seat-37J"></div>
                     <div class="seat" id="seat-37K"></div>
@@ -657,10 +673,10 @@
                   </div>
                   <p class="row-number">38</p>
                   <div class="economy-row-section">
-                    <div class="seat" id="seat-38D"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-38D"></div>
                     <div class="seat" id="seat-38E"></div>
                     <div class="seat" id="seat-38F"></div>
-                    <div class="seat" id="seat-38G"><i class="fa-solid fa-baby"></i></div>
+                    <div class="seat" id="seat-38G"></div>
                   </div>
                   <p class="row-number">38</p>
                   <div class="economy-row-section">
@@ -677,20 +693,14 @@
                   </div>
                   <p class="row-number">39</p>
                   <div class="economy-row-section">
-                    <div class="seat" id="seat-39D"><span class="material-symbols-outlined">
-                        accessible
-                        </span></div>
+                    <div class="seat" id="seat-39D"></div>
                     <div class="seat" id="seat-39E"></div>
                     <div class="seat" id="seat-39F"></div>
-                    <div class="seat" id="seat-39G"><span class="material-symbols-outlined">
-                        accessible
-                        </span></div>
+                    <div class="seat" id="seat-39G"></div>
                   </div>
                   <p class="row-number">39</p>
                   <div class="economy-row-section">
-                    <div class="seat" id="seat-39H"><span class="material-symbols-outlined">
-                        accessible
-                        </span></div>
+                    <div class="seat" id="seat-39H"></div>
                     <div class="seat" id="seat-39J"></div>
                     <div class="seat" id="seat-39K"></div>
                   </div>
@@ -838,14 +848,14 @@
                     <div class="seat" id="seat-47A"></div>
                     <div class="seat" id="seat-47B"></div>
                   </div>
-                  <p class="row-number">47</p>
                   <div class="economy-row-section">
+                    <p class="row-number">47</p>
                     <div class="seat" id="seat-47D"></div>
                     <div class="seat" id="seat-47E"></div>
                     <div class="seat" id="seat-47F"></div>
                     <div class="seat" id="seat-47G"></div>
+                    <p class="row-number">47</p>
                   </div>
-                  <p class="row-number">47</p>
                   <div class="economy-row-section">
                     <div class="seat" id="seat-47J"></div>
                     <div class="seat" id="seat-47K"></div>
@@ -856,14 +866,14 @@
                     <div class="seat" id="seat-48A"></div>
                     <div class="seat" id="seat-48B"></div>
                   </div>
-                  <p class="row-number">48</p>
                   <div class="economy-row-section">
+                    <p class="row-number">48</p>
                     <div class="seat" id="seat-48D"></div>
                     <div class="seat" id="seat-48E"></div>
                     <div class="seat" id="seat-48F"></div>
                     <div class="seat" id="seat-48G"></div>
+                    <p class="row-number">48</p>
                   </div>
-                  <p class="row-number">48</p>
                   <div class="economy-row-section">
                     <div class="seat" id="seat-48J"></div>
                     <div class="seat" id="seat-48K"></div>
@@ -874,14 +884,14 @@
                     <div class="seat" id="seat-49A"></div>
                     <div class="seat" id="seat-49B"></div>
                   </div>
-                  <p class="row-number">49</p>
                   <div class="economy-row-section">
+                    <p class="row-number">49</p>
                     <div class="seat" id="seat-49D"></div>
                     <div class="seat" id="seat-49E"></div>
                     <div class="seat" id="seat-49F"></div>
                     <div class="seat" id="seat-49G"></div>
+                    <p class="row-number">49</p>
                   </div>
-                  <p class="row-number">49</p>
                   <div class="economy-row-section">
                     <div class="seat" id="seat-49J"></div>
                     <div class="seat" id="seat-49K"></div>
@@ -892,14 +902,14 @@
                     <div class="seat" id="seat-50A"></div>
                     <div class="seat" id="seat-50B"></div>
                   </div>
-                  <p class="row-number">50</p>
                   <div class="economy-row-section">
+                    <p class="row-number">50</p>
                     <div class="seat" id="seat-50D"></div>
                     <div class="seat" id="seat-50E"></div>
                     <div class="seat" id="seat-50F"></div>
                     <div class="seat" id="seat-50G"></div>
+                    <p class="row-number">50</p>
                   </div>
-                  <p class="row-number">50</p>
                   <div class="economy-row-section">
                     <div class="seat" id="seat-50J"></div>
                     <div class="seat" id="seat-50K"></div>
@@ -934,19 +944,23 @@
             <div class="tab-header-text">
               <div class="box-sub-title">Summary</div>
               <div class="box-title">Your Booking</div>
-              <div class="box-description">Here are the details for your flight!</div>
+              <div class="box-description">Your adventure awaits.</div>
             </div>
-          <div class="booking-window">
-            <h3>Flight Details</h3>
-            <p>Origin Airport</p><p>to</p><p>Destination Airport</p>
+          <div id="summary-window" class="booking-window">
+            <div>
+              <p id="origin-airport"><b>Origin Airport</b></p><p>to</p><p id="destination-details">Destination Airport</p>
+            </div>
             <h3>Passenger Details</h3>
-            <p>Title</p><p>First name</p><p>Last name</p>
-            <h3>Seating</h3>
-            <p>1A</p>
-            <p>Cabin Class</p>
+            <div id="passenger-details">
+              <p id="passenger-title">Title</p><p id="passenger-fname">First name</p><p id="passenger-lname">Last name</p>
+              <p id="passenger-class">Economy Class</p>
+              <p>Seat</p><p id="passenger-seat">1A</p>
+            </div>
             <h3>Total</h3>
-            <p>£0.00</p>
-            <button>Book Flight</button>
+            <div>
+              <p>£0.00</p>
+              <button>Book Flight</button>
+            </div>
           </div>
           </div>
         </div>    

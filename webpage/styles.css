@@ -201,6 +201,11 @@ a {
   color: #d71921;
 }
 
+select {
+  background-color: #fff;
+  color: #fff;
+}
+
 .btn a,
 button {
   background-color: #d71921;
@@ -729,6 +734,7 @@ textarea:hover {
 }
 
 .booking-window {
+  padding: 2rem;
   text-align: left;
   border: 0.1rem solid #d8d8d8;
   border-radius: 3px;
@@ -757,11 +763,88 @@ textarea:hover {
   height: 50px;
 }
 
+.booking-window h3 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 16px;
+  color: #333;
+}
+
+.input-line * {
+  width: 100%;
+}
+
+.input-line {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  gap: 10px;
+}
+
+.booking-window p {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #333;
+  line-height: 1.4;
+}
+
+.booking-window h3:first-of-type {
+  padding-bottom: 1rem;
+}
+
+.booking-window h3:last-of-type {
+  padding-top: 1rem;
+}
+
+.button-container {
+  text-align: right;
+}
+
+.booking-window a {
+  color: #B32C2D;
+  text-decoration: underline;
+}
+
 .add-icon {
   filter: invert(12%) sepia(96%) saturate(5147%) hue-rotate(352deg)
     brightness(93%) contrast(90%);
   height: 50px;
   cursor: pointer;
+  margin: 1rem;
+}
+
+/* Summary Page */
+
+#summary-window {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+#summary-window * {
+  width: 100%;
+}
+
+#passenger-details {
+  display: flex;
+  justify-content: space-around;
+}
+
+#summary-window div:first-of-type {
+  display: flex;
+  justify-content: space-around;
+}
+
+#summary-window div:last-of-type{
+  display: flex;
+  justify-content: space-between;
+}
+
+#summary {
+  display: flex;
+  gap: 50px;
 }
 
 .tabOption {
@@ -816,6 +899,8 @@ textarea:hover {
   display: none;
   text-align: center;
 }
+
+/* Visualisation Cabin */
 
 .seating-container {
   display: flex;
@@ -965,7 +1050,7 @@ textarea:hover {
 
 .economy-row-outer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -1001,6 +1086,10 @@ textarea:hover {
   justify-content: left;
   min-width: 100%;
   gap: 26.5px;
+}
+
+.facility-container:last-of-type {
+  margin-top: 55px;
 }
 
 .facility {
