@@ -56,7 +56,9 @@ function openTab(evt, tabName) {
 // Passenger Information Section
 document.addEventListener("DOMContentLoaded", () => {
   const addPassengerIcon = document.getElementById("add-icon");
-  const passengerSectionContainer = document.getElementById("passenger-info-container");
+  const passengerSectionContainer = document.getElementById(
+    "passenger-info-container"
+  );
 
   addPassengerIcon.addEventListener("click", () => {
     console.log("Pressed new passenger button");
@@ -72,7 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the id and header for the new passenger section
     const newPassengerId = `passenger-info-box-${passengerCount + 1}`;
     newPassengerSection.id = newPassengerId;
-    newPassengerSection.querySelector("h3").innerText = `Passenger ${passengerCount + 1}`;
+    newPassengerSection.querySelector("h3").innerText = `Passenger ${
+      passengerCount + 1
+    }`;
 
     // Optionally, reset input values in the cloned section
     const inputs = newPassengerSection.querySelectorAll("input, select");
@@ -88,7 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
     passengerSectionContainer.appendChild(newPassengerSection);
 
     // Remove the button from all but the last passenger-info-box
-    const passengerBoxes = passengerSectionContainer.querySelectorAll(".booking-window");
+    const passengerBoxes =
+      passengerSectionContainer.querySelectorAll(".booking-window");
     passengerBoxes.forEach((box, index) => {
       const buttonContainer = box.querySelector(".button-container");
       if (buttonContainer) {
@@ -114,11 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to change the ID of seats 19A and above
   function updateSeatIds() {
     const seatElements = document.querySelectorAll(".seat");
-    seatElements.forEach(seat => {
+    seatElements.forEach((seat) => {
       const seatId = seat.id;
       const seatNumber = parseInt(seatId.match(/\d+/)[0]); // Extract the seat number
 
-      if (seatNumber >= 19) {
+      if (seatNumber >= 23) {
         seat.id = "feature-unavailable";
       }
     });
