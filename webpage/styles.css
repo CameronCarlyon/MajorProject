@@ -147,17 +147,12 @@ body {
 }
 
 .modal {
-  /* margin: auto 13.5%; */
+  margin: auto 37.3rem;
   padding: 2rem;
   border: 0;
   border-radius: 0.2rem;
   text-align: center;
   box-shadow: 0 0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.1);
-  width: 100%;
-}
-
-.modal div {
-  max-width: 15%;
 }
 
 .modal p {
@@ -190,6 +185,10 @@ a {
 .btn {
   cursor: pointer;
   margin: 1rem 0rem;
+}
+
+#book-btn {
+  color: white;
 }
 
 .input {
@@ -230,6 +229,10 @@ button {
   box-sizing: border-box;
   border: 0px;
   cursor: pointer;
+}
+
+button a {
+  color: white;
 }
 
 .form-btn {
@@ -351,9 +354,9 @@ button {
 
 .hero-container {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
-    url("assets/emirates-777.jpg");
+    url("assets/CabinOverview2_Render.png");
   background-size: cover;
-  background-position: right center;
+  background-position: center;
   background-repeat: no-repeat;
   display: grid;
   height: 35rem;
@@ -735,6 +738,18 @@ textarea:hover {
   background-size: 100%;
   background-position: top;
   background-repeat: no-repeat;
+  min-height: 70vh;
+}
+
+#confirmation-container {
+  text-align: center;
+  align-items: center;
+  padding: 3rem 13.5%;
+  background: url("assets/seating-charts-background-w2530x1648.png");
+  background-size: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  min-height: 70vh;
 }
 
 .booking-tabs {
@@ -837,9 +852,9 @@ textarea:hover {
   width: 100%;
 }
 
-#passenger-details {
+#passenger-details * {
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
 }
 
 #summary-window div:first-of-type {
@@ -847,9 +862,13 @@ textarea:hover {
   justify-content: space-around;
 }
 
-#summary-window div:last-of-type {
+#pricing-details {
+  padding-bottom: 1rem;
+}
+
+#pricing-details * {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
 }
 
 #summary {
