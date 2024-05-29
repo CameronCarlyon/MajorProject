@@ -7,16 +7,24 @@ try {
   const closeModal = document.querySelector("#close-modal");
 
   const openDisclaimer = document.querySelector("#open-modal");
-  const openFeatureUnavailable = document.querySelector(".feature-unavailable");
+  const openFeatureUnavailableElements = document.querySelectorAll(
+    ".feature-unavailable"
+  );
 
+  // Open the disclaimer modal
   openDisclaimer.addEventListener("click", () => {
     disclaimer.showModal();
   });
 
-  openFeatureUnavailable.addEventListener("click", () => {
-    featureUnavailable.showModal();
+  // Loop through all elements with 'feature-unavailable' class
+  openFeatureUnavailableElements.forEach((element) => {
+    element.addEventListener("click", (event) => {
+      event.preventDefault(); // Prevent the default link behavior
+      featureUnavailable.showModal(); // Show the 'feature unavailable' modal
+    });
   });
 
+  // Close the 'feature unavailable' modal
   closeModal.addEventListener("click", () => {
     featureUnavailable.close();
   });
@@ -24,6 +32,7 @@ try {
   console.log("No modals found.");
 }
 
+// Existing functions
 function defaultTab() {
   document.getElementById("defaultTab").click();
 }
