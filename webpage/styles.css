@@ -934,6 +934,7 @@ textarea:hover {
 
 .seating-container {
   display: flex;
+  gap: 1rem;
 }
 
 .seating-left {
@@ -960,6 +961,7 @@ textarea:hover {
 
 .amenity-details {
   display: flex;
+  justify-content:space-between;
   flex-wrap: nowrap;
   padding: 1rem;
 }
@@ -1248,6 +1250,30 @@ textarea:hover {
   .seating-container {
     display: flex;
     flex-direction: column;
+  }
+  #seating {
+    display: flex;
+    flex-direction: column;
+  }
+  .seating-left {
+    width: 100%;
+    top: 30%;
+  }
+  .seat {
+    height: 21px;
+    width: 17.5px;
+  }
+  .economy-row {
+    justify-content: center;
+  }
+  .facility {
+    width: 70px;
+  }
+  #facility-central {
+    width: 97px;
+  }
+  .facility-container {
+    justify-content: center;
   }
 }
 
