@@ -218,7 +218,7 @@ select {
 .btn a,
 button {
   background-color: #d71921;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   text-decoration: none;
   color: white;
   font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue",
@@ -961,7 +961,7 @@ textarea:hover {
 
 .amenity-details {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   flex-wrap: nowrap;
   padding: 1rem;
 }
