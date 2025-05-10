@@ -146,6 +146,55 @@ body {
   margin: 0px;
 }
 
+.title-container {
+  padding-bottom: 3rem;
+}
+
+article {
+  display: flex;
+  flex-direction: column;
+  font-family: HelveticaNeue-Light,Helvetica,Arial,sans-serif;
+  font-weight: 100;
+  font-size: 0.9rem;
+  line-height: 1.8rem;
+  text-align: left;
+  gap: 1rem;
+  color: #333;
+}
+
+article .title {
+  text-align: left;
+  line-height: 3rem;
+}
+
+article ul li {
+  list-style: disc;
+  margin-left: 2rem;
+}
+
+article ul li a {
+  color: #333;
+  text-decoration: underline;
+}
+
+article ul li a:hover {
+  text-decoration: none;
+  background-color: #f2f2f2;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.img-container img {
+  width: 50%;
+  border: 1px solid #f0f0f0;
+  border-radius: 0.3rem;
+}
+
 .modal {
   margin: auto 37.3rem;
   padding: 2rem;
@@ -171,6 +220,11 @@ body {
 }
 
 a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
   text-decoration: none;
 }
 
@@ -436,6 +490,13 @@ button:hover {
   letter-spacing: 0.4rem;
   text-transform: uppercase;
   color: #5b5b66;
+}
+
+.title {
+  font-family: Emirates-Bold, Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 3rem;
+  color: #333;
+  text-align: center;
 }
 
 .box-title {
@@ -1168,6 +1229,12 @@ textarea:hover {
   color: #fff;
 }
 
+.content-container {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 13.5%;
+}
+
 /* Photo Sphere Viewer */
 
 .psv-navbar {
@@ -1274,6 +1341,9 @@ textarea:hover {
   }
   .facility-container {
     justify-content: center;
+  }
+  .img-container img {
+    width: 100%;
   }
 }
 
