@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
     <script src="script.js" defer></script>
+    <script src="airports.js" defer></script>
     <script
       src="https://kit.fontawesome.com/5996a0cc2a.js"
       crossorigin="anonymous"
@@ -15,98 +16,122 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
-    <header>
-      <div class="ek-nav-bar">
-        <a href="./index.html" draggable="false"><div class="ek-nav-bar-logo">
-          <img src="assets/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
-        </div></a>
-        <div class="ek-nav-bar-links">
-            <div id="ek-nav-bar-primary" class="ek-nav-bar-asset">
-            <div id="nav-current"><a href="#">BOOK</a></div>
-            <div><a href="#">MANAGE</a></div>
-            <div><a href="#">EXPERIENCE</a></div>
-            <div><a href="#">WHERE WE FLY</a></div>
-            <div><a href="#">LOYALTY</a></div>
-            <div><a href="#">HELP</a></div>
-            </div>
-            <div id="ek-nav-bar-secondary" class="ek-nav-bar-asset">
-                <div class="ek-nav-bar-icon">
-                  <a href="#"><i class="fa-solid fa-earth-europe"></i> GB </a>
-                </div>
-                <div class="ek-nav-bar-icon">
-                  <a href="#">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </a>
-                </div>
-                <div class="ek-nav-bar-icon">
-                  <a href="#">
-                    <i class="fa-regular fa-circle-user"></i> LOG IN
-                  </a>
-                </div>
-            </div>
-            <div id="ek-nav-bar-overflow">
-              <div class="ek-nav-bar-icon">
-                <a href="#"><i class="fa-solid fa-earth-europe"></i> GB </a>
-              </div>
-              <div class="ek-nav-bar-icon">
-                <a href="#">
-                  <i class="fa-regular fa-circle-user"></i>
-                </a>
-              </div>
-              <div>
-                <div id="ek-nav-bar-btn-menu">
-                Menu
-                </div>
-              </div>
-          </div>
-          </div>
+    <header class="ek-nav-bar">
+      <a href="./index.html" class="ek-nav-bar-logo" draggable="false">
+        <img src="assets/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
+      </a>
+      <nav class="ek-nav-bar-links">
+        <div id="ek-nav-bar-primary" class="ek-nav-bar-asset">
+          <a id="nav-current" href="./booking.html">BOOK</a>
+          <a class="feature-unavailable" href="#">MANAGE</a>
+          <a class="feature-unavailable" href="#">EXPERIENCE</a>
+          <a class="feature-unavailable" href="#">WHERE WE FLY</a>
+          <a class="feature-unavailable" href="#">LOYALTY</a>
+          <a class="feature-unavailable" href="#">HELP</a>
         </div>
-      </div>
+        <div id="ek-nav-bar-secondary" class="ek-nav-bar-asset">
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-solid fa-earth-europe"></i> GB</a>
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-regular fa-circle-user"></i> LOG IN</a>
+        </div>
+        <div id="ek-nav-bar-overflow" class="ek-nav-bar-asset">
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-solid fa-earth-europe"></i> GB</a>
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-regular fa-circle-user"></i></a>
+          <button id="ek-nav-bar-btn-menu" class="feature-unavailable" type="button">Menu</button>
+        </div>
+      </nav>
     </header>
     <main>
-      <div class="ek-sub-nav-bar">
-        <a href="./index.html" draggable="false"><div class="ek-nav-bar-logo-horizontal">
+      <nav class="ek-sub-nav-bar">
+        <a href="./index.html" class="ek-nav-bar-logo-horizontal" draggable="false">
           <img src="assets/emirates-logo-horizontal.svg" alt="Emirates Airline logo" draggable="false" />
-        </div></a>
+        </a>
         <div class="booking-tabs">
-          <div class="tabOption" onclick="openTab(event, 'flights')" id="defaultTab"><span class="material-symbols-outlined">
-            travel
-            </span><p>Flights</p></div>
-          <div class="tabOption" onclick="openTab(event, 'passengers')"><i class="fa-solid fa-user"></i><p>Passengers</p></div>
-          <div class="tabOption" onclick="openTab(event, 'seating')"><span class="material-symbols-outlined">
-            airline_seat_recline_extra
-            </span><p>Seating</p></div>
-          <div class="tabOption" onclick="openTab(event, 'summary')"><i class="fa-solid fa-ticket-simple"></i><p>Summary</p></div>
+          <button class="tabOption active" data-tab="flights" id="defaultTab">
+            <span class="material-symbols-outlined tab-icon">travel</span>
+            <span class="tab-label">Flights</span>
+          </button>
+          <button class="tabOption locked" data-tab="passengers">
+            <i class="fa-solid fa-user tab-icon"></i>
+            <span class="tab-label">Passengers</span>
+          </button>
+          <button class="tabOption locked" data-tab="seating">
+            <span class="material-symbols-outlined tab-icon">airline_seat_recline_extra</span>
+            <span class="tab-label">Seating</span>
+          </button>
+          <button class="tabOption locked" data-tab="summary">
+            <i class="fa-solid fa-ticket-simple tab-icon"></i>
+            <span class="tab-label">Summary</span>
+          </button>
         </div>
-      </div>
+      </nav>
+      <dialog class="modal" id="disclaimer-modal">
+          <div>
+            <h2 class="box-title">Please Note</h2>
+            <span class="divider"></span>
+          </div>
+          <p class="box-description">The content provided on this website is for educational and demonstrative purposes only. This website is a student project created for academic purposes only and is not affiliated with or endorsed by The Emirates Group or any related entities.</p>
+          <a href="./booking.html" class="btn">Acknowledge</a>
+      </dialog>
+      <dialog class="modal" id="feature-unavailable-modal">
+          <div>
+            <h2 class="box-title">Feature Unavailable</h2>
+            <span class="divider"></span>
+          </div>
+          <p class="box-description">Apologies for the inconvenience, however this feature is currently either unavailable or in-development.<br><br>Please check back later or explore other available features. Thank you for your patience!</p>
+          <button class="btn" id="close-modal">Dismiss</button>
+      </dialog>
       <dialog class="modal" id="seat-unavailable-modal">
-        <h2 class="box-title">Seat Visualisation Not Available</h2>
-        <span class="divider"></span>
-        <p class="box-description">Apologies for the inconvenience, however the seat that you are trying to view is currently in-development.<br><br>Please explore other available seats or feel free to check back later to view this seat. Thank you for your patience!</p>
-        <div class="btn"><a id="close-modal">Dismiss</a></div>
-    </dialog>
+        <article>
+          <h2 class="box-title">Seat Visualisation Not Available</h2>
+          <span class="divider"></span>
+          <p class="box-description">Apologies for the inconvenience, however the seat that you are trying to view is currently in-development.<br><br>Please explore other available seats or feel free to check back later to view this seat. Thank you for your patience!</p>
+          <button class="btn" id="close-modal-seat">Dismiss</button>
+        </article>
+      </dialog>
       <div id="booking-container">
-          <div id="flights" class="tabContent">
-            <div class="tab-header-text">
-              <div class="box-sub-title">Book a flight
+        <section id="flights" class="tabContent">
+          <header class="tab-header-text">
+            <p class="box-sub-title">Book a flight</p>
+            <h2 class="box-title">Make it an incredible journey</h2>
+            <p class="box-description">Search for Emirates flights and book online.</p>
+          </header>
+          <div class="booking-window">
+            <div class="mandatory-fields-banner">Please fill all mandatory fields</div>
+            <form id="flight-search-form" class="flights-primary" novalidate>
+              <div class="form-line-container">
+                <div class="form-field">
+                  <input id="airport-from-input" class="input" type="text" placeholder="Travelling from" required autocomplete="off" aria-required="true">
+                </div>
+                <div class="form-field">
+                  <input id="airport-to-input" class="input" type="text" placeholder="Going to" required autocomplete="off" aria-required="true">
+                </div>
               </div>
-              <div class="box-title">Make it an incredible journey </div>
-              <div class="box-description">Search for Emirates flights and book online.</div>
-            </div>
-            <div class="booking-window">
-              <form>
-              <div class="flights-primary">
-                <input class="input" type="search" placeholder="Travelling from" required>
-                <input class="input" type="search" placeholder="Going to" required>
-                <input class="date-btn" type="date" required>
-                <button class="form-btn" onclick="openTab(event,'passengers')">Search</button>
+              <div class="form-line-container form-line-container--search">
+                  <div class="custom-select-wrapper">
+                    <div id="date-picker" class="custom-select input" data-placeholder="Select date" data-value="" role="combobox" aria-required="true">
+                      <span class="custom-select-trigger">Select date</span>
+                      <div class="date-picker-dropdown">
+                        <div class="date-picker-top-bar">
+                          <div class="date-picker-return-journey">
+                            <input type="checkbox" id="return-journey" checked>
+                            <label for="return-journey">Return journey</label>
+                          </div>
+                        </div>
+                        <div class="date-picker-calendar">
+                          <div class="date-picker-weekdays">
+                            <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+                          </div>
+                          <div id="date-picker-days" class="date-picker-days"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <button type="submit" class="form-btn">Search</button>
               </div>
             </form>
-            </div>
-            <div class="booking-window">
-              <h2 class="box-title">Disclaimer</h2>
-                <span class="divider"></span><div class="box-description">Please note that this website and product visualisation features are currently under active development. As such, please be aware that you may encounter unexpected behaviour, incomplete features or changes in functionality. Your patience and understanding are greatly appreciated. <br><br>If you would like to submit feedback, the <u><a href="https://forms.gle/tATkD8G4e83c3SnE9">Production Survey</a></u> is currently open for responses. Your support would be greatly appreciated.</div></div>
           </div>
+        </section>
           <div id="passengers" class="tabContent">
             <div class="tab-header-text">
               <h3 class="box-sub-title">Passengers</h3>
@@ -115,39 +140,54 @@
               Tell us about yourself.</p>
             </div>
             <div id="passenger-info-container">
-              <div id="passenger-info-box" class="booking-window">
-              <form>
+              <div id="passenger-info-box" class="booking-window passenger-info-box">
+              <div class="mandatory-fields-banner">Please fill all mandatory fields</div>
+              <form id="passenger-form" novalidate>
                 <h3>Passenger 1</h3>
                 <p class="box-description">Make sure the names you enter exactly match your passport, and please use English characters only. Names can’t be changed once you have completed your booking.</p>
-                <div class="dropdown">
-                  <select id="passenger-title-input" class="input" aria-placeholder="Title" required>
-                    <option value="0">Title</option>
-                    <option value="1">Mr.</option>
-                    <option value="2">Ms.</option>
-                    <option value="3">Mrs.</option>
-                    <option value="4">Prefer not to say</option>
-                  </select>
-                </div>
                 <div class="input-line">
-                  <input id="passenger-fname-input" class="input" type="text" placeholder="First name" required>
-                <input id="passenger-lname-input" class="input" type="text" placeholder="Last name" required>
+                  <div class="form-field">
+                    <div class="custom-select-wrapper">
+                      <div id="passenger-title-input" class="custom-select input" data-placeholder="Title" data-value="" role="combobox" aria-required="true">
+                        <span class="custom-select-trigger">Title</span>
+                        <div class="custom-select-options">
+                          <div class="custom-option" data-value="1">Mr.</div>
+                          <div class="custom-option" data-value="2">Ms.</div>
+                          <div class="custom-option" data-value="3">Mrs.</div>
+                          <div class="custom-option" data-value="4">Prefer not to say</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <input id="passenger-fname-input" class="input" type="text" placeholder="First name" required autocomplete="given-name" pattern="^[A-Za-z\s\-']+$" minlength="2" maxlength="50" aria-required="true">
+                  </div>
+                  <div class="form-field">
+                    <input id="passenger-lname-input" class="input" type="text" placeholder="Last name" required autocomplete="family-name" pattern="^[A-Za-z\s\-']+$" minlength="2" maxlength="50" aria-required="true">
+                  </div>
                 </div>
                 <h3>Your Frequent Flyer benefits</h3>
                 <span class="divider"></span>
-                <p>Add your Emirates Skywards number to avail <a href="#">exclusive Skywards benefits</a>. You can also add a partner airline membership number to earn Miles for this flight. </p>
-                <div class="input-line">
-                  <div class="dropdown">
-                  <select class="input" aria-placeholder="Title">
-                    <option value="0">Airline/Programme</option>
-                    <option value="1">None</option>
-                    <option value="2">Emirates & flydubai / Skywards</option>
-                    <option value="3">Qantas / Frequent Flyer</option>
-                  </select>
-                </div>
-                <input class="input" type="text" placeholder="Frequent flyer number">
+                <p>Add your Emirates Skywards number to avail <a href="#">exclusive Skywards benefits</a>. You can also add a partner airline membership number to earn Miles for this flight.</p>
+                <div class="input-line input-line--equal">
+                  <div class="form-field">
+                    <div class="custom-select-wrapper">
+                      <div id="airline-programme-input" class="custom-select input" data-placeholder="Airline/Programme" data-value="" role="combobox">
+                        <span class="custom-select-trigger">Airline/Programme</span>
+                        <div class="custom-select-options">
+                          <div class="custom-option" data-value="1">None</div>
+                          <div class="custom-option" data-value="2">Emirates & flydubai / Skywards</div>
+                          <div class="custom-option" data-value="3">Qantas / Frequent Flyer</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-field">
+                    <input id="frequent-flyer-input" class="input" type="text" placeholder="Frequent flyer number" pattern="^[A-Za-z0-9]+$" maxlength="20">
+                  </div>
                 </div>
                 <div class="button-container">
-                  <button onclick="openTab(event,'seating')">Continue to Seating</button>
+                  <button type="submit">Continue to Seating</button>
                 </div>
             </form>
             </div>
@@ -191,20 +231,40 @@
                     const seatPanorama = document.querySelectorAll('.seat');
                     const seatNumberDisplay = document.getElementById('seat-number');
                     const seatNumberSummary = document.getElementById('passenger-seat');
+                    const selectButton = document.getElementById('select-seat-btn');
+                    if (selectButton) {
+                      selectButton.disabled = true;
+                    }
                     seatPanorama.forEach(seatDiv => {
                         seatDiv.addEventListener('click', function() {
+                            // Ignore clicks on taken seats
+                            if (seatDiv.classList.contains('taken')) {
+                              return;
+                            }
+                            
                             const seatNumber = seatDiv.id.replace('seat-', '');
+                            const isUnavailable = seatDiv.classList.contains('unavailable');
                             const panoramaSource = `./assets/panoramas/${seatNumber}.png`; 
-                            viewer.setPanorama(panoramaSource);
+                            if (!isUnavailable) {
+                              viewer.setPanorama(panoramaSource);
+                            }
                             seatPanorama.forEach(div => {
                                 div.classList.remove('active');
                                 div.textContent = '';
                             });
                             seatDiv.classList.remove('active');
                             seatDiv.classList.add('active');
-                            seatDiv.textContent = `${seatNumber}`;
-                            seatNumberDisplay.textContent = `Seat ${seatNumber}`;
-                            seatNumberSummary.textContent = `Seat ${seatNumber}`;
+                            if (isUnavailable) {
+                              seatDiv.textContent = 'NA';
+                              seatNumberDisplay.textContent = 'Seat Unavailable';
+                              seatNumberSummary.textContent = 'Seat Unavailable';
+                              if (selectButton) selectButton.disabled = true;
+                            } else {
+                              seatDiv.textContent = `${seatNumber}`;
+                              seatNumberDisplay.textContent = `Seat ${seatNumber}`;
+                              seatNumberSummary.textContent = `Seat ${seatNumber}`;
+                              if (selectButton) selectButton.disabled = false;
+                            }
                         });
                     });
                 </script>
@@ -232,26 +292,26 @@
                   </div>
                   </div>
                   <div class="select-btn">
-                    <button class="form-btn" onclick="openTab(event,'summary')">Select</button>
+                    <button id="select-seat-btn" type="button" class="seating-btn form-btn" disabled>Select</button>
                   </div>
                 </div>
               </div>
             <div class="seating-map">
               <div class="cabin">
                 <p class="row-number">Economy Class</p>
-                <div class="seat-collum">
-                  <div class="seat-collum-outer">
+                <div class="seat-column">
+                  <div class="seat-column-outer">
                     <p class="seat-designation-letter">A</p>
                     <p class="seat-designation-letter">B</p>
                     <p class="seat-designation-letter">C</p>
                   </div>
-                  <div class="seat-collum-inner">
+                  <div class="seat-column-inner">
                     <p class="seat-designation-letter">D</p>
                     <p class="seat-designation-letter">E</p>
                     <p class="seat-designation-letter">F</p>
                     <p class="seat-designation-letter">G</p>
                   </div>
-                  <div class="seat-collum-outer">
+                  <div class="seat-column-outer">
                     <p class="seat-designation-letter">H</p>
                     <p class="seat-designation-letter">J</p>
                     <p class="seat-designation-letter">K</p>
@@ -950,25 +1010,58 @@
           </div>
           <div id="summary" class="tabContent">
             <div class="tab-header-text">
-              <div class="box-sub-title">Summary</div>
-              <div class="box-title">Your Booking</div>
-              <div class="box-description">Your adventure awaits.</div>
+              <p class="box-sub-title">Summary</p>
+              <h2 class="box-title">Your Booking</h2>
+              <p class="box-description">Your adventure awaits.</p>
             </div>
-          <div id="summary-window" class="booking-window">
-            <div>
-              <p id="origin-airport"><b>Origin Airport</b></p><span class="divider"></span><p id="destination-details"><b>Destination Airport</b></p>
+            <div id="summary-window" class="content-box-large">
+              <div class="summary-section">
+                <div class="summary-flight-info">
+                  <div class="summary-airport">
+                    <p id="origin-airport" class="summary-label"><b>From</b></p>
+                    <p class="summary-value">Origin Airport</p>
+                  </div>
+                  <div class="summary-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </div>
+                  <div class="summary-airport">
+                    <p id="destination-details" class="summary-label"><b>To</b></p>
+                    <p class="summary-value">Destination Airport</p>
+                  </div>
+                </div>
+              </div>
+              <span class="divider"></span>
+              <div class="summary-section">
+                <h3 class="summary-section-title">Passenger Information</h3>
+                <div class="summary-passenger-info">
+                  <div class="summary-detail">
+                    <p class="summary-label">Title</p>
+                    <p id="passenger-title" class="summary-value">—</p>
+                  </div>
+                  <div class="summary-detail">
+                    <p class="summary-label">Name</p>
+                    <p id="passenger-name" class="summary-value"><span id="passenger-fname">—</span> <span id="passenger-lname">—</span></p>
+                  </div>
+                  <div class="summary-detail">
+                    <p class="summary-label">Class</p>
+                    <p id="passenger-class" class="summary-value">Economy</p>
+                  </div>
+                  <div class="summary-detail">
+                    <p class="summary-label">Seat</p>
+                    <p id="passenger-seat" class="summary-value"><i>Not selected</i></p>
+                  </div>
+                </div>
+              </div>
+              <span class="divider"></span>
+              <div class="summary-section">
+                <h3 class="summary-section-title">Pricing</h3>
+                <div id="pricing-details" class="summary-pricing">
+                  <p class="summary-label">Total Cost</p>
+                  <p class="summary-price">£<span id="total-price">0.00</span></p>
+                </div>
+              </div>
+              <button id="book-btn" class="btn btn-large"><a href="confirmation.html">Complete Booking</a></button>
             </div>
-            <div id="passenger-details">
-              <p id="passenger-title">Title</p><p id="passenger-fname">First name</p><p id="passenger-lname">Last name</p>
-              <p id="passenger-class">Economy Class</p>
-              <p id="passenger-seat"><i>No seat selected</i></p>
-            </div>
-            <div id="pricing-details">
-              <h3>Total</h3>
-              <p>£0.00</p>
-            </div>
-            <button id="book-btn"><a href="confirmation.html">Book Flight</a></button>
-          </div>
           </div>
         </div>    
       </div>
@@ -977,15 +1070,15 @@
         <div class="footer-nav-container">
           <a href="index.html">Emirates</a>
           <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="booking.html">Book a flight</a> 
+          <a href="#flights" onclick="openTab(event, 'flights'); return false;">Book a flight</a> 
           <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#">Flights</a>
+          <a href="#flights" onclick="openTab(event, 'flights'); return false;">Flights</a>
           <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#">Passengers</a>
+          <a href="#passengers" onclick="openTab(event, 'passengers'); return false;">Passengers</a>
           <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#">Seating</a>
+          <a href="#seating" onclick="openTab(event, 'seating'); return false;">Seating</a>
           <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#">Summary</a>
+          <a href="#summary" onclick="openTab(event, 'summary'); return false;">Summary</a>
         </div>
         <div class="footer-container">
             <div class="ek-award-container">
@@ -996,7 +1089,7 @@
             <div class="footer-information">
               <div class="copyright-disclaimer">
                 <p id="footer-disclaimer">The trademarks, logos and service marks displayed on this website are the property of The Emirates Group and their respective subsidiaries. They are used here for the purpose of reference and do not imply any affiliation with or endorsement by The Emirates Group.</p>
-                <p id="footer-copyright">© 2025 The Emirates Group. All Rights Reserved. Concept developed by <a href="https://cameroncarlyon.github.io/">Cameron Carlyon</a>.</p>
+                <p id="footer-copyright">© 2025 The Emirates Group. All Rights Reserved. Concept developed by <a href="https://cameroncarlyon.com">Cameron Carlyon</a>.</p>
               </div>
               <div class="ek-footer-logo">
               <img src="assets/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
