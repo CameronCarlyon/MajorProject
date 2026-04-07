@@ -1,4 +1,363 @@
 /**
+ * Form Validation System
+ * Industry-standard form validation with accessibility support
+ */
+class FormValidator {
+  constructor(tabProgressManager) {
+    this.tabProgressManager = tabProgressManager;
+    this.initializeForms();
+  }
+
+  initializeForms() {
+    this.setupFlightSearchForm();
+    this.setupPassengerForm();
+    this.setupSeatingForm();
+  }
+
+  /**
+   * Show error message on input field
+   */
+  showError(input, errorElement, message) {
+    input.classList.add('input-error');
+    input.setAttribute('aria-invalid', 'true');
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.classList.add('visible');
+    }
+  }
+
+  /**
+   * Clear error message from input field
+   */
+  clearError(input, errorElement) {
+    input.classList.remove('input-error');
+    input.setAttribute('aria-invalid', 'false');
+    if (errorElement) {
+      errorElement.textContent = '';
+      errorElement.classList.remove('visible');
+    }
+  }
+
+  /**
+   * Validate required field
+   */
+  validateRequired(input, errorElement, fieldName) {
+    const value = input.value.trim();
+    if (!value) {
+      this.showError(input, errorElement, `${fieldName} is required`);
+      return false;
+    }
+    this.clearError(input, errorElement);
+    return true;
+  }
+
+  /**
+   * Validate input against pattern attribute
+   */
+  validatePattern(input, errorElement, fieldName) {
+    const pattern = input.getAttribute('pattern');
+    if (pattern && input.value.trim()) {
+      const regex = new RegExp(pattern);
+      if (!regex.test(input.value.trim())) {
+        this.showError(input, errorElement, `Please enter a valid ${fieldName.toLowerCase()}`);
+        return false;
+      }
+    }
+    this.clearError(input, errorElement);
+    return true;
+  }
+
+  /**
+   * Validate minimum length
+   */
+  validateMinLength(input, errorElement, fieldName) {
+    const minLength = parseInt(input.getAttribute('minlength'));
+    if (minLength && input.value.trim().length < minLength) {
+      this.showError(input, errorElement, `${fieldName} must be at least ${minLength} characters`);
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validate custom select dropdown
+   */
+  validateCustomSelect(selectElement, errorElement, fieldName) {
+    const value = selectElement.getAttribute('data-value');
+    if (!value || value === '') {
+      selectElement.classList.add('input-error');
+      if (errorElement) {
+        errorElement.textContent = `Please select a ${fieldName.toLowerCase()}`;
+        errorElement.classList.add('visible');
+      }
+      return false;
+    }
+    selectElement.classList.remove('input-error');
+    if (errorElement) {
+      errorElement.textContent = '';
+      errorElement.classList.remove('visible');
+    }
+    return true;
+  }
+
+  /**
+   * Setup flight search form validation
+   */
+  setupFlightSearchForm() {
+    const form = document.getElementById('flight-search-form');
+    if (!form) {
+      console.warn('Flight search form not found');
+      return;
+    }
+
+    const fromInput = document.getElementById('airport-from-input');
+    const toInput = document.getElementById('airport-to-input');
+    const datePicker = document.getElementById('date-picker');
+    
+    const fromError = document.getElementById('airport-from-error');
+    const toError = document.getElementById('airport-to-error');
+    const dateError = document.getElementById('date-picker-error');
+
+    // Verify all elements exist
+    if (!fromInput || !toInput || !datePicker) {
+      console.warn('Flight form inputs not found');
+      return;
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('Flight form submitted'); // Debug logging
+      
+      let isValid = true;
+
+      // Validate departure airport
+      if (!fromInput.value.trim()) {
+        this.showError(fromInput, fromError, 'Departure airport is required');
+        isValid = false;
+      } else {
+        this.clearError(fromInput, fromError);
+      }
+      
+      // Validate destination airport
+      if (!toInput.value.trim()) {
+        this.showError(toInput, toError, 'Destination airport is required');
+        isValid = false;
+      } else {
+        this.clearError(toInput, toError);
+      }
+
+      // Validate date selection
+      const dateValue = datePicker.getAttribute('data-value');
+      if (!dateValue || dateValue === '') {
+        this.showError(datePicker, dateError, 'Travel date is required');
+        isValid = false;
+      } else {
+        this.clearError(datePicker, dateError);
+      }
+
+      // Check airports are different
+      if (fromInput.value.trim() && toInput.value.trim() && 
+          fromInput.value.trim().toLowerCase() === toInput.value.trim().toLowerCase()) {
+        this.showError(toInput, toError, 'Destination must be different from departure');
+        isValid = false;
+      }
+
+      if (isValid) {
+        console.log('Flight form validation passed');
+        // Store flight data for summary
+        this.updateFlightSummary(fromInput.value, toInput.value);
+        // Mark flights tab as complete and unlock passengers
+        if (this.tabProgressManager) {
+          this.tabProgressManager.completeTab('flights');
+        }
+        // Hide banner on successful validation
+        const banner = form.querySelector('.mandatory-fields-banner');
+        if (banner) {
+          banner.classList.remove('visible');
+        }
+        openTab(e, 'passengers');
+      } else {
+        console.log('Flight form validation failed');
+        // Show banner on validation failure
+        const banner = form.querySelector('.mandatory-fields-banner');
+        if (banner) {
+          banner.classList.add('visible');
+        }
+        // Focus first invalid field
+        const firstError = form.querySelector('.input-error');
+        if (firstError) {
+          firstError.focus();
+        }
+      }
+    });
+
+    // Real-time validation on blur
+    this.setupRealTimeValidation(fromInput, fromError, 'Departure airport');
+    this.setupRealTimeValidation(toInput, toError, 'Destination airport');
+  }
+
+  /**
+   * Setup passenger form validation
+   */
+  setupPassengerForm() {
+    const form = document.getElementById('passenger-form');
+    if (!form) return;
+
+    const titleSelect = document.getElementById('passenger-title-input');
+    const fnameInput = document.getElementById('passenger-fname-input');
+    const lnameInput = document.getElementById('passenger-lname-input');
+
+    const titleError = document.getElementById('passenger-title-error');
+    const fnameError = document.getElementById('passenger-fname-error');
+    const lnameError = document.getElementById('passenger-lname-error');
+
+    // Handle form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      let isValid = true;
+
+      // Validate title
+      if (!this.validateCustomSelect(titleSelect, titleError, 'Title')) {
+        isValid = false;
+      }
+
+      // Validate first name
+      if (!this.validateRequired(fnameInput, fnameError, 'First name')) {
+        isValid = false;
+      } else if (!this.validateMinLength(fnameInput, fnameError, 'First name')) {
+        isValid = false;
+      } else if (!this.validatePattern(fnameInput, fnameError, 'First name')) {
+        isValid = false;
+      }
+
+      // Validate last name
+      if (!this.validateRequired(lnameInput, lnameError, 'Last name')) {
+        isValid = false;
+      } else if (!this.validateMinLength(lnameInput, lnameError, 'Last name')) {
+        isValid = false;
+      } else if (!this.validatePattern(lnameInput, lnameError, 'Last name')) {
+        isValid = false;
+      }
+
+      if (isValid) {
+        // Update summary with passenger data
+        this.updatePassengerSummary(titleSelect, fnameInput.value, lnameInput.value);
+        // Mark passengers tab as complete and unlock seating
+        if (this.tabProgressManager) {
+          this.tabProgressManager.completeTab('passengers');
+        }
+        // Hide banner on successful validation
+        const banner = form.querySelector('.mandatory-fields-banner');
+        if (banner) {
+          banner.classList.remove('visible');
+        }
+        openTab(e, 'seating');
+      } else {
+        // Show banner on validation failure
+        const banner = form.querySelector('.mandatory-fields-banner');
+        if (banner) {
+          banner.classList.add('visible');
+        }
+        // Focus first invalid field
+        const firstError = form.querySelector('.input-error');
+        if (firstError) {
+          firstError.focus();
+        }
+      }
+    });
+
+    // Real-time validation on blur
+    this.setupRealTimeValidation(fnameInput, fnameError, 'First name', true);
+    this.setupRealTimeValidation(lnameInput, lnameError, 'Last name', true);
+  }
+
+  /**
+   * Setup seating form validation (seat selection)
+   */
+  setupSeatingForm() {
+    const selectButton = document.getElementById('select-seat-btn');
+    if (!selectButton) return;
+
+    selectButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // Check if a valid seat is selected
+      const activeSeat = document.querySelector('.seat.active:not(.unavailable):not(.taken)');
+      if (activeSeat) {
+        // Mark seating tab as complete and unlock summary
+        if (this.tabProgressManager) {
+          this.tabProgressManager.completeTab('seating');
+        }
+        openTab(e, 'summary');
+      }
+    });
+  }
+
+  /**
+   * Setup real-time validation for an input field
+   */
+  setupRealTimeValidation(input, errorElement, fieldName, validatePatternOnBlur = false) {
+    if (!input) return;
+
+    // Clear error immediately on focus
+    input.addEventListener('focus', () => {
+      if (input.classList.contains('input-error')) {
+        this.clearError(input, errorElement);
+      }
+    });
+
+    // Clear error as user types if field now has content
+    input.addEventListener('input', () => {
+      if (input.value.trim()) {
+        // Field has content - clear any error immediately
+        if (input.classList.contains('input-error')) {
+          this.clearError(input, errorElement);
+        }
+      }
+    });
+
+    // On blur, only clear errors if valid - don't show new errors (that's for form submit)
+    input.addEventListener('blur', () => {
+      const value = input.value.trim();
+      if (value) {
+        // Field has content - clear any error
+        this.clearError(input, errorElement);
+      }
+      // Don't show errors on blur - only on form submit
+    });
+  }
+
+  /**
+   * Update flight summary section
+   */
+  updateFlightSummary(from, to) {
+    const originEl = document.querySelector('#origin-airport + .summary-value');
+    const destEl = document.querySelector('#destination-details + .summary-value');
+    
+    if (originEl) originEl.textContent = from;
+    if (destEl) destEl.textContent = to;
+  }
+
+  /**
+   * Update passenger summary section
+   */
+  updatePassengerSummary(titleSelect, firstName, lastName) {
+    const titleEl = document.getElementById('passenger-title');
+    const fnameEl = document.getElementById('passenger-fname');
+    const lnameEl = document.getElementById('passenger-lname');
+    
+    if (titleSelect && titleEl) {
+      const titleText = titleSelect.querySelector('.custom-select-trigger').textContent;
+      titleEl.textContent = titleText !== 'Title' ? titleText : '—';
+    }
+    if (fnameEl) fnameEl.textContent = firstName.trim();
+    if (lnameEl) lnameEl.textContent = lastName.trim();
+  }
+}
+
+/**
  * Modal Management System
  */
 class ModalManager {
@@ -82,23 +441,41 @@ class ModalManager {
  * Navigation and Tab Management
  */
 class TabManager {
-  constructor() {
+  constructor(tabProgressManager) {
+    this.tabProgressManager = tabProgressManager;
     this.initializeTabs();
   }
 
   initializeTabs() {
+    // Bind click events to tab buttons using data-tab attribute
+    const tabButtons = document.querySelectorAll('.tabOption[data-tab]');
+    tabButtons.forEach(button => {
+      button.addEventListener('click', (evt) => {
+        const tabName = button.getAttribute('data-tab');
+        this.openTab(evt, tabName);
+      });
+    });
+
     // Auto-click default tab if it exists
     const defaultTab = document.getElementById("defaultTab");
     if (defaultTab) {
-      // Click the tab to trigger openTab
-      defaultTab.click();
-      // Ensure active class is added to default tab
+      const tabName = defaultTab.getAttribute('data-tab');
+      if (tabName) {
+        this.openTab({ currentTarget: defaultTab }, tabName);
+      }
       defaultTab.classList.add("active");
     }
   }
 
   openTab(evt, tabName) {
     try {
+      // Check if the tab is locked
+      const tabButton = document.querySelector(`.tabOption[data-tab="${tabName}"]`);
+      if (tabButton && tabButton.classList.contains('locked')) {
+        // Don't allow navigation to locked tabs
+        return;
+      }
+
       // Hide all tab contents
       const tabContents = document.getElementsByClassName("tabContent");
       Array.from(tabContents).forEach(content => {
@@ -117,22 +494,9 @@ class TabManager {
         selectedTab.style.display = "block";
         
         // Find and activate the corresponding tab button
-        // Check if evt.currentTarget is a tab button, otherwise find it by tab name
-        let tabButton = null;
-        if (evt.currentTarget && evt.currentTarget.classList.contains("tabOption")) {
-          tabButton = evt.currentTarget;
-        } else {
-          // Find the correct tab button based on the onclick attribute
-          Array.from(tabOptions).forEach(option => {
-            const onclickAttr = option.getAttribute("onclick");
-            if (onclickAttr && onclickAttr.includes(`'${tabName}'`)) {
-              tabButton = option;
-            }
-          });
-        }
-        
-        if (tabButton) {
-          tabButton.classList.add("active");
+        const targetButton = document.querySelector(`.tabOption[data-tab="${tabName}"]`);
+        if (targetButton) {
+          targetButton.classList.add("active");
         }
         
         this.scrollToTop();
@@ -147,6 +511,93 @@ class TabManager {
       top: 0,
       behavior: "smooth",
     });
+  }
+}
+
+/**
+ * Tab Progress Management System
+ * Manages the locking/unlocking of tabs based on form completion
+ */
+class TabProgressManager {
+  constructor() {
+    // Define tab order and their dependencies
+    this.tabOrder = ['flights', 'passengers', 'seating', 'summary'];
+    this.completedTabs = new Set();
+  }
+
+  /**
+   * Mark a tab as completed and unlock the next tab
+   */
+  completeTab(tabName) {
+    this.completedTabs.add(tabName);
+    
+    // Add completed class to tab button
+    const tabButton = document.querySelector(`.tabOption[data-tab="${tabName}"]`);
+    if (tabButton) {
+      tabButton.classList.add('completed');
+    }
+    
+    // Find the next tab in order
+    const currentIndex = this.tabOrder.indexOf(tabName);
+    if (currentIndex !== -1 && currentIndex < this.tabOrder.length - 1) {
+      const nextTab = this.tabOrder[currentIndex + 1];
+      this.unlockTab(nextTab);
+    }
+  }
+
+  /**
+   * Unlock a specific tab
+   */
+  unlockTab(tabName) {
+    const tabButton = document.querySelector(`.tabOption[data-tab="${tabName}"]`);
+    if (tabButton) {
+      tabButton.classList.remove('locked');
+    }
+  }
+
+  /**
+   * Lock a specific tab
+   */
+  lockTab(tabName) {
+    const tabButton = document.querySelector(`.tabOption[data-tab="${tabName}"]`);
+    if (tabButton && tabName !== 'flights') { // Never lock the first tab
+      tabButton.classList.add('locked');
+    }
+  }
+
+  /**
+   * Check if a tab is unlocked
+   */
+  isTabUnlocked(tabName) {
+    const tabButton = document.querySelector(`.tabOption[data-tab="${tabName}"]`);
+    return tabButton && !tabButton.classList.contains('locked');
+  }
+
+  /**
+   * Check if a tab is completed
+   */
+  isTabCompleted(tabName) {
+    return this.completedTabs.has(tabName);
+  }
+
+  /**
+   * Reset progress (e.g., if user goes back and changes data)
+   */
+  resetFromTab(tabName) {
+    const tabIndex = this.tabOrder.indexOf(tabName);
+    if (tabIndex !== -1) {
+      // Remove completion status and lock all tabs after this one
+      for (let i = tabIndex + 1; i < this.tabOrder.length; i++) {
+        const tab = this.tabOrder[i];
+        this.completedTabs.delete(tab);
+        this.lockTab(tab);
+        // Remove completed class
+        const tabButton = document.querySelector(`.tabOption[data-tab="${tab}"]`);
+        if (tabButton) {
+          tabButton.classList.remove('completed');
+        }
+      }
+    }
   }
 }
 
@@ -366,6 +817,20 @@ class CustomSelectManager {
     this.initializeCustomSelects();
   }
 
+  clearSelectError(select) {
+    if (!select.classList.contains('input-error')) return;
+    select.classList.remove('input-error');
+
+    const errorId = select.getAttribute('aria-describedby');
+    if (errorId) {
+      const errorElement = document.getElementById(errorId);
+      if (errorElement) {
+        errorElement.textContent = '';
+        errorElement.classList.remove('visible');
+      }
+    }
+  }
+
   initializeCustomSelects() {
     document.querySelectorAll('.custom-select').forEach(select => {
       // Skip date picker - it has its own handler
@@ -377,6 +842,7 @@ class CustomSelectManager {
       // Toggle dropdown on click of entire select area
       select.addEventListener('click', (e) => {
         e.stopPropagation();
+        this.clearSelectError(select);
         // Close other dropdowns
         document.querySelectorAll('.custom-select.open').forEach(other => {
           if (other !== select) other.classList.remove('open');
@@ -390,14 +856,18 @@ class CustomSelectManager {
           e.stopPropagation();
           const value = option.getAttribute('data-value');
           const text = option.textContent;
-          
+
           // Update the trigger text and value
           trigger.textContent = text;
           select.setAttribute('data-value', value);
           select.classList.add('has-value');
-          
+
           // Close the dropdown
           select.classList.remove('open');
+
+          // Clear error if present (for real-time validation)
+          // Find the error element associated with this custom select
+          this.clearSelectError(select);
         });
       });
     });
@@ -431,7 +901,6 @@ class DatePickerManager {
   }
 
   init() {
-    const trigger = this.datePicker.querySelector('.custom-select-trigger');
     // Listen for return journey checkbox
     const returnCheckbox = document.getElementById('return-journey');
     if (returnCheckbox) {
@@ -450,6 +919,17 @@ class DatePickerManager {
     this.datePicker.addEventListener('click', (e) => {
       if (!e.target.closest('.date-picker-dropdown')) {
         e.stopPropagation();
+        if (this.datePicker.classList.contains('input-error')) {
+          this.datePicker.classList.remove('input-error');
+          const errorId = this.datePicker.getAttribute('aria-describedby');
+          if (errorId) {
+            const errorElement = document.getElementById(errorId);
+            if (errorElement) {
+              errorElement.textContent = '';
+              errorElement.classList.remove('visible');
+            }
+          }
+        }
         document.querySelectorAll('.custom-select.open').forEach(other => {
           if (other !== this.datePicker) other.classList.remove('open');
         });
@@ -472,7 +952,6 @@ class DatePickerManager {
     const month = this.currentDate.getMonth();
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
                         'July', 'August', 'September', 'October', 'November', 'December'];
-    // Support two months side by side, one set of controls
     const calendarContainer = this.datePicker.querySelector('.date-picker-calendar');
     calendarContainer.innerHTML = '';
 
@@ -501,7 +980,7 @@ class DatePickerManager {
     const headerSpan = document.createElement('span');
     headerSpan.style.flex = '1 1 0';
     headerSpan.style.textAlign = 'center';
-    headerSpan.textContent = `${monthNames[month]} ${year}  |  ${monthNames[(month+1)%12]} ${month+1>11?year+1:year}`;
+    headerSpan.textContent = `${monthNames[month]} ${year}`;
 
     const nextBtn = document.createElement('button');
     nextBtn.type = 'button';
@@ -555,15 +1034,7 @@ class DatePickerManager {
       monthsWrapper.appendChild(monthDiv);
     };
 
-    // Render current and next month side by side
     renderMonth(year, month);
-    let nextMonth = month + 1;
-    let nextYear = year;
-    if (nextMonth > 11) {
-      nextMonth = 0;
-      nextYear++;
-    }
-    renderMonth(nextYear, nextMonth);
     calendarContainer.appendChild(monthsWrapper);
   }
 
@@ -673,64 +1144,23 @@ class DatePickerManager {
 /**
  * Application Initialization
  */
+let tabProgressManager;
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize tab progress manager first (other systems depend on it)
+  tabProgressManager = new TabProgressManager();
+  
   // Initialize all systems
   new ModalManager();
-  tabManager = new TabManager();
+  tabManager = new TabManager(tabProgressManager);
   new PassengerManager();
   new SeatManager();
   new CustomSelectManager();
   new DatePickerManager();
+  new FormValidator(tabProgressManager);
 
-  // --- Search Button Enable/Disable Logic ---
-  const fromInput = document.getElementById('airport-from-input');
-  const toInput = document.getElementById('airport-to-input');
-  const datePicker = document.getElementById('date-picker');
-  const searchBtn = document.querySelector('.flights-primary .form-btn');
-
-  function isDateSelected() {
-    if (!datePicker) return false;
-    // For one-way: data-value is ISO string; for return: two ISO strings separated by |
-    const val = datePicker.getAttribute('data-value');
-    if (!val) return false;
-    if (document.getElementById('return-journey')?.checked) {
-      // Return: must have two dates
-      const parts = val.split('|');
-      return parts.length === 2 && parts[0] && parts[1];
-    } else {
-      // One-way: must have one date
-      return !!val;
-    }
-  }
-
-  function updateSearchBtnState() {
-    const fromFilled = fromInput && fromInput.value.trim().length > 0;
-    const toFilled = toInput && toInput.value.trim().length > 0;
-    const dateFilled = isDateSelected();
-    if (fromFilled && toFilled && dateFilled) {
-      searchBtn.disabled = false;
-    } else {
-      searchBtn.disabled = true;
-    }
-  }
-
-  if (fromInput && toInput && datePicker && searchBtn) {
-    fromInput.addEventListener('input', updateSearchBtnState);
-    toInput.addEventListener('input', updateSearchBtnState);
-    // Listen for date changes via MutationObserver (since custom picker updates data-value)
-    const observer = new MutationObserver(updateSearchBtnState);
-    observer.observe(datePicker, { attributes: true, attributeFilter: ['data-value'] });
-    // Also listen for return journey toggle
-    const returnCheckbox = document.getElementById('return-journey');
-    if (returnCheckbox) {
-      returnCheckbox.addEventListener('change', () => {
-        // Date selection resets, so update button state
-        setTimeout(updateSearchBtnState, 0);
-      });
-    }
-    // Initial state
-    updateSearchBtnState();
-  }
+  // Search button is always enabled - validation happens on form submit
+  // This allows proper error messages to be shown when required fields are missing
 
   
   console.log("Application initialized successfully");
