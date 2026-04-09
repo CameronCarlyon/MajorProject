@@ -99,34 +99,34 @@
           <div class="booking-window">
             <div class="mandatory-fields-banner">Please fill all mandatory fields</div>
             <form id="flight-search-form" class="flights-primary" novalidate>
-              <div class="form-line-container">
+              <div class="form-line-container form-line-container--route-toggle">
                 <div class="form-field">
                   <input id="airport-from-input" class="input" type="text" placeholder="Travelling from" required autocomplete="off" aria-required="true">
+                </div>
+                <div class="date-journey-toggle" role="radiogroup" aria-label="Journey type">
+                  <input type="radio" name="journey-type" id="journey-one-way" value="one-way">
+                  <label for="journey-one-way">One-way</label>
+                  <input type="radio" name="journey-type" id="journey-return" value="return" checked>
+                  <label for="journey-return">Return</label>
                 </div>
                 <div class="form-field">
                   <input id="airport-to-input" class="input" type="text" placeholder="Going to" required autocomplete="off" aria-required="true">
                 </div>
               </div>
               <div class="form-line-container form-line-container--search">
-                  <div class="custom-select-wrapper">
-                    <div id="date-picker" class="custom-select input" data-placeholder="Select date" data-value="" role="combobox" aria-required="true">
-                      <span class="custom-select-trigger">Select date</span>
-                      <div class="date-picker-dropdown">
-                        <div class="date-picker-top-bar">
-                          <div class="date-picker-return-journey">
-                            <input type="checkbox" id="return-journey" checked>
-                            <label for="return-journey">Return journey</label>
-                          </div>
+                <div class="custom-select-wrapper">
+                  <div id="date-picker" class="custom-select input" data-placeholder="Select date" data-value="" role="combobox" aria-required="true">
+                    <span class="custom-select-trigger">Select date</span>
+                    <div class="date-picker-dropdown">
+                      <div class="date-picker-calendar">
+                        <div class="date-picker-weekdays">
+                          <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
                         </div>
-                        <div class="date-picker-calendar">
-                          <div class="date-picker-weekdays">
-                            <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
-                          </div>
-                          <div id="date-picker-days" class="date-picker-days"></div>
-                        </div>
+                        <div id="date-picker-days" class="date-picker-days"></div>
                       </div>
                     </div>
                   </div>
+                </div>
                 <button type="submit" class="form-btn">Search</button>
               </div>
             </form>

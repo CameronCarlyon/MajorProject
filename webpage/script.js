@@ -901,18 +901,21 @@ class DatePickerManager {
   }
 
   init() {
-    // Listen for return journey checkbox
-    const returnCheckbox = document.getElementById('return-journey');
-    if (returnCheckbox) {
-      this.isReturnJourney = returnCheckbox.checked;
-      returnCheckbox.addEventListener('change', (e) => {
-        this.isReturnJourney = e.target.checked;
-        // Reset selection when toggling
-        this.selectedDate = null;
-        this.rangeStart = null;
-        this.rangeEnd = null;
-        this.renderCalendar();
-        this.updateTrigger();
+    // Listen for journey type toggle
+    const journeyOptions = document.querySelectorAll('input[name="journey-type"]');
+    if (journeyOptions.length) {
+      const selectedOption = document.querySelector('input[name="journey-type"]:checked');
+      this.isReturnJourney = selectedOption ? selectedOption.value === 'return' : false;
+      journeyOptions.forEach((option) => {
+        option.addEventListener('change', (e) => {
+          this.isReturnJourney = e.target.value === 'return';
+          // Reset selection when toggling
+          this.selectedDate = null;
+          this.rangeStart = null;
+          this.rangeEnd = null;
+          this.renderCalendar();
+          this.updateTrigger();
+        });
       });
     }
     // Toggle calendar on click
