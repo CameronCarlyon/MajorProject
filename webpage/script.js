@@ -918,6 +918,8 @@ class DatePickerManager {
         });
       });
     }
+    this.updateTrigger();
+
     // Toggle calendar on click
     this.datePicker.addEventListener('click', (e) => {
       if (!e.target.closest('.date-picker-dropdown')) {
@@ -1126,7 +1128,7 @@ class DatePickerManager {
         this.datePicker.classList.remove('has-value');
         this.datePicker.setAttribute('data-value', '');
       } else {
-        trigger.textContent = 'Select date';
+        trigger.textContent = 'Select dates';
         this.datePicker.classList.remove('has-value');
         this.datePicker.setAttribute('data-value', '');
       }
