@@ -975,7 +975,7 @@ class DatePickerManager {
     prevBtn.type = 'button';
     prevBtn.className = 'date-nav-btn';
     prevBtn.id = 'prev-month';
-    prevBtn.textContent = '<';
+    prevBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19l-7-7 7-7"/></svg>';
     prevBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       this.currentDate.setMonth(this.currentDate.getMonth() - 1);
@@ -991,7 +991,7 @@ class DatePickerManager {
     nextBtn.type = 'button';
     nextBtn.className = 'date-nav-btn';
     nextBtn.id = 'next-month';
-    nextBtn.textContent = '>';
+    nextBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>';
     nextBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       this.currentDate.setMonth(this.currentDate.getMonth() + 1);
