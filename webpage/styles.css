@@ -674,7 +674,7 @@ textarea.input:focus,
   border: 1px solid #d8d8d8;
   font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: var(--spacing-md);
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   background: white;
   overflow-wrap: break-word;
 }
@@ -754,6 +754,20 @@ select.input:invalid {
 
 .custom-select.has-value .custom-select-trigger {
   color: var(--color-text-primary);
+}
+
+#date-picker .custom-select-trigger {
+  color: var(--color-text-placeholder);
+}
+
+#date-picker.has-value .custom-select-trigger {
+  color: var(--color-text-secondary);
+}
+
+#airport-from-input::placeholder,
+#airport-to-input::placeholder {
+  color: var(--color-text-placeholder);
+  opacity: 1;
 }
 
 .custom-select-trigger::after {
@@ -2022,6 +2036,7 @@ form {
   --color-emirates-red-dark: #b32c2d;
   --color-text-primary: #333;
   --color-text-secondary: #666;
+  --color-text-placeholder: #acacac;
   --color-text-light: #757575;
   --color-text-muted: #a9a9a9;
   --color-white: #fff;

@@ -1125,7 +1125,7 @@ class DatePickerManager {
         this.datePicker.setAttribute('data-value', `${this.rangeStart.toISOString()}|${this.rangeEnd.toISOString()}`);
       } else if (this.rangeStart) {
         trigger.textContent = `${this.rangeStart.toLocaleDateString()} ⇄ ...`;
-        this.datePicker.classList.remove('has-value');
+        this.datePicker.classList.add('has-value');
         this.datePicker.setAttribute('data-value', '');
       } else {
         trigger.textContent = 'Select dates';
