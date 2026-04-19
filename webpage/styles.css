@@ -770,6 +770,11 @@ select.input:invalid {
   opacity: 1;
 }
 
+#airport-from-input.input-error::placeholder,
+#airport-to-input.input-error::placeholder {
+  color: #d71921;
+}
+
 .custom-select-trigger::after {
   content: '▼';
   position: absolute;
@@ -1013,6 +1018,7 @@ button.date-nav-btn:not(.tabOption):not(.add-icon):hover {
   align-items: center;
   gap: var(--spacing-md);
   font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  min-width: 0;
 }
 
 .airport-autocomplete-item:hover {
@@ -1020,28 +1026,44 @@ button.date-nav-btn:not(.tabOption):not(.add-icon):hover {
 }
 
 .airport-item-content {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .airport-item-main {
   display: flex;
-  align-items: center;
-  gap: 4px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
   margin-bottom: 4px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .airport-city {
   font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-weight: 600;
   font-size: 14px;
+  line-height: 1.1;
   color: var(--color-text-primary);
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .airport-country {
   font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-weight: 200;
   font-size: 14px;
+  line-height: 1.1;
   color: var(--color-text-primary);
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .airport-name {
@@ -1049,17 +1071,34 @@ button.date-nav-btn:not(.tabOption):not(.add-icon):hover {
   font-size: 0.7rem;
   color: var(--color-text-secondary);
   font-weight: 200;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .airport-iata {
   font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-weight: 400;
   font-size: 13px;
+  line-height: 1;
   color: var(--color-text-primary);
   background-color: #c9ebec;
-  padding: 10px 10px;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  min-width: 2.4rem;
+  max-width: 2.4rem;
+  height: 2.4rem;
+  min-height: 2.4rem;
+  max-height: 2.4rem;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  padding: 0;
+  border-radius: 8px;
   white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .dropdown {
@@ -1275,7 +1314,7 @@ button.date-nav-btn:not(.tabOption):not(.add-icon):hover {
 }
 
 #flights .booking-window {
-  width: min(100%, 40rem);
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
 }

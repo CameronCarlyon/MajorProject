@@ -325,7 +325,7 @@ class AirportAutocompleteManager {
       item.innerHTML = `
         <div class="airport-item-content">
           <div class="airport-item-main">
-            <span class="airport-city">${airport.city},</span>
+            <span class="airport-city">${airport.city}</span>
             <span class="airport-country">${airport.country}</span>
           </div>
           <div class="airport-name">${airport.name}</div>

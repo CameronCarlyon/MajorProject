@@ -184,11 +184,6 @@ class FormValidator {
         if (banner) {
           banner.classList.add('visible');
         }
-        // Focus first invalid field
-        const firstError = form.querySelector('.input-error');
-        if (firstError) {
-          firstError.focus();
-        }
       }
     });
 
@@ -259,11 +254,6 @@ class FormValidator {
         const banner = form.querySelector('.mandatory-fields-banner');
         if (banner) {
           banner.classList.add('visible');
-        }
-        // Focus first invalid field
-        const firstError = form.querySelector('.input-error');
-        if (firstError) {
-          firstError.focus();
         }
       }
     });
