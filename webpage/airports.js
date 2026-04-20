@@ -239,12 +239,12 @@ class AirportAutocompleteManager {
       // Show all airports when input is cleared
       const allAirports = this.getAllAirportsSorted(excludeAirport);
       this.renderDropdown(dropdown, allAirports, type, true);
-    } else if (query.length < 2) {
+    } else if (query.length < 1) {
       dropdown.classList.remove('open');
       return;
     } else {
       const matches = this.searchAirports(query, excludeAirport);
-      this.renderDropdown(dropdown, matches, type, false);
+      this.renderDropdown(dropdown, matches, type, false, query);
     }
   }
 
@@ -257,10 +257,10 @@ class AirportAutocompleteManager {
       // Show all airports alphabetically when input is empty
       const allAirports = this.getAllAirportsSorted(excludeAirport);
       this.renderDropdown(dropdown, allAirports, type, true);
-    } else if (query.length >= 2) {
+    } else if (query.length >= 1) {
       // Use search functionality when user has typed
       const matches = this.searchAirports(query, excludeAirport);
-      this.renderDropdown(dropdown, matches, type, false);
+      this.renderDropdown(dropdown, matches, type, false, query);
     }
   }
 
@@ -316,8 +316,31 @@ class AirportAutocompleteManager {
     return results;
   }
 
-  renderDropdown(dropdown, airports, type, showSections = false) {
+  renderDropdown(dropdown, airports, type, showSections = false, searchQuery = '') {
     dropdown.innerHTML = '';
+        const createNoResultsItem = (queryText) => {
+          const emptyState = document.createElement('div');
+          emptyState.className = 'airport-autocomplete-empty';
+
+          const title = document.createElement('div');
+          title.className = 'airport-autocomplete-empty-title';
+
+          const hint = document.createElement('div');
+          hint.className = 'airport-autocomplete-empty-hint';
+
+          const normalizedQuery = (queryText || '').trim();
+          const primaryText = normalizedQuery
+            ? `No results matching "${normalizedQuery}".`
+            : 'No matching airports found.';
+
+          title.textContent = primaryText;
+          hint.textContent = 'Try searching by city, airport name, country, or IATA code.';
+
+          emptyState.appendChild(title);
+          emptyState.appendChild(hint);
+          return emptyState;
+        };
+
     
     const createAirportItem = (airport) => {
       const item = document.createElement('div');
@@ -378,7 +401,8 @@ class AirportAutocompleteManager {
     } else {
       // Typed state: show only all locations
       if (allAirports.length === 0) {
-        dropdown.classList.remove('open');
+        dropdown.appendChild(createNoResultsItem(searchQuery));
+        dropdown.classList.add('open');
         return;
       }
       hasAnyItems = true;
