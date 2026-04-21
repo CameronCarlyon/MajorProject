@@ -1000,14 +1000,13 @@ button.date-nav-btn:not(.tabOption):not(.add-icon):hover {
 }
 
 .airport-autocomplete-section {
-  padding: 1rem 0px;
+  padding: 1rem;
   font-size: 1rem;
   letter-spacing: 0.04em;
   color: var(--color-text-secondary);
   font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-weight: 200;
   border-bottom: 1px solid #ddd;
-  margin-left: 1.5rem;
 }
 
 .airport-autocomplete-item {
@@ -1462,6 +1461,27 @@ form {
   font-weight: 300;
   color: var(--color-text-primary);
   line-height: 1.4;
+}
+
+.booking-window .input,
+.booking-window .custom-select.input,
+.booking-window button:not(.tabOption):not(.add-icon),
+.booking-window .btn,
+.booking-window .date-journey-toggle label {
+  height: 3.25rem;
+  box-sizing: border-box;
+}
+
+.booking-window .input,
+.booking-window .custom-select.input {
+  align-items: center;
+}
+
+.booking-window button:not(.tabOption):not(.add-icon),
+.booking-window .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .booking-window h3:last-of-type {
@@ -2067,23 +2087,33 @@ form {
     font-size: 14px;
     line-height: 36px;
   }
-}
-
-@media screen and (max-width: 600px) {
-  #flight-search-form .form-line-container:not(.form-line-container--route-toggle) {
+  #flights .booking-window {
+    width: 100%;
+  }
+  #flight-search-form .form-line-container,
+  #flight-search-form .form-line-container--route-toggle,
+  #flight-search-form .form-line-container--search {
     grid-template-columns: 1fr;
   }
-  #flight-search-form .form-line-container--route-toggle {
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  }
   #flight-search-form .form-line-container--route-toggle .date-journey-toggle {
-    justify-self: center;
-  }
-  #flight-search-form .form-line-container--search {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-self: stretch;
+    width: 100%;
   }
   #flight-search-form .form-line-container--search > :first-child {
-    grid-column: span 2;
+    grid-column: auto;
+  }
+  #flight-search-form .form-btn,
+  #flight-search-form .custom-select-wrapper,
+  #flight-search-form .form-field {
+    width: 100%;
+  }
+  .input-line,
+  .input-line--equal {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .input-line .form-field:first-child {
+    flex: 1 1 auto;
   }
 }
 
