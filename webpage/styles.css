@@ -740,6 +740,7 @@ select.input:invalid {
   cursor: pointer;
   overflow: visible;
   white-space: nowrap;
+  padding: 0rem 1rem;
 }
 
 .custom-select-trigger {
@@ -757,11 +758,65 @@ select.input:invalid {
 }
 
 #date-picker .custom-select-trigger {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-right: 2.25rem;
   color: var(--color-text-placeholder);
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 #date-picker.has-value .custom-select-trigger {
   color: var(--color-text-secondary);
+}
+
+.date-picker-trigger-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-md);
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.date-picker-trigger-layout.is-single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.date-picker-trigger-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 2px;
+}
+
+.date-picker-trigger-label {
+  font-family: var(--font-helvetica-bold);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.date-picker-trigger-value {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-helvetica);
+  font-size: 0.88rem;
+  line-height: 1.15;
+  color: var(--color-text-primary);
+}
+
+.date-picker-trigger-value.is-placeholder {
+  color: var(--color-text-placeholder);
 }
 
 #airport-from-input::placeholder,

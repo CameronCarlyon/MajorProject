@@ -1082,12 +1082,19 @@ class DatePickerManager {
   handleDateClick(year, month, day) {
     const clickedDate = new Date(year, month, day);
     clickedDate.setHours(0, 0, 0, 0);
+    let shouldCloseCalendar = false;
+
     if (this.isReturnJourney) {
       if (!this.rangeStart || (this.rangeStart && this.rangeEnd)) {
         // Start new range
         this.rangeStart = clickedDate;
         this.rangeEnd = null;
       } else if (!this.rangeEnd) {
+        if (clickedDate.getTime() === this.rangeStart.getTime()) {
+          this.renderCalendar();
+          return;
+        }
+
         // Set end date
         if (clickedDate < this.rangeStart) {
           this.rangeEnd = this.rangeStart;
@@ -1095,40 +1102,104 @@ class DatePickerManager {
         } else {
           this.rangeEnd = clickedDate;
         }
+        shouldCloseCalendar = true;
       }
       this.updateTrigger();
     } else {
       this.selectedDate = clickedDate;
       this.updateTrigger();
-      // Close calendar
-      this.datePicker.classList.remove('open');
+      shouldCloseCalendar = true;
     }
     this.renderCalendar();
+
+    if (shouldCloseCalendar) {
+      this.datePicker.classList.remove('open');
+    }
+  }
+
+  getOrdinalSuffix(day) {
+    const mod10 = day % 10;
+    const mod100 = day % 100;
+
+    if (mod10 === 1 && mod100 !== 11) return 'st';
+    if (mod10 === 2 && mod100 !== 12) return 'nd';
+    if (mod10 === 3 && mod100 !== 13) return 'rd';
+    return 'th';
+  }
+
+  formatDisplayDate(date) {
+    if (!date) {
+      return '';
+    }
+
+    const day = date.getDate();
+    const month = date.toLocaleString('en-GB', { month: 'long' });
+    const year = date.getFullYear();
+
+    return `${day}${this.getOrdinalSuffix(day)} ${month} ${year}`;
+  }
+
+  renderTriggerColumns(columns) {
+    const trigger = this.datePicker.querySelector('.custom-select-trigger');
+    trigger.textContent = '';
+
+    const layout = document.createElement('span');
+    layout.className = `date-picker-trigger-layout${columns.length === 1 ? ' is-single' : ''}`;
+
+    columns.forEach(({ label, value, isPlaceholder = false }) => {
+      const column = document.createElement('span');
+      column.className = 'date-picker-trigger-column';
+
+      const labelElement = document.createElement('span');
+      labelElement.className = 'date-picker-trigger-label';
+      labelElement.textContent = label;
+
+      const valueElement = document.createElement('span');
+      valueElement.className = `date-picker-trigger-value${isPlaceholder ? ' is-placeholder' : ''}`;
+      valueElement.textContent = value;
+
+      column.appendChild(labelElement);
+      column.appendChild(valueElement);
+      layout.appendChild(column);
+    });
+
+    trigger.appendChild(layout);
   }
 
   updateTrigger() {
-    const trigger = this.datePicker.querySelector('.custom-select-trigger');
     if (this.isReturnJourney) {
       if (this.rangeStart && this.rangeEnd) {
-        trigger.textContent = `${this.rangeStart.toLocaleDateString()} ⇄ ${this.rangeEnd.toLocaleDateString()}`;
+        this.renderTriggerColumns([
+          { label: 'Departing', value: this.formatDisplayDate(this.rangeStart) },
+          { label: 'Returning', value: this.formatDisplayDate(this.rangeEnd) }
+        ]);
         this.datePicker.classList.add('has-value');
         this.datePicker.setAttribute('data-value', `${this.rangeStart.toISOString()}|${this.rangeEnd.toISOString()}`);
       } else if (this.rangeStart) {
-        trigger.textContent = `${this.rangeStart.toLocaleDateString()} ⇄ ...`;
+        this.renderTriggerColumns([
+          { label: 'Departing', value: this.formatDisplayDate(this.rangeStart) },
+          { label: 'Returning', value: 'Select date', isPlaceholder: true }
+        ]);
         this.datePicker.classList.add('has-value');
         this.datePicker.setAttribute('data-value', '');
       } else {
-        trigger.textContent = 'Select dates';
+        this.renderTriggerColumns([
+          { label: 'Departing and Returning', value: 'Select dates', isPlaceholder: true }
+        ]);
         this.datePicker.classList.remove('has-value');
         this.datePicker.setAttribute('data-value', '');
       }
     } else {
       if (this.selectedDate) {
-        trigger.textContent = this.selectedDate.toLocaleDateString();
+        this.renderTriggerColumns([
+          { label: 'Departing', value: this.formatDisplayDate(this.selectedDate) }
+        ]);
         this.datePicker.classList.add('has-value');
         this.datePicker.setAttribute('data-value', this.selectedDate.toISOString());
       } else {
-        trigger.textContent = 'Select date';
+        this.renderTriggerColumns([
+          { label: 'Departing', value: 'Select date', isPlaceholder: true }
+        ]);
         this.datePicker.classList.remove('has-value');
         this.datePicker.setAttribute('data-value', '');
       }
