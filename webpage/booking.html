@@ -5,20 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>An Integrated Product Visualisation and Ticketing System
        | Cameron Carlyon</title>
+    <link rel="preload" href="./assets/fonts/NotoSans-VariableFont_wdth,wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/Emirates-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/heroiccondensed-medium.woff2" as="font" type="font/woff2" crossorigin />
+     <link rel="icon" href="./assets/svg/favicon.svg?v=2" type="image/svg+xml" sizes="any" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
-    <script src="script.js" defer></script>
-    <script src="airports.js" defer></script>
-    <script
-      src="https://kit.fontawesome.com/5996a0cc2a.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
+          "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js"
+        }
+      }
+    </script>
+    <script src="cabin-layout.js" defer></script>
+      <script src="airports.js" defer></script>
+      <script src="site.js" defer></script>
+      <script type="module" src="booking.js"></script>
   </head>
-  <body>
+  <body class="booking-page">
     <header class="ek-nav-bar">
       <a href="./index.html" class="ek-nav-bar-logo" draggable="false">
-        <img src="assets/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
+        <img src="assets/svg/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
       </a>
       <nav class="ek-nav-bar-links">
         <div id="ek-nav-bar-primary" class="ek-nav-bar-asset">
@@ -37,29 +46,29 @@
         <div id="ek-nav-bar-overflow" class="ek-nav-bar-asset">
           <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-solid fa-earth-europe"></i> GB</a>
           <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-regular fa-circle-user"></i></a>
-          <button id="ek-nav-bar-btn-menu" class="feature-unavailable" type="button">Menu</button>
+          <button id="ek-nav-bar-menu-button" class="feature-unavailable" type="button">Menu</button>
         </div>
       </nav>
     </header>
     <main>
       <nav class="ek-sub-nav-bar">
         <a href="./index.html" class="ek-nav-bar-logo-horizontal" draggable="false">
-          <img src="assets/emirates-logo-horizontal.svg" alt="Emirates Airline logo" draggable="false" />
+          <img src="assets/svg/emirates-logo-horizontal.svg" alt="Emirates Airline logo" draggable="false" />
         </a>
-        <div class="booking-tabs">
-          <button class="tabOption active" data-tab="flights" id="defaultTab">
+        <div class="booking-tabs" role="tablist" aria-label="Booking steps">
+          <button class="booking-tab active" data-tab="flights" id="default-booking-tab" type="button" role="tab" aria-label="Flights" aria-selected="true" aria-controls="flights" aria-expanded="true">
             <span class="material-symbols-outlined tab-icon">travel</span>
             <span class="tab-label">Flights</span>
           </button>
-          <button class="tabOption locked" data-tab="passengers">
+          <button class="booking-tab locked" data-tab="passengers" id="tab-passengers" type="button" role="tab" aria-label="Passengers" aria-selected="false" aria-controls="passengers" aria-expanded="false" aria-disabled="true" disabled tabindex="-1">
             <i class="fa-solid fa-user tab-icon"></i>
             <span class="tab-label">Passengers</span>
           </button>
-          <button class="tabOption locked" data-tab="seating">
+          <button class="booking-tab locked" data-tab="seating" id="tab-seating" type="button" role="tab" aria-label="Seating" aria-selected="false" aria-controls="seating" aria-expanded="false" aria-disabled="true" disabled tabindex="-1">
             <span class="material-symbols-outlined tab-icon">airline_seat_recline_extra</span>
             <span class="tab-label">Seating</span>
           </button>
-          <button class="tabOption locked" data-tab="summary">
+          <button class="booking-tab locked" data-tab="summary" id="tab-summary" type="button" role="tab" aria-label="Summary" aria-selected="false" aria-controls="summary" aria-expanded="false" aria-disabled="true" disabled tabindex="-1">
             <i class="fa-solid fa-ticket-simple tab-icon"></i>
             <span class="tab-label">Summary</span>
           </button>
@@ -67,55 +76,104 @@
       </nav>
       <dialog class="modal" id="disclaimer-modal">
           <div>
-            <h2 class="box-title">Please Note</h2>
+            <h2 class="section-title">Please Note</h2>
             <span class="divider"></span>
           </div>
-          <p class="box-description">The content provided on this website is for educational and demonstrative purposes only. This website is a student project created for academic purposes only and is not affiliated with or endorsed by The Emirates Group or any related entities.</p>
+          <p class="section-description">The content provided on this website is for educational and demonstrative purposes only. This website is a student project created for academic purposes only and is not affiliated with or endorsed by The Emirates Group or any related entities.</p>
           <a href="./booking.html" class="btn">Acknowledge</a>
       </dialog>
       <dialog class="modal" id="feature-unavailable-modal">
           <div>
-            <h2 class="box-title">Feature Unavailable</h2>
+            <h2 class="section-title">Feature Unavailable</h2>
             <span class="divider"></span>
           </div>
-          <p class="box-description">Apologies for the inconvenience, however this feature is currently either unavailable or in-development.<br><br>Please check back later or explore other available features. Thank you for your patience!</p>
-          <button class="btn" id="close-modal">Dismiss</button>
+          <p class="section-description">Apologies for the inconvenience, however this feature is currently either unavailable or in-development.<br><br>Please check back later or explore other available features. Thank you for your patience!</p>
+          <button class="btn" id="close-feature-unavailable-modal-button">Dismiss</button>
       </dialog>
       <dialog class="modal" id="seat-unavailable-modal">
         <article>
-          <h2 class="box-title">Seat Visualisation Not Available</h2>
+          <h2 class="section-title">Seat Visualisation Not Available</h2>
           <span class="divider"></span>
-          <p class="box-description">Apologies for the inconvenience, however the seat that you are trying to view is currently in-development.<br><br>Please explore other available seats or feel free to check back later to view this seat. Thank you for your patience!</p>
-          <button class="btn" id="close-modal-seat">Dismiss</button>
+          <p class="section-description">Apologies for the inconvenience, however the seat that you are trying to view is currently in-development.<br><br>Please explore other available seats or feel free to check back later to view this seat. Thank you for your patience!</p>
+          <button class="btn" id="close-seat-unavailable-modal-button">Dismiss</button>
+        </article>
+      </dialog>
+      <dialog class="modal modal--amenities" id="amenities-modal" aria-labelledby="amenities-modal-title">
+        <article>
+          <header>
+            <h2 class="section-title" id="amenities-modal-title">Cabin Amenities</h2>
+            <span class="divider"></span>
+            <p class="section-description">Explore Emirates' onboard comforts, from in-flight entertainment to multicourse dining.</p>
+          </header>
+          <ul class="amenities-modal__list" aria-label="Cabin amenities overview">
+            <li class="amenities-modal__item">
+              <span class="amenities-modal__icon" aria-hidden="true"><span class="material-symbols-outlined">tv_gen</span></span>
+              <div>
+                <p class="amenities-modal__item-title">In-Flight Entertainment</p>
+                <p class="amenities-modal__item-description">Emirates' award-winning ICE brings up to 6,500 channels of films, TV, music and games together with moving maps, external cameras and flight updates.</p>
+              </div>
+            </li>
+            <li class="amenities-modal__item">
+              <span class="amenities-modal__icon" aria-hidden="true"><span class="material-symbols-outlined">restaurant</span></span>
+              <div>
+                <p class="amenities-modal__item-title">Catering Services</p>
+                <p class="amenities-modal__item-description">Emirates in-flight meals are built around regionally inspired, multicourse service, with your choice of main, accompaniments, dessert touches and complimentary drinks served throughout the journey.</p>
+              </div>
+            </li>
+            <li class="amenities-modal__item">
+              <span class="amenities-modal__icon" aria-hidden="true"><span class="material-symbols-outlined">redeem</span></span>
+              <div>
+                <p class="amenities-modal__item-title">Amenity Kit</p>
+                <p class="amenities-modal__item-description">Emirates amenity kits include practical travel essentials to help you arrive refreshed, with collectible designs and cabin-specific comfort extras on selected routes.</p>
+              </div>
+            </li>
+            <li class="amenities-modal__item">
+              <span class="amenities-modal__icon amenities-modal__icon--muted" aria-hidden="true"><span class="material-symbols-outlined">airline_seat_flat</span></span>
+              <div>
+                <p class="amenities-modal__item-title">Lie-Flat Bed</p>
+                <p class="amenities-modal__item-description">Emirates First Class and Business Class seats convert into a fully flat bed across the entire fleet, with turndown touches that make overnight travel noticeably more restful.</p>
+              </div>
+            </li>
+            <li class="amenities-modal__item">
+              <span class="amenities-modal__icon amenities-modal__icon--muted" aria-hidden="true"><span class="material-symbols-outlined">shower</span></span>
+              <div>
+                <p class="amenities-modal__item-title">In-Flight Shower</p>
+                <p class="amenities-modal__item-description">The Emirates A380's onboard Shower Spa lets you arrive refreshed with dedicated VOYA spa products.</p>
+              </div>
+            </li>
+          </ul>
+          <button class="btn" id="close-amenities-modal-button">Dismiss</button>
         </article>
       </dialog>
       <div id="booking-container">
-        <section id="flights" class="tabContent">
-          <header class="tab-header-text">
-            <p class="box-sub-title">Book a flight</p>
-            <h2 class="box-title">Make it an incredible journey</h2>
-            <p class="box-description">Search for Emirates flights and book online.</p>
+        <section id="flights" class="booking-tab-panel" role="tabpanel" aria-labelledby="default-booking-tab" tabindex="-1">
+          <header class="page-section-header">
+            <p class="section-subtitle">Book a flight</p>
+            <h2 class="section-title">Make it an incredible journey</h2>
+            <p class="section-description">Search for Emirates flights and book online.</p>
           </header>
           <div class="booking-window">
-            <div class="mandatory-fields-banner">Please fill all mandatory fields</div>
             <form id="flight-search-form" class="flights-primary" novalidate>
-              <div class="form-line-container form-line-container--route-toggle">
+              <div class="form-row form-row--route-toggle">
                 <div class="form-field">
-                  <input id="airport-from-input" class="input" type="text" placeholder="Travelling from" required autocomplete="off" aria-required="true">
+                  <label class="visually-hidden" for="airport-from-input">Departure airport</label>
+                  <input id="airport-from-input" class="input" type="text" placeholder="Travelling from" required autocomplete="off" aria-required="true" aria-invalid="false">
                 </div>
                 <div class="date-journey-toggle" role="radiogroup" aria-label="Journey type">
                   <input type="radio" name="journey-type" id="journey-one-way" value="one-way">
-                  <label for="journey-one-way">One-way</label>
+                  <label for="journey-one-way">One way</label>
                   <input type="radio" name="journey-type" id="journey-return" value="return" checked>
                   <label for="journey-return">Return</label>
                 </div>
                 <div class="form-field">
-                  <input id="airport-to-input" class="input" type="text" placeholder="Going to" required autocomplete="off" aria-required="true">
+                  <label class="visually-hidden" for="airport-to-input">Destination airport</label>
+                  <input id="airport-to-input" class="input" type="text" placeholder="Going to" required autocomplete="off" aria-required="true" aria-invalid="false">
                 </div>
               </div>
-              <div class="form-line-container form-line-container--search">
+              <div class="form-row form-row--search">
                 <div class="custom-select-wrapper">
-                  <div id="date-picker" class="custom-select input" data-placeholder="Select date" data-value="" role="combobox" aria-required="true">
+                  <span id="date-picker-label" class="visually-hidden">Travel dates</span>
+                  <div id="date-picker" class="custom-select input" data-placeholder="Select date" data-value="" role="combobox" tabindex="0" aria-required="true" aria-invalid="false" aria-expanded="false" aria-haspopup="dialog" aria-labelledby="date-picker-label">
                     <span class="custom-select-trigger">Select date</span>
                     <div class="date-picker-dropdown">
                       <div class="date-picker-calendar">
@@ -129,41 +187,60 @@
                 </div>
                 <button type="submit" class="form-btn">Search</button>
               </div>
+              <div class="mandatory-fields-banner" role="alert" aria-live="assertive">Please fill all mandatory fields</div>
             </form>
           </div>
         </section>
-          <div id="passengers" class="tabContent">
-            <div class="tab-header-text">
-              <h3 class="box-sub-title">Passengers</h3>
-              <h2 class="box-title">Your Details</h2>
-              <p class="box-description">
+          <div id="passengers" class="booking-tab-panel" role="tabpanel" aria-labelledby="tab-passengers" tabindex="-1" hidden>
+            <div class="page-section-header">
+              <h3 class="section-subtitle">Passengers</h3>
+              <h2 class="section-title">Your Details</h2>
+              <p class="section-description">
               Tell us about yourself.</p>
             </div>
             <div id="passenger-info-container">
               <div id="passenger-info-box" class="booking-window passenger-info-box">
-              <div class="mandatory-fields-banner">Please fill all mandatory fields</div>
-              <form id="passenger-form" novalidate>
+              <form id="passenger-form" class="passenger-form" novalidate data-passenger-index="1">
                 <h3>Passenger 1</h3>
-                <p class="box-description">Make sure the names you enter exactly match your passport, and please use English characters only. Names can’t be changed once you have completed your booking.</p>
+                <p class="section-description">Make sure the names you enter exactly match your passport, and please use English characters only. Names can’t be changed once you have completed your booking.</p>
                 <div class="input-line">
                   <div class="form-field">
-                    <div class="custom-select-wrapper">
-                      <div id="passenger-title-input" class="custom-select input" data-placeholder="Title" data-value="" role="combobox" aria-required="true">
+                    <div class="airport-autocomplete-wrapper">
+                      <span id="passenger-title-label" class="visually-hidden">Passenger title</span>
+                      <div id="passenger-title-input" class="custom-select input" data-passenger-field="title" data-placeholder="Title" data-value="" role="combobox" tabindex="0" aria-required="true" aria-invalid="false" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="passenger-title-label">
                         <span class="custom-select-trigger">Title</span>
-                        <div class="custom-select-options">
-                          <div class="custom-option" data-value="1">Mr.</div>
-                          <div class="custom-option" data-value="2">Ms.</div>
-                          <div class="custom-option" data-value="3">Mrs.</div>
-                          <div class="custom-option" data-value="4">Prefer not to say</div>
+                        <div class="airport-autocomplete-dropdown" role="listbox">
+                          <div class="airport-autocomplete-item" data-value="1" data-label="Mr." role="option">
+                            <div class="airport-item-content">
+                              <span class="airport-city">Mr.</span>
+                            </div>
+                          </div>
+                          <div class="airport-autocomplete-item" data-value="2" data-label="Ms." role="option">
+                            <div class="airport-item-content">
+                              <span class="airport-city">Ms.</span>
+                            </div>
+                          </div>
+                          <div class="airport-autocomplete-item" data-value="3" data-label="Mrs." role="option">
+                            <div class="airport-item-content">
+                              <span class="airport-city">Mrs.</span>
+                            </div>
+                          </div>
+                          <div class="airport-autocomplete-item" data-value="4" data-label="Prefer not to say" role="option">
+                            <div class="airport-item-content">
+                              <span class="airport-city">Prefer not to say</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-field">
-                    <input id="passenger-fname-input" class="input" type="text" placeholder="First name" required autocomplete="given-name" pattern="^[A-Za-z\s\-']+$" minlength="2" maxlength="50" aria-required="true">
+                    <label class="visually-hidden" for="passenger-first-name-input">First name</label>
+                    <input id="passenger-first-name-input" class="input" data-passenger-field="first-name" type="text" placeholder="First name" required autocomplete="given-name" pattern="^[A-Za-z\s\-']+$" minlength="2" maxlength="50" aria-required="true" aria-invalid="false">
                   </div>
                   <div class="form-field">
-                    <input id="passenger-lname-input" class="input" type="text" placeholder="Last name" required autocomplete="family-name" pattern="^[A-Za-z\s\-']+$" minlength="2" maxlength="50" aria-required="true">
+                    <label class="visually-hidden" for="passenger-last-name-input">Last name</label>
+                    <input id="passenger-last-name-input" class="input" data-passenger-field="last-name" type="text" placeholder="Last name" required autocomplete="family-name" pattern="^[A-Za-z\s\-']+$" minlength="2" maxlength="50" aria-required="true" aria-invalid="false">
                   </div>
                 </div>
                 <h3>Your Frequent Flyer benefits</h3>
@@ -171,896 +248,169 @@
                 <p>Add your Emirates Skywards number to avail <a href="#">exclusive Skywards benefits</a>. You can also add a partner airline membership number to earn Miles for this flight.</p>
                 <div class="input-line input-line--equal">
                   <div class="form-field">
-                    <div class="custom-select-wrapper">
-                      <div id="airline-programme-input" class="custom-select input" data-placeholder="Airline/Programme" data-value="" role="combobox">
+                    <div class="airport-autocomplete-wrapper">
+                      <span id="airline-programme-label" class="visually-hidden">Airline or programme</span>
+                      <div id="airline-programme-input" class="custom-select input" data-passenger-field="airline-programme" data-placeholder="Airline/Programme" data-value="" role="combobox" tabindex="0" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="airline-programme-label">
                         <span class="custom-select-trigger">Airline/Programme</span>
-                        <div class="custom-select-options">
-                          <div class="custom-option" data-value="1">None</div>
-                          <div class="custom-option" data-value="2">Emirates & flydubai / Skywards</div>
-                          <div class="custom-option" data-value="3">Qantas / Frequent Flyer</div>
+                        <div class="airport-autocomplete-dropdown" role="listbox">
+                          <div class="airport-autocomplete-item" data-value="1" data-label="None" role="option">
+                            <div class="airport-item-content">
+                              <span class="airport-city">None</span>
+                            </div>
+                          </div>
+                          <div class="airport-autocomplete-item" data-value="2" data-label="Emirates &amp; flydubai / Skywards" role="option">
+                            <div class="airport-item-content">
+                              <span class="airport-city">Emirates &amp; flydubai / Skywards</span>
+                            </div>
+                          </div>
+                          <div class="airport-autocomplete-item" data-value="3" data-label="Qantas / Frequent Flyer" role="option">
+                            <div class="airport-item-content">
+                              <span class="airport-city">Qantas / Frequent Flyer</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="form-field">
-                    <input id="frequent-flyer-input" class="input" type="text" placeholder="Frequent flyer number" pattern="^[A-Za-z0-9]+$" maxlength="20">
+                    <label class="visually-hidden" for="frequent-flyer-input">Frequent flyer number</label>
+                    <input id="frequent-flyer-input" class="input" data-passenger-field="frequent-flyer" type="text" placeholder="Frequent flyer number" pattern="^[A-Za-z0-9]+$" maxlength="20">
                   </div>
                 </div>
-                <div class="button-container">
-                  <button type="submit">Continue to Seating</button>
-                </div>
             </form>
+            <div class="mandatory-fields-banner" role="alert" aria-live="assertive">Please fill all mandatory fields</div>
             </div>
             </div>
-            <img id="add-icon" class="add-icon" src="assets/add_circle_FILL1_wght400_GRAD0_opsz24.svg">
+            <div class="passenger-actions">
+              <button id="add-passenger-button" class="btn--white btn--disabled feature-unavailable" type="button" aria-haspopup="dialog" aria-controls="feature-unavailable-modal">Add Passenger</button>
+              <button id="continue-to-seating-button" type="submit" form="passenger-form">Continue to Seating</button>
+            </div>
           </div>
-          <div id="seating" class="tabContent">
-            <div class="tab-header-text">
-              <div class="box-sub-title">Seating</div>
-              <div class="box-title">Choose Your Seat, Visualise Your Journey</div>
-              <div class="box-description">Choose your perfect seat with confidence through our intuitive booking system. <br>Welcome to a new era of personalised flying.</div>
+          <div id="seating" class="booking-tab-panel" role="tabpanel" aria-labelledby="tab-seating" tabindex="-1" hidden>
+            <div class="page-section-header">
+              <div class="section-subtitle">Seating</div>
+              <div class="section-title">Choose Your Seat, Visualise Your Journey</div>
+              <div class="section-description">Choose your perfect seat with confidence through our intuitive booking system. <br>Welcome to a new era of personalised flying.</div>
             </div>
             <div class="seating-container">
               <div class="seating-left">
                 <div class="seating-details">
-                  <div id="seat-number" class="box-title">Select a Seat</div>
-                  <div class="box-sub-title">Economy Class</div>
+                  <div id="seat-number" class="section-title">Select a Seat</div>
+                  <div class="section-subtitle">Economy Class</div>
                 </div>
                 <div class="seating-visualisation">
-                  <div id="viewer" style="width: 100%; height: 100%;"></div>
-                  <script type="importmap">
-                    {
-                        "imports": {
-                            "three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js",
-                            "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js"
-                        }
-                    }
-                  </script>
-                  <script type="module">
-                    import { Viewer } from '@photo-sphere-viewer/core';
-                
-                    const viewer = new Viewer({
-                        container: document.querySelector('#viewer'),
-                        panorama: './assets/panoramas/CabinPanorama.png',
-                        defaultZoomLvl: 0,
-                        mousewheel: true,
-                        navbar: [
-                            'fullscreen',
-                        ],
-                    });
-                    const seatPanorama = document.querySelectorAll('.seat');
-                    const seatNumberDisplay = document.getElementById('seat-number');
-                    const seatNumberSummary = document.getElementById('passenger-seat');
-                    const selectButton = document.getElementById('select-seat-btn');
-                    if (selectButton) {
-                      selectButton.disabled = true;
-                    }
-                    seatPanorama.forEach(seatDiv => {
-                        seatDiv.addEventListener('click', function() {
-                            // Ignore clicks on taken seats
-                            if (seatDiv.classList.contains('taken')) {
-                              return;
-                            }
-                            
-                            const seatNumber = seatDiv.id.replace('seat-', '');
-                            const isUnavailable = seatDiv.classList.contains('unavailable');
-                            const panoramaSource = `./assets/panoramas/${seatNumber}.png`; 
-                            if (!isUnavailable) {
-                              viewer.setPanorama(panoramaSource);
-                            }
-                            seatPanorama.forEach(div => {
-                                div.classList.remove('active');
-                                div.textContent = '';
-                            });
-                            seatDiv.classList.remove('active');
-                            seatDiv.classList.add('active');
-                            if (isUnavailable) {
-                              seatDiv.textContent = 'NA';
-                              seatNumberDisplay.textContent = 'Seat Unavailable';
-                              seatNumberSummary.textContent = 'Seat Unavailable';
-                              if (selectButton) selectButton.disabled = true;
-                            } else {
-                              seatDiv.textContent = `${seatNumber}`;
-                              seatNumberDisplay.textContent = `Seat ${seatNumber}`;
-                              seatNumberSummary.textContent = `Seat ${seatNumber}`;
-                              if (selectButton) selectButton.disabled = false;
-                            }
-                        });
-                    });
-                </script>
+                  <div id="viewer" aria-label="Cabin panorama preview" style="width: 100%; height: 100%;"></div>
                 </div>
                 <div class="amenity-details">
                   <div class="amenities">
-                    <div class="amenity" id="amenity-ife"><span class="material-symbols-outlined">
-                    tv_gen
-                    </span></div>
-                  <div class="amenity" id="amenity-food"><span class="material-symbols-outlined">
-                      restaurant
-                    </span></div>
-                  <div class="amenity" id="amenity-amenitykit"><span class="material-symbols-outlined">
-                        redeem
-                    </span></div>
-                  <div class="amenity-unavailable">
-                    <span class="material-symbols-outlined">
-                      airline_seat_individual_suite
-                      </span>
-                  </div>
-                  <div class="amenity-unavailable">
-                    <span class="material-symbols-outlined">
-                      bathroom
-                      </span>
-                  </div>
+                    <button class="amenity amenity-trigger" id="amenity-ife" type="button" data-amenities-modal-open aria-haspopup="dialog" aria-controls="amenities-modal">
+                      <span class="material-symbols-outlined" aria-hidden="true">tv_gen</span>
+                      <span class="visually-hidden">View cabin amenities, including ICE in-flight entertainment</span>
+                    </button>
+                    <button class="amenity amenity-trigger" id="amenity-food" type="button" data-amenities-modal-open aria-haspopup="dialog" aria-controls="amenities-modal">
+                      <span class="material-symbols-outlined" aria-hidden="true">restaurant</span>
+                      <span class="visually-hidden">View cabin amenities, including Emirates catering services</span>
+                    </button>
+                    <button class="amenity amenity-trigger" id="amenity-amenitykit" type="button" data-amenities-modal-open aria-haspopup="dialog" aria-controls="amenities-modal">
+                      <span class="material-symbols-outlined" aria-hidden="true">redeem</span>
+                      <span class="visually-hidden">View cabin amenities, including the amenity kit</span>
+                    </button>
+                    <button class="amenity amenity--muted amenity-trigger" id="amenity-lie-flat-bed" type="button" data-amenities-modal-open aria-haspopup="dialog" aria-controls="amenities-modal">
+                      <span class="material-symbols-outlined" aria-hidden="true">airline_seat_flat</span>
+                      <span class="visually-hidden">View cabin amenities, including lie-flat bed information</span>
+                    </button>
+                    <button class="amenity amenity--muted amenity-trigger" id="amenity-shower" type="button" data-amenities-modal-open aria-haspopup="dialog" aria-controls="amenities-modal">
+                      <span class="material-symbols-outlined" aria-hidden="true">shower</span>
+                      <span class="visually-hidden">View cabin amenities, including in-flight shower information</span>
+                    </button>
                   </div>
                   <div class="select-btn">
-                    <button id="select-seat-btn" type="button" class="seating-btn form-btn" disabled>Select</button>
+                      <button id="select-seat-button" type="button" class="seating-btn form-btn" aria-describedby="seat-map-instructions seating-status" disabled>Select</button>
                   </div>
                 </div>
               </div>
-            <div class="seating-map">
-              <div class="cabin">
-                <p class="row-number">Economy Class</p>
-                <div class="seat-column">
-                  <div class="seat-column-outer">
-                    <p class="seat-designation-letter">A</p>
-                    <p class="seat-designation-letter">B</p>
-                    <p class="seat-designation-letter">C</p>
-                  </div>
-                  <div class="seat-column-inner">
-                    <p class="seat-designation-letter">D</p>
-                    <p class="seat-designation-letter">E</p>
-                    <p class="seat-designation-letter">F</p>
-                    <p class="seat-designation-letter">G</p>
-                  </div>
-                  <div class="seat-column-outer">
-                    <p class="seat-designation-letter">H</p>
-                    <p class="seat-designation-letter">J</p>
-                    <p class="seat-designation-letter">K</p>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-17A"></div>
-                    <div class="seat" id="seat-17B"></div>
-                    <div class="seat" id="seat-17C"></div>
-                  </div>
-                  <p class="row-number">17</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-17D"></div>
-                    <div class="seat" id="seat-17E"></div>
-                    <div class="seat" id="seat-17F"></div>
-                    <div class="seat" id="seat-17G"></div>
-                  </div>
-                  <p class="row-number">17</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-17H"></div>
-                    <div class="seat" id="seat-17J"></div>
-                    <div class="seat" id="seat-17K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-18A"></div>
-                    <div class="seat" id="seat-18B"></div>
-                    <div class="seat" id="seat-18C"></div>
-                  </div>
-                  <p class="row-number">18</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-18D"></div>
-                    <div class="seat" id="seat-18E"></div>
-                    <div class="seat" id="seat-18F"></div>
-                    <div class="seat" id="seat-18G"></div>
-                  </div>
-                  <p class="row-number">18</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-18H"></div>
-                    <div class="seat" id="seat-18J"></div>
-                    <div class="seat" id="seat-18K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-19A"></div>
-                    <div class="seat" id="seat-19B"></div>
-                    <div class="seat" id="seat-19C"></div>
-                  </div>
-                  <p class="row-number">19</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-19D"></div>
-                    <div class="seat" id="seat-19E"></div>
-                    <div class="seat" id="seat-19F"></div>
-                    <div class="seat" id="seat-19G"></div>
-                  </div>
-                  <p class="row-number">19</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-19H"></div>
-                    <div class="seat" id="seat-19J"></div>
-                    <div class="seat" id="seat-19K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-20A"></div>
-                    <div class="seat" id="seat-20B"></div>
-                    <div class="seat" id="seat-20C"></div>
-                  </div>
-                  <p class="row-number">20</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-20D"></div>
-                    <div class="seat" id="seat-20E"></div>
-                    <div class="seat" id="seat-20F"></div>
-                    <div class="seat" id="seat-20G"></div>
-                  </div>
-                  <p class="row-number">20</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-20H"></div>
-                    <div class="seat" id="seat-20J"></div>
-                    <div class="seat" id="seat-20K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-21A"></div>
-                    <div class="seat" id="seat-21B"></div>
-                    <div class="seat" id="seat-21C"></div>
-                  </div>
-                  <p class="row-number">21</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-21D"></div>
-                    <div class="seat" id="seat-21E"></div>
-                    <div class="seat" id="seat-21F"></div>
-                    <div class="seat" id="seat-21G"></div>
-                  </div>
-                  <p class="row-number">21</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-21H"></div>
-                    <div class="seat" id="seat-21J"></div>
-                    <div class="seat" id="seat-21K"></div>
-                  </div>
-                </div>
-                <div class="facility-container">
-                  <div class="facility"><span class="material-symbols-outlined">
-                  wc
-                  </span><span class="material-symbols-outlined">
-                    accessible
-                    </span></div>
-                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
-                    wc
-                    </span><span class="material-symbols-outlined">
-                      accessible
-                      </span></div>
-                    <div class="facility"><span class="material-symbols-outlined">
-                      wc
-                      </span><span class="material-symbols-outlined">
-                        accessible
-                        </span></div>
-                </div>
-                <div class="economy-row-inner">
-                  <div class="economy-row-section">
-                    <p class="row-number">23</p>
-                    <div class="seat" id="seat-23D"></div>
-                    <div class="seat" id="seat-23E"></div>
-                    <div class="seat" id="seat-23F"></div>
-                    <div class="seat" id="seat-23G"></div>
-                    <p class="row-number">23</p>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-24A"></div>
-                    <div class="seat" id="seat-24B"></div>
-                    <div class="seat" id="seat-24C"></div>
-                  </div>
-                  <p class="row-number">24</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-24D"></div>
-                    <div class="seat" id="seat-24E"></div>
-                    <div class="seat" id="seat-24F"></div>
-                    <div class="seat" id="seat-24G"></div>
-                  </div>
-                  <p class="row-number">24</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-24H"></div>
-                    <div class="seat" id="seat-24J"></div>
-                    <div class="seat" id="seat-24K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-25A"></div>
-                    <div class="seat" id="seat-25B"></div>
-                    <div class="seat" id="seat-25C"></div>
-                  </div>
-                  <p class="row-number">25</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-25D"></div>
-                    <div class="seat" id="seat-25E"></div>
-                    <div class="seat" id="seat-25F"></div>
-                    <div class="seat" id="seat-25G"></div>
-                  </div>
-                  <p class="row-number">25</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-25H"></div>
-                    <div class="seat" id="seat-25J"></div>
-                    <div class="seat" id="seat-25K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-26A"></div>
-                    <div class="seat" id="seat-26B"></div>
-                    <div class="seat" id="seat-26C"></div>
-                  </div>
-                  <p class="row-number">26</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-26D"></div>
-                    <div class="seat" id="seat-26E"></div>
-                    <div class="seat" id="seat-26F"></div>
-                    <div class="seat" id="seat-26G"></div>
-                  </div>
-                  <p class="row-number">26</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-26H"></div>
-                    <div class="seat" id="seat-26J"></div>
-                    <div class="seat" id="seat-26K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-27A"></div>
-                    <div class="seat" id="seat-27B"></div>
-                    <div class="seat" id="seat-27C"></div>
-                  </div>
-                  <p class="row-number">27</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-27D"></div>
-                    <div class="seat" id="seat-27E"></div>
-                    <div class="seat" id="seat-27F"></div>
-                    <div class="seat" id="seat-27G"></div>
-                  </div>
-                  <p class="row-number">27</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-27H"></div>
-                    <div class="seat" id="seat-27J"></div>
-                    <div class="seat" id="seat-27K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-28A"></div>
-                    <div class="seat" id="seat-28B"></div>
-                    <div class="seat" id="seat-28C"></div>
-                  </div>
-                  <p class="row-number">28</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-28D"></div>
-                    <div class="seat" id="seat-28E"></div>
-                    <div class="seat" id="seat-28F"></div>
-                    <div class="seat" id="seat-28G"></div>
-                  </div>
-                  <p class="row-number">28</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-28H"></div>
-                    <div class="seat" id="seat-28J"></div>
-                    <div class="seat" id="seat-28K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-29A"></div>
-                    <div class="seat" id="seat-29B"></div>
-                    <div class="seat" id="seat-29C"></div>
-                  </div>
-                  <p class="row-number">29</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-29D"></div>
-                    <div class="seat" id="seat-29E"></div>
-                    <div class="seat" id="seat-29F"></div>
-                    <div class="seat" id="seat-29G"></div>
-                  </div>
-                  <p class="row-number">29</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-29H"></div>
-                    <div class="seat" id="seat-29J"></div>
-                    <div class="seat" id="seat-29K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-30A"></div>
-                    <div class="seat" id="seat-30B"></div>
-                    <div class="seat" id="seat-30C"></div>
-                  </div>
-                  <p class="row-number">30</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-30D"></div>
-                    <div class="seat" id="seat-30E"></div>
-                    <div class="seat" id="seat-30F"></div>
-                    <div class="seat" id="seat-30G"></div>
-                  </div>
-                  <p class="row-number">30</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-30H"></div>
-                    <div class="seat" id="seat-30J"></div>
-                    <div class="seat" id="seat-30K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-31A"></div>
-                    <div class="seat" id="seat-31B"></div>
-                    <div class="seat" id="seat-31C"></div>
-                  </div>
-                  <p class="row-number">31</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-31D"></div>
-                    <div class="seat" id="seat-31E"></div>
-                    <div class="seat" id="seat-31F"></div>
-                    <div class="seat" id="seat-31G"></div>
-                  </div>
-                  <p class="row-number">31</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-31H"></div>
-                    <div class="seat" id="seat-31J"></div>
-                    <div class="seat" id="seat-31K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-32A"></div>
-                    <div class="seat" id="seat-32B"></div>
-                    <div class="seat" id="seat-32C"></div>
-                  </div>
-                  <p class="row-number">32</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-32D"></div>
-                    <div class="seat" id="seat-32E"></div>
-                    <div class="seat" id="seat-32F"></div>
-                    <div class="seat" id="seat-32G"></div>
-                  </div>
-                  <p class="row-number">32</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-32H"></div>
-                    <div class="seat" id="seat-32J"></div>
-                    <div class="seat" id="seat-32K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-33A"></div>
-                    <div class="seat" id="seat-33B"></div>
-                    <div class="seat" id="seat-33C"></div>
-                  </div>
-                  <p class="row-number">33</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-33D"></div>
-                    <div class="seat" id="seat-33E"></div>
-                    <div class="seat" id="seat-33F"></div>
-                    <div class="seat" id="seat-33G"></div>
-                  </div>
-                  <p class="row-number">33</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-33H"></div>
-                    <div class="seat" id="seat-33J"></div>
-                    <div class="seat" id="seat-33K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-34A"></div>
-                    <div class="seat" id="seat-34B"></div>
-                    <div class="seat" id="seat-34C"></div>
-                  </div>
-                  <p class="row-number">34</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-34D"></div>
-                    <div class="seat" id="seat-34E"></div>
-                    <div class="seat" id="seat-34F"></div>
-                    <div class="seat" id="seat-34G"></div>
-                  </div>
-                  <p class="row-number">34</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-34H"></div>
-                    <div class="seat" id="seat-34J"></div>
-                    <div class="seat" id="seat-34K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-35A"></div>
-                    <div class="seat" id="seat-35B"></div>
-                    <div class="seat" id="seat-35C"></div>
-                  </div>
-                  <p class="row-number">35</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-35D"></div>
-                    <div class="seat" id="seat-35E"></div>
-                    <div class="seat" id="seat-35F"></div>
-                    <div class="seat" id="seat-35G"></div>
-                  </div>
-                  <p class="row-number">35</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-35H"></div>
-                    <div class="seat" id="seat-35J"></div>
-                    <div class="seat" id="seat-35K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-36A"></div>
-                    <div class="seat" id="seat-36B"></div>
-                    <div class="seat" id="seat-36C"></div>
-                  </div>
-                  <p class="row-number">36</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-36D"></div>
-                    <div class="seat" id="seat-36E"></div>
-                    <div class="seat" id="seat-36F"></div>
-                    <div class="seat" id="seat-36G"></div>
-                  </div>
-                  <p class="row-number">36</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-36H"></div>
-                    <div class="seat" id="seat-36J"></div>
-                    <div class="seat" id="seat-36K"></div>
-                  </div>
-                </div>
-                <div class="facility-container">
-                  <div class="facility"><span class="material-symbols-outlined">
-                  wc
-                  </span><span class="material-symbols-outlined">
-                    accessible
-                    </span></div>
-                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
-                    skillet
-                    </span></div>
-                    <div class="facility"><span class="material-symbols-outlined">
-                      wc
-                      </span><span class="material-symbols-outlined">
-                        accessible
-                        </span></div>
-                </div>
-                <div class="economy-row-outer">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-37A"></div>
-                    <div class="seat" id="seat-37B"></div>
-                    <div class="seat" id="seat-37C"></div>
-                    <p class="row-number">37</p>
-                  </div>
-                  <div class="economy-row-section">
-                    <p class="row-number">37</p>
-                    <div class="seat" id="seat-37H"></div>
-                    <div class="seat" id="seat-37J"></div>
-                    <div class="seat" id="seat-37K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-38A"></div>
-                    <div class="seat" id="seat-38B"></div>
-                    <div class="seat" id="seat-38C"></div>
-                  </div>
-                  <p class="row-number">38</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-38D"></div>
-                    <div class="seat" id="seat-38E"></div>
-                    <div class="seat" id="seat-38F"></div>
-                    <div class="seat" id="seat-38G"></div>
-                  </div>
-                  <p class="row-number">38</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-38H"></div>
-                    <div class="seat" id="seat-38J"></div>
-                    <div class="seat" id="seat-38K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-39A"></div>
-                    <div class="seat" id="seat-39B"></div>
-                    <div class="seat" id="seat-39C"></div>
-                  </div>
-                  <p class="row-number">39</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-39D"></div>
-                    <div class="seat" id="seat-39E"></div>
-                    <div class="seat" id="seat-39F"></div>
-                    <div class="seat" id="seat-39G"></div>
-                  </div>
-                  <p class="row-number">39</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-39H"></div>
-                    <div class="seat" id="seat-39J"></div>
-                    <div class="seat" id="seat-39K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-40A"></div>
-                    <div class="seat" id="seat-40B"></div>
-                    <div class="seat" id="seat-40C"></div>
-                  </div>
-                  <p class="row-number">40</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-40D"></div>
-                    <div class="seat" id="seat-40E"></div>
-                    <div class="seat" id="seat-40F"></div>
-                    <div class="seat" id="seat-40G"></div>
-                  </div>
-                  <p class="row-number">40</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-40H"></div>
-                    <div class="seat" id="seat-40J"></div>
-                    <div class="seat" id="seat-40K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-41A"></div>
-                    <div class="seat" id="seat-41B"></div>
-                    <div class="seat" id="seat-41C"></div>
-                  </div>
-                  <p class="row-number">41</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-41D"></div>
-                    <div class="seat" id="seat-41E"></div>
-                    <div class="seat" id="seat-41F"></div>
-                    <div class="seat" id="seat-41G"></div>
-                  </div>
-                  <p class="row-number">41</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-41H"></div>
-                    <div class="seat" id="seat-41J"></div>
-                    <div class="seat" id="seat-41K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-42A"></div>
-                    <div class="seat" id="seat-42B"></div>
-                    <div class="seat" id="seat-42C"></div>
-                  </div>
-                  <p class="row-number">42</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-42D"></div>
-                    <div class="seat" id="seat-42E"></div>
-                    <div class="seat" id="seat-42F"></div>
-                    <div class="seat" id="seat-42G"></div>
-                  </div>
-                  <p class="row-number">42</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-42H"></div>
-                    <div class="seat" id="seat-42J"></div>
-                    <div class="seat" id="seat-42K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-43A"></div>
-                    <div class="seat" id="seat-43B"></div>
-                    <div class="seat" id="seat-43C"></div>
-                  </div>
-                  <p class="row-number">43</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-43D"></div>
-                    <div class="seat" id="seat-43E"></div>
-                    <div class="seat" id="seat-43F"></div>
-                    <div class="seat" id="seat-43G"></div>
-                  </div>
-                  <p class="row-number">43</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-43H"></div>
-                    <div class="seat" id="seat-43J"></div>
-                    <div class="seat" id="seat-43K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-44A"></div>
-                    <div class="seat" id="seat-44B"></div>
-                    <div class="seat" id="seat-44C"></div>
-                  </div>
-                  <p class="row-number">44</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-44D"></div>
-                    <div class="seat" id="seat-44E"></div>
-                    <div class="seat" id="seat-44F"></div>
-                    <div class="seat" id="seat-44G"></div>
-                  </div>
-                  <p class="row-number">44</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-44H"></div>
-                    <div class="seat" id="seat-44J"></div>
-                    <div class="seat" id="seat-44K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-45A"></div>
-                    <div class="seat" id="seat-45B"></div>
-                    <div class="seat" id="seat-45C"></div>
-                  </div>
-                  <p class="row-number">45</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-45D"></div>
-                    <div class="seat" id="seat-45E"></div>
-                    <div class="seat" id="seat-45F"></div>
-                    <div class="seat" id="seat-45G"></div>
-                  </div>
-                  <p class="row-number">45</p>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-45H"></div>
-                    <div class="seat" id="seat-45J"></div>
-                    <div class="seat" id="seat-45K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-46A"></div>
-                    <div class="seat" id="seat-46B"></div>
-                  </div>
-                  <div class="economy-row-section">
-                    <p class="row-number">46</p>
-                    <div class="seat" id="seat-46D"></div>
-                    <div class="seat" id="seat-46E"></div>
-                    <div class="seat" id="seat-46F"></div>
-                    <div class="seat" id="seat-46G"></div>
-                    <p class="row-number">46</p>
-                  </div>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-46J"></div>
-                    <div class="seat" id="seat-46K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-47A"></div>
-                    <div class="seat" id="seat-47B"></div>
-                  </div>
-                  <div class="economy-row-section">
-                    <p class="row-number">47</p>
-                    <div class="seat" id="seat-47D"></div>
-                    <div class="seat" id="seat-47E"></div>
-                    <div class="seat" id="seat-47F"></div>
-                    <div class="seat" id="seat-47G"></div>
-                    <p class="row-number">47</p>
-                  </div>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-47J"></div>
-                    <div class="seat" id="seat-47K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-48A"></div>
-                    <div class="seat" id="seat-48B"></div>
-                  </div>
-                  <div class="economy-row-section">
-                    <p class="row-number">48</p>
-                    <div class="seat" id="seat-48D"></div>
-                    <div class="seat" id="seat-48E"></div>
-                    <div class="seat" id="seat-48F"></div>
-                    <div class="seat" id="seat-48G"></div>
-                    <p class="row-number">48</p>
-                  </div>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-48J"></div>
-                    <div class="seat" id="seat-48K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-49A"></div>
-                    <div class="seat" id="seat-49B"></div>
-                  </div>
-                  <div class="economy-row-section">
-                    <p class="row-number">49</p>
-                    <div class="seat" id="seat-49D"></div>
-                    <div class="seat" id="seat-49E"></div>
-                    <div class="seat" id="seat-49F"></div>
-                    <div class="seat" id="seat-49G"></div>
-                    <p class="row-number">49</p>
-                  </div>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-49J"></div>
-                    <div class="seat" id="seat-49K"></div>
-                  </div>
-                </div>
-                <div class="economy-row">
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-50A"></div>
-                    <div class="seat" id="seat-50B"></div>
-                  </div>
-                  <div class="economy-row-section">
-                    <p class="row-number">50</p>
-                    <div class="seat" id="seat-50D"></div>
-                    <div class="seat" id="seat-50E"></div>
-                    <div class="seat" id="seat-50F"></div>
-                    <div class="seat" id="seat-50G"></div>
-                    <p class="row-number">50</p>
-                  </div>
-                  <div class="economy-row-section">
-                    <div class="seat" id="seat-50J"></div>
-                    <div class="seat" id="seat-50K"></div>
-                  </div>
-                </div>
-                <div class="facility-container">
-                  <div class="facility"><span class="material-symbols-outlined">
-                    skillet
-                    </span></div>
-                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
-                      wc
-                    </span><span class="material-symbols-outlined">
-                        accessible
-                    </span></div>
-                </div>
-                <div class="facility-container">
-                  <div class="facility"><span class="material-symbols-outlined">
-                    skillet
-                    </span></div>
-                  <div class="facility" id="facility-central"><span class="material-symbols-outlined">
-                    skillet
-                    </span></div>
-                    <div class="facility"><span class="material-symbols-outlined">
-                      skillet
-                      </span></div>
-                </div>
+              <div class="seating-map" id="seat-map" data-cabin-id="b777-300er-economy" role="radiogroup" aria-labelledby="seat-map-heading" aria-describedby="seat-map-instructions seating-status">
+                <p id="seat-map-instructions" class="visually-hidden">Use arrow keys to move between seats. Press Enter or Space to select the focused seat.</p>
+                <div class="cabin" id="cabin-layout"></div>
               </div>
-            </div>
+              <p id="seating-status" class="visually-hidden" aria-live="polite">No seat selected.</p>
             </div>
           </div>
-          <div id="summary" class="tabContent">
-            <div class="tab-header-text">
-              <p class="box-sub-title">Summary</p>
-              <h2 class="box-title">Your Booking</h2>
-              <p class="box-description">Your adventure awaits.</p>
+          <div id="summary" class="booking-tab-panel" role="tabpanel" aria-labelledby="tab-summary" tabindex="-1" hidden>
+            <div class="page-section-header">
+              <p class="section-subtitle">Summary</p>
+              <h2 class="section-title">Your eTicket</h2>
+              <p class="section-description">Review your itinerary, passenger details and fare before you complete the booking.</p>
             </div>
-            <div id="summary-window" class="content-box-large">
-              <div class="summary-section">
-                <div class="summary-flight-info">
-                  <div class="summary-airport">
-                    <p id="origin-airport" class="summary-label"><b>From</b></p>
-                    <p class="summary-value">Origin Airport</p>
-                  </div>
-                  <div class="summary-arrow">
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </div>
-                  <div class="summary-airport">
-                    <p id="destination-details" class="summary-label"><b>To</b></p>
-                    <p class="summary-value">Destination Airport</p>
+            <div class="summary-stack">
+              <div id="summary-window" class="content-panel">
+                <div class="summary-ticket">
+                  <div class="summary-ticket-main">
+                    <div class="summary-info-grid">
+                      <section class="summary-panel" aria-label="Summary information">
+                      <section class="summary-passenger-section" aria-label="Passenger information">
+                        <h3 class="summary-section-title">Passenger</h3>
+                        <div class="summary-passenger-card">
+                          <p id="passenger-name" class="summary-passenger-name"><span id="passenger-title"></span><span id="passenger-first-name">—</span> <span id="passenger-last-name">—</span></p>
+                        </div>
+                      </section>
+                      <section class="summary-meta-grid summary-meta-grid--inline" aria-label="Ticket details">
+                        <div class="summary-meta-item">
+                          <p class="summary-label">Departure</p>
+                          <p id="summary-journey-date" class="summary-value">Select date</p>
+                        </div>
+                        <div class="summary-meta-item">
+                          <p id="summary-secondary-label" class="summary-label">Journey</p>
+                          <p id="summary-journey-type" class="summary-value">Return</p>
+                        </div>
+                        <div class="summary-meta-item">
+                          <p class="summary-label">Cabin</p>
+                          <p id="passenger-class" class="summary-value">Economy</p>
+                        </div>
+                        <div class="summary-meta-item">
+                          <p class="summary-label">Seat</p>
+                          <p id="passenger-seat" class="summary-value">Not selected</p>
+                        </div>
+                      </section>
+                      <section class="summary-route-card" aria-label="Route details">
+                        <div class="summary-route-track">
+                          <div class="summary-route-airport">
+                            <p class="summary-label">From</p>
+                            <p id="origin-airport" class="summary-airport-code">---</p>
+                            <p id="origin-airport-city" class="summary-airport-city">Origin city</p>
+                            <p id="origin-airport-name" class="summary-airport-name">Select a departure airport</p>
+                          </div>
+                          <div class="summary-route-connector">
+                            <div class="summary-route-visual" aria-hidden="true">
+                              <span class="summary-route-line"></span>
+                              <span class="summary-route-plane"><i class="fa-solid fa-plane"></i></span>
+                              <span class="summary-route-line summary-route-line--mirror"></span>
+                            </div>
+                            <p id="summary-layover" class="summary-route-stopover" hidden>Via Dubai - 2 Hour Stopover</p>
+                          </div>
+                          <div class="summary-route-airport">
+                            <p class="summary-label">To</p>
+                            <p id="destination-details" class="summary-airport-code">---</p>
+                            <p id="destination-airport-city" class="summary-airport-city">Destination city</p>
+                            <p id="destination-airport-name" class="summary-airport-name">Select a destination airport</p>
+                          </div>
+                        </div>
+                      </section>
+                      </section>
+                    </div>
+
                   </div>
                 </div>
               </div>
-              <span class="divider"></span>
-              <div class="summary-section">
-                <h3 class="summary-section-title">Passenger Information</h3>
-                <div class="summary-passenger-info">
-                  <div class="summary-detail">
-                    <p class="summary-label">Title</p>
-                    <p id="passenger-title" class="summary-value">—</p>
-                  </div>
-                  <div class="summary-detail">
-                    <p class="summary-label">Name</p>
-                    <p id="passenger-name" class="summary-value"><span id="passenger-fname">—</span> <span id="passenger-lname">—</span></p>
-                  </div>
-                  <div class="summary-detail">
-                    <p class="summary-label">Class</p>
-                    <p id="passenger-class" class="summary-value">Economy</p>
-                  </div>
-                  <div class="summary-detail">
-                    <p class="summary-label">Seat</p>
-                    <p id="passenger-seat" class="summary-value"><i>Not selected</i></p>
-                  </div>
+              <div class="summary-actions">
+                <div class="summary-total-due" aria-label="Total due amount">
+                  <p class="summary-total-due-text">
+                    <span class="summary-total-due-label">Total Due</span>
+                    <span class="summary-total-due-amount summary-price-inline">£<span id="total-price">0.00</span></span>
+                  </p>
                 </div>
+                <a id="complete-booking-link" class="btn btn-large" href="confirmation.html" role="button">Complete Booking</a>
               </div>
-              <span class="divider"></span>
-              <div class="summary-section">
-                <h3 class="summary-section-title">Pricing</h3>
-                <div id="pricing-details" class="summary-pricing">
-                  <p class="summary-label">Total Cost</p>
-                  <p class="summary-price">£<span id="total-price">0.00</span></p>
-                </div>
-              </div>
-              <button id="book-btn" class="btn btn-large"><a href="confirmation.html">Complete Booking</a></button>
             </div>
           </div>
         </div>    
@@ -1069,30 +419,30 @@
     <footer>
         <div class="footer-nav-container">
           <a href="index.html">Emirates</a>
-          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#flights" onclick="openTab(event, 'flights'); return false;">Book a flight</a> 
-          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#flights" onclick="openTab(event, 'flights'); return false;">Flights</a>
-          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#passengers" onclick="openTab(event, 'passengers'); return false;">Passengers</a>
-          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#seating" onclick="openTab(event, 'seating'); return false;">Seating</a>
-          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
-          <a href="#summary" onclick="openTab(event, 'summary'); return false;">Summary</a>
+          <img class="chevron" src="assets/svg/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#flights" data-tab-link="flights">Book a flight</a> 
+          <img class="chevron" src="assets/svg/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#flights" data-tab-link="flights">Flights</a>
+          <img class="chevron" src="assets/svg/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#passengers" data-tab-link="passengers">Passengers</a>
+          <img class="chevron" src="assets/svg/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#seating" data-tab-link="seating">Seating</a>
+          <img class="chevron" src="assets/svg/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <a href="#summary" data-tab-link="summary">Summary</a>
         </div>
         <div class="footer-container">
             <div class="ek-award-container">
-                <img src="assets/apex-world-class-airline.svg">
-                <img src="assets/fgfa-star.svg">
-                <img src="assets/skytrax-badge-2019.svg">
+                <img src="assets/svg/apex-world-class-airline.svg">
+                <img src="assets/svg/fgfa-star.svg">
+                <img src="assets/svg/skytrax-badge-2019.svg">
             </div>
             <div class="footer-information">
               <div class="copyright-disclaimer">
                 <p id="footer-disclaimer">The trademarks, logos and service marks displayed on this website are the property of The Emirates Group and their respective subsidiaries. They are used here for the purpose of reference and do not imply any affiliation with or endorsement by The Emirates Group.</p>
-                <p id="footer-copyright">© 2025 The Emirates Group. All Rights Reserved. Concept developed by <a href="https://cameroncarlyon.com">Cameron Carlyon</a>.</p>
+                <p id="footer-copyright">© YYYY The Emirates Group. All Rights Reserved. Concept developed by <a href="https://cameroncarlyon.com">Cameron Carlyon</a>.</p>
               </div>
               <div class="ek-footer-logo">
-              <img src="assets/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
+              <img src="assets/svg/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
             </div>
           </div>
         </div>

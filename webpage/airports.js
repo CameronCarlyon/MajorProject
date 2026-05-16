@@ -1,10 +1,10 @@
 /**
- * Airport Database and Autocomplete Manager
+ * Airport catalog and autocomplete manager
  * Provides autocomplete functionality for airport selection fields
  */
 
-// Emirates Destinations Database
-const airportsDatabase = [
+// Emirates destinations catalog
+const AIRPORT_CATALOG = [
   // United Arab Emirates (Hub)
   { iata: "DXB", icao: "OMDB", city: "Dubai", name: "Dubai International Airport", country: "United Arab Emirates" },
   
@@ -168,6 +168,10 @@ class AirportAutocompleteManager {
     this.toDropdown = null;
     this.selectedFrom = null;
     this.selectedTo = null;
+    this.activeOptionIndex = {
+      from: -1,
+      to: -1
+    };
     this.scrollState = {
       from: null,
       to: null
@@ -193,6 +197,16 @@ class AirportAutocompleteManager {
     this.wrapInput(this.fromInput, this.fromDropdown);
     this.wrapInput(this.toInput, this.toDropdown);
 
+    this.fromInput.setAttribute('aria-autocomplete', 'list');
+    this.fromInput.setAttribute('aria-controls', this.fromDropdown.id);
+    this.fromInput.setAttribute('aria-expanded', 'false');
+    this.fromInput.setAttribute('aria-haspopup', 'listbox');
+
+    this.toInput.setAttribute('aria-autocomplete', 'list');
+    this.toInput.setAttribute('aria-controls', this.toDropdown.id);
+    this.toInput.setAttribute('aria-expanded', 'false');
+    this.toInput.setAttribute('aria-haspopup', 'listbox');
+
     // Infinite scroll for dropdowns
     this.fromDropdown.addEventListener('scroll', () => this.handleScroll('from'));
     this.toDropdown.addEventListener('scroll', () => this.handleScroll('to'));
@@ -200,6 +214,8 @@ class AirportAutocompleteManager {
     // Add event listeners
     this.fromInput.addEventListener('input', (e) => this.handleInput(e, 'from'));
     this.toInput.addEventListener('input', (e) => this.handleInput(e, 'to'));
+    this.fromInput.addEventListener('keydown', (e) => this.handleKeydown(e, 'from'));
+    this.toInput.addEventListener('keydown', (e) => this.handleKeydown(e, 'to'));
     
     this.fromInput.addEventListener('focus', (e) => this.handleFocus(e, 'from'));
     this.toInput.addEventListener('focus', (e) => this.handleFocus(e, 'to'));
@@ -207,10 +223,10 @@ class AirportAutocompleteManager {
     // Close dropdowns when clicking outside
     document.addEventListener('click', (e) => {
       if (!this.fromInput.parentElement.contains(e.target)) {
-        this.fromDropdown.classList.remove('open');
+        this.closeDropdown('from');
       }
       if (!this.toInput.parentElement.contains(e.target)) {
-        this.toDropdown.classList.remove('open');
+        this.closeDropdown('to');
       }
     });
   }
@@ -219,6 +235,9 @@ class AirportAutocompleteManager {
     const dropdown = document.createElement('div');
     dropdown.className = 'airport-autocomplete-dropdown';
     dropdown.id = `airport-dropdown-${type}`;
+    dropdown.tabIndex = -1;
+    dropdown.setAttribute('role', 'listbox');
+    dropdown.setAttribute('aria-label', type === 'from' ? 'Departure airport suggestions' : 'Destination airport suggestions');
     return dropdown;
   }
 
@@ -248,24 +267,82 @@ class AirportAutocompleteManager {
     }
   }
 
+  handleKeydown(e, type) {
+    const input = type === 'from' ? this.fromInput : this.toInput;
+    const dropdown = type === 'from' ? this.fromDropdown : this.toDropdown;
+    const query = input.value.trim().toLowerCase();
+    const excludeAirport = type === 'from' ? this.selectedTo : this.selectedFrom;
+
+    switch (e.key) {
+      case 'ArrowDown': {
+        if (!dropdown.classList.contains('open')) {
+          const airports = query.length === 0
+            ? this.getAllAirportsSorted(excludeAirport)
+            : this.searchAirports(query, excludeAirport);
+          this.renderDropdown(dropdown, airports, type, query.length === 0, query);
+        }
+
+        const items = this.getNavigableItems(dropdown);
+        if (!items.length) {
+          return;
+        }
+
+        e.preventDefault();
+        const nextIndex = this.activeOptionIndex[type] < 0 ? 0 : this.activeOptionIndex[type] + 1;
+        this.setActiveOption(type, nextIndex);
+        break;
+      }
+      case 'ArrowUp': {
+        const items = this.getNavigableItems(dropdown);
+        if (!dropdown.classList.contains('open') || !items.length) {
+          return;
+        }
+
+        e.preventDefault();
+        const nextIndex = this.activeOptionIndex[type] <= 0 ? items.length - 1 : this.activeOptionIndex[type] - 1;
+        this.setActiveOption(type, nextIndex);
+        break;
+      }
+      case 'Enter': {
+        const items = this.getNavigableItems(dropdown);
+        if (!dropdown.classList.contains('open') || this.activeOptionIndex[type] < 0 || !items.length) {
+          return;
+        }
+
+        e.preventDefault();
+        items[this.activeOptionIndex[type]]?.click();
+        break;
+      }
+      case 'Escape':
+        if (dropdown.classList.contains('open')) {
+          e.preventDefault();
+          this.closeDropdown(type);
+        }
+        break;
+      case 'Tab':
+        this.closeDropdown(type);
+        break;
+      default:
+        break;
+    }
+  }
+
   handleFocus(e, type) {
     const query = e.target.value.trim().toLowerCase();
     const dropdown = type === 'from' ? this.fromDropdown : this.toDropdown;
     const excludeAirport = type === 'from' ? this.selectedTo : this.selectedFrom;
     
-    if (query.length === 0) {
-      // Show all airports alphabetically when input is empty
-      const allAirports = this.getAllAirportsSorted(excludeAirport);
-      this.renderDropdown(dropdown, allAirports, type, true);
-    } else if (query.length >= 1) {
+    if (query.length >= 1) {
       // Use search functionality when user has typed
       const matches = this.searchAirports(query, excludeAirport);
       this.renderDropdown(dropdown, matches, type, false, query);
+    } else {
+      this.closeDropdown(type);
     }
   }
 
   getAllAirportsSorted(excludeAirport = null) {
-    let airports = airportsDatabase.filter(airport => {
+    let airports = AIRPORT_CATALOG.filter(airport => {
       // Exclude already selected airport
       if (excludeAirport && airport.iata === excludeAirport.iata) {
         return false;
@@ -279,8 +356,12 @@ class AirportAutocompleteManager {
     return airports;
   }
 
+  formatAirportValue(airport) {
+    return `${airport.city} (${airport.iata})`;
+  }
+
   searchAirports(query, excludeAirport = null) {
-    const results = airportsDatabase.filter(airport => {
+    const results = AIRPORT_CATALOG.filter(airport => {
       // Exclude already selected airport
       if (excludeAirport && airport.iata === excludeAirport.iata) {
         return false;
@@ -292,7 +373,8 @@ class AirportAutocompleteManager {
         airport.icao.toLowerCase(),
         airport.city.toLowerCase(),
         airport.name.toLowerCase(),
-        airport.country.toLowerCase()
+        airport.country.toLowerCase(),
+        this.formatAirportValue(airport).toLowerCase()
       ];
       
       return searchFields.some(field => field.includes(query));
@@ -318,6 +400,10 @@ class AirportAutocompleteManager {
 
   renderDropdown(dropdown, airports, type, showSections = false, searchQuery = '') {
     dropdown.innerHTML = '';
+    this.activeOptionIndex[type] = -1;
+
+    const input = type === 'from' ? this.fromInput : this.toInput;
+    input.removeAttribute('aria-activedescendant');
         const createNoResultsItem = (queryText) => {
           const emptyState = document.createElement('div');
           emptyState.className = 'airport-autocomplete-empty';
@@ -345,6 +431,9 @@ class AirportAutocompleteManager {
     const createAirportItem = (airport) => {
       const item = document.createElement('div');
       item.className = 'airport-autocomplete-item';
+      item.id = `airport-option-${type}-${airport.iata}`;
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', 'false');
       item.innerHTML = `
         <div class="airport-item-content">
           <div class="airport-item-main">
@@ -355,12 +444,16 @@ class AirportAutocompleteManager {
         </div>
         <span class="airport-iata">${airport.iata}</span>
       `;
+      item.addEventListener('mouseenter', () => {
+        const items = this.getNavigableItems(dropdown);
+        this.setActiveOption(type, items.indexOf(item));
+      });
       item.addEventListener('click', () => this.selectAirport(airport, type));
       return item;
     };
 
     const excludeAirport = type === 'from' ? this.selectedTo : this.selectedFrom;
-    const currentLocationAirport = airportsDatabase.find(a => a.iata === 'DXB');
+    const currentLocationAirport = AIRPORT_CATALOG.find(a => a.iata === 'DXB');
     const canShowCurrent = currentLocationAirport && (!excludeAirport || excludeAirport.iata !== 'DXB');
 
     let hasAnyItems = false;
@@ -402,19 +495,19 @@ class AirportAutocompleteManager {
       // Typed state: show only all locations
       if (allAirports.length === 0) {
         dropdown.appendChild(createNoResultsItem(searchQuery));
-        dropdown.classList.add('open');
+        this.openDropdown(type);
         return;
       }
       hasAnyItems = true;
     }
 
     if (!hasAnyItems) {
-      dropdown.classList.remove('open');
+      this.closeDropdown(type);
       return;
     }
 
     this.appendNextBatch(type);
-    dropdown.classList.add('open');
+    this.openDropdown(type);
   }
 
   appendNextBatch(type) {
@@ -449,7 +542,6 @@ class AirportAutocompleteManager {
 
   selectAirport(airport, type) {
     const input = type === 'from' ? this.fromInput : this.toInput;
-    const dropdown = type === 'from' ? this.fromDropdown : this.toDropdown;
     
     // Set the selected airport
     if (type === 'from') {
@@ -459,12 +551,63 @@ class AirportAutocompleteManager {
     }
     
     // Update input value
-    input.value = `${airport.city} (${airport.iata})`;
+    input.value = this.formatAirportValue(airport);
     input.setAttribute('data-iata', airport.iata);
     input.setAttribute('data-airport', JSON.stringify(airport));
     
-    // Close dropdown
+    this.closeDropdown(type);
+    input.focus();
+  }
+
+  getNavigableItems(dropdown) {
+    return Array.from(dropdown.querySelectorAll('.airport-autocomplete-item'));
+  }
+
+  openDropdown(type) {
+    const dropdown = type === 'from' ? this.fromDropdown : this.toDropdown;
+    const input = type === 'from' ? this.fromInput : this.toInput;
+    dropdown.classList.add('open');
+    input.setAttribute('aria-expanded', 'true');
+  }
+
+  closeDropdown(type) {
+    const dropdown = type === 'from' ? this.fromDropdown : this.toDropdown;
+    const input = type === 'from' ? this.fromInput : this.toInput;
+
     dropdown.classList.remove('open');
+    input.setAttribute('aria-expanded', 'false');
+    input.removeAttribute('aria-activedescendant');
+    this.activeOptionIndex[type] = -1;
+
+    this.getNavigableItems(dropdown).forEach((item) => {
+      item.classList.remove('is-active');
+      item.setAttribute('aria-selected', 'false');
+    });
+  }
+
+  setActiveOption(type, index) {
+    const dropdown = type === 'from' ? this.fromDropdown : this.toDropdown;
+    const input = type === 'from' ? this.fromInput : this.toInput;
+    const items = this.getNavigableItems(dropdown);
+    if (!items.length) {
+      input.removeAttribute('aria-activedescendant');
+      this.activeOptionIndex[type] = -1;
+      return;
+    }
+
+    const wrappedIndex = ((index % items.length) + items.length) % items.length;
+    this.activeOptionIndex[type] = wrappedIndex;
+
+    items.forEach((item, itemIndex) => {
+      const isActive = itemIndex === wrappedIndex;
+      item.classList.toggle('is-active', isActive);
+      item.setAttribute('aria-selected', String(isActive));
+
+      if (isActive) {
+        input.setAttribute('aria-activedescendant', item.id);
+        item.scrollIntoView({ block: 'nearest' });
+      }
+    });
   }
 
   // Public method to get selected airports
@@ -475,6 +618,8 @@ class AirportAutocompleteManager {
     };
   }
 }
+
+globalThis.airportCatalog = AIRPORT_CATALOG;
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {

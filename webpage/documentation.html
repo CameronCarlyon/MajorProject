@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Read the technical documentation for An Integrated Product Visualisation and Ticketing System." />
+    <meta name="author" content="Cameron Carlyon" />
+    <link rel="preload" href="./assets/fonts/NotoSans-VariableFont_wdth,wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/Emirates-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/heroiccondensed-medium.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="./assets/svg/favicon.svg?v=2" type="image/svg+xml" sizes="any" />
+    <title>Documentation | An Integrated Product Visualisation and Ticketing System | Cameron Carlyon</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dissertation-page">
+    <header class="ek-nav-bar">
+      <a href="./index.html" class="ek-nav-bar-logo" draggable="false">
+        <img src="assets/svg/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
+      </a>
+      <nav class="ek-nav-bar-links">
+        <div id="ek-nav-bar-primary" class="ek-nav-bar-asset">
+          <a href="./booking.html">BOOK</a>
+          <a class="feature-unavailable" href="#">MANAGE</a>
+          <a class="feature-unavailable" href="#">EXPERIENCE</a>
+          <a class="feature-unavailable" href="#">WHERE WE FLY</a>
+          <a class="feature-unavailable" href="#">LOYALTY</a>
+          <a class="feature-unavailable" href="#">HELP</a>
+        </div>
+        <div id="ek-nav-bar-secondary" class="ek-nav-bar-asset">
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-solid fa-earth-europe"></i> GB</a>
+          <a class="ek-nav-bar-icon feature-unavailable" href="#">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </a>
+          <a class="ek-nav-bar-icon feature-unavailable" href="#">
+            <i class="fa-regular fa-circle-user"></i> LOG IN
+          </a>
+        </div>
+        <div id="ek-nav-bar-overflow" class="ek-nav-bar-asset">
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-solid fa-earth-europe"></i> GB</a>
+          <a class="ek-nav-bar-icon feature-unavailable" href="#">
+            <i class="fa-regular fa-circle-user"></i>
+          </a>
+          <button id="ek-nav-bar-menu-button" class="feature-unavailable" type="button">Menu</button>
+        </div>
+      </nav>
+    </header>
+    <dialog class="modal" id="feature-unavailable-modal">
+      <div>
+        <h2 class="section-title">Feature Unavailable</h2>
+        <span class="divider"></span>
+      </div>
+      <p class="section-description">Apologies for the inconvenience, however this feature is currently either unavailable or in-development.<br><br>Please check back later or explore other available features. Thank you for your patience!</p>
+      <button class="btn" id="close-feature-unavailable-modal-button">Dismiss</button>
+    </dialog>
+    <main class="dissertation-main">
+      <section class="content-container dissertation-shell">
+        <header class="page-section-header">
+          <p class="section-subtitle">Reading</p>
+          <h2 class="section-title">Documentation</h2>
+          <p class="section-description">A Technical Project Overview</p>
+        </header>
+        <article class="content-panel dissertation-paper">
+          <section class="dissertation-paper__section" aria-labelledby="overview">
+            <div class="dissertation-paper__subheader">
+              <h3 id="overview">Overview</h3>
+              <span class="divider" aria-hidden="true"></span>
+            </div>
+            <p>This project is a responsive airline booking prototype with integrated cabin visualisation. It explores how panoramic product visualisation can improve the seat selection experience and upselling potential by providing customers with a clearer view of cabin layout, legroom, amenities, and emergency exit locations during the booking process.</p>
+          </section>
+
+          <section class="dissertation-paper__section" aria-labelledby="module-summary">
+            <div class="dissertation-paper__subheader">
+              <h3 id="module-summary">Level 6: Major Project Module Summary</h3>
+              <span class="divider" aria-hidden="true"></span>
+            </div>
+            <p>"The major project will provide a period of sustained engagement with a chosen field of expertise and provide the opportunity for students to showcase their specialist practical skills. The project will allow students to develop their practical and theoretical skills by selecting, evaluating and analysing a pertinent issue within the contemporary computer games industry. Through the development of a major project students will prepare and submit a formal written report that engages with the theoretical, contextual and practical considerations of the project and the wider subject of computer games."</p>
+          </section>
+
+          <section class="dissertation-paper__section" aria-labelledby="project-structure">
+            <div class="dissertation-paper__subheader">
+              <h3 id="project-structure">Project Structure</h3>
+              <span class="divider" aria-hidden="true"></span>
+            </div>
+            <pre><code>webpage/
+├── index.html
+├── booking.html
+├── confirmation.html
+├── dissertation.html
+├── documentation.html
+├── styles.css
+├── site.js
+├── booking.js
+├── cabin-layout.js
+├── airports.js
+├── booking/
+│   ├── controls.js
+│   ├── form-validator.js
+│   ├── navigation.js
+│   ├── panorama-viewer.js
+│   ├── seating.js
+│   └── shared.js
+└── assets/</code></pre>
+          </section>
+
+          <section class="dissertation-paper__section" aria-labelledby="key-features">
+            <div class="dissertation-paper__subheader">
+              <h3 id="key-features">Key Features</h3>
+              <span class="divider" aria-hidden="true"></span>
+            </div>
+            <ul>
+              <li>Responsive multi-tab booking flow.</li>
+              <li>Interactive seat selection and cabin layout logic.</li>
+              <li>360 panoramic cabin views using Photo Sphere Viewer.</li>
+              <li>Shared styling and modular JavaScript across the site.</li>
+              <li>Integrated dissertation page for project documentation.</li>
+              <li>Built in pure HTML, CSS, and JavaScript.</li>
+            </ul>
+          </section>
+
+          <section class="dissertation-paper__section" aria-labelledby="modelling-rendering">
+            <div class="dissertation-paper__subheader">
+              <h3 id="modelling-rendering">3D Modelling And Rendering</h3>
+              <span class="divider" aria-hidden="true"></span>
+            </div>
+            <p>The cabin environment was created in Blender using a modular asset workflow. Reusable parts such as seating, divider walls, cabin panels and surrounding interior elements were built once and distributed appropriately throughout the scene, which drastically reduced development time and made iteration more efficient. Materials were produced procedurally using Blender's node system, allowing fabric detail, roughness variation, and subtle surface wear to be generated directly in the shader setup without any loss of detail at high zoom values.</p>
+            <p>Custom cabin decals were created in Adobe Photoshop, including bilingual signage in Arabic and English that matched the proportions and typography of their real-world counterparts. Colour channels, opacity and emission values were then configured within the Blender node setup to integrate the decals into the scene accurately.</p>
+            <p>Lighting and rendering were also handled in Blender. The final web experience uses pre-rendered stills and 360 equirectangular panoramas rather than real-time browser rendering, allowing the project to retain detailed lighting, reflections and atmosphere while remaining practical on mobile devices. Cabin fixtures, accent lights and an HDRI environment were combined to shape the overall mood and external light.</p>
+          </section>
+
+          <section class="dissertation-paper__section" aria-labelledby="website">
+            <div class="dissertation-paper__subheader">
+              <h3 id="website">Website</h3>
+              <span class="divider" aria-hidden="true"></span>
+            </div>
+            <p>The site replicates the structure and visual language of the Emirates Airline website. It is built in pure HTML, CSS, and JavaScript with no framework dependencies, and is organised across a landing page, booking portal, confirmation page and dissertation/documentation pages. JavaScript is split into focused modules handling concerns such as seat selection, form validation, panorama viewing, airport data, and navigation state.</p>
+            <p>The booking flow includes a multi-tab interface covering flight search, passenger details, seat selection and summary. Seat selection is linked directly to the panorama viewer. Selecting a seat loads the corresponding pre-rendered 360 view of that seating position within the cabin, providing the user with a realistic representation of what to expect onboard. The seating chart reflects real aircraft configuration for the Emirates Boeing 777-300ER economy cabin.</p>
+            <p>Design follows Emirates brand conventions throughout, using CSS custom properties for consistent branding colours and spacing tokens. Forms include inline validation with clear error feedback, and all interactive elements are keyboard accessible with visible focus states.</p>
+          </section>
+
+          <section class="dissertation-paper__section" aria-labelledby="optimisation">
+            <div class="dissertation-paper__subheader">
+              <h3 id="optimisation">Optimisation</h3>
+              <span class="divider" aria-hidden="true"></span>
+            </div>
+            <p>The site was built around performance and broad device support. Panoramic seat views are delivered as pre-rendered images through Photo Sphere Viewer, which reduces client-side rendering cost while preserving visual quality. Key renders and panorama assets were converted to WebP where appropriate, with fallback formats retained where needed. Fonts are preloaded, scripts are deferred, and CSS uses responsive layouts and image-set fallbacks to keep the experience lightweight and usable across desktop, tablet and mobile screens.</p>
+          </section>
+
+          <section class="dissertation-paper__section" aria-labelledby="notes">
+            <div class="dissertation-paper__subheader">
+              <h3 id="notes">Notes</h3>
+              <span class="divider" aria-hidden="true"></span>
+            </div>
+            <p>This project was developed for academic purposes as part of a final project investigating product visualisation within airline booking systems.</p>
+          </section>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <div class="ek-award-container">
+          <img src="assets/svg/apex-world-class-airline.svg" alt="APEX World Class Airline Award" />
+          <img src="assets/svg/fgfa-star.svg" alt="FGFA Star Rating" />
+          <img src="assets/svg/skytrax-badge-2019.svg" alt="Skytrax Badge 2019" />
+        </div>
+        <div class="footer-information">
+          <div class="copyright-disclaimer">
+            <p id="footer-disclaimer">The trademarks, logos and service marks displayed on this website are the property of The Emirates Group and their respective subsidiaries. They are used here for the purpose of reference and do not imply any affiliation with or endorsement by The Emirates Group.</p>
+            <p id="footer-copyright">© YYYY The Emirates Group. All Rights Reserved. Concept developed by <a href="https://cameroncarlyon.com">Cameron Carlyon</a>.</p>
+          </div>
+          <a href="./index.html" class="ek-footer-logo">
+            <img src="assets/svg/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="site.js" defer></script>
+  </body>
+</html>

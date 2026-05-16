@@ -5,18 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>An Integrated Product Visualisation and Ticketing System
        | Cameron Carlyon</title>
+    <link rel="preload" href="./assets/fonts/NotoSans-VariableFont_wdth,wght.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/Emirates-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./assets/fonts/heroiccondensed-medium.woff2" as="font" type="font/woff2" crossorigin />
+     <link rel="icon" href="./assets/svg/favicon.svg?v=2" type="image/svg+xml" sizes="any" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.min.css" />
-    <script
-      src="https://kit.fontawesome.com/5996a0cc2a.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
     <header class="ek-nav-bar">
       <a href="./index.html" class="ek-nav-bar-logo" draggable="false">
-        <img src="assets/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
+        <img src="assets/svg/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
       </a>
       <nav class="ek-nav-bar-links">
         <div id="ek-nav-bar-primary" class="ek-nav-bar-asset">
@@ -33,18 +32,26 @@
           <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-regular fa-circle-user"></i> LOG IN</a>
         </div>
         <div id="ek-nav-bar-overflow" class="ek-nav-bar-asset">
-          <a class="ek-nav-bar-icon" href="#"><i class="fa-solid fa-earth-europe"></i> GB</a>
-          <a class="ek-nav-bar-icon" href="#"><i class="fa-regular fa-circle-user"></i></a>
-          <button id="ek-nav-bar-btn-menu" type="button">Menu</button>
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-solid fa-earth-europe"></i> GB</a>
+          <a class="ek-nav-bar-icon feature-unavailable" href="#"><i class="fa-regular fa-circle-user"></i></a>
+          <button id="ek-nav-bar-menu-button" class="feature-unavailable" type="button">Menu</button>
         </div>
       </nav>
     </header>
+    <dialog class="modal" id="feature-unavailable-modal">
+      <div>
+        <h2 class="section-title">Feature Unavailable</h2>
+        <span class="divider"></span>
+      </div>
+      <p class="section-description">Apologies for the inconvenience, however this feature is currently either unavailable or in-development.<br><br>Please check back later or explore other available features. Thank you for your patience!</p>
+      <button class="btn" id="close-feature-unavailable-modal-button">Dismiss</button>
+    </dialog>
     <main>
       <section id="confirmation-container">
-        <header class="tab-header-text">
-          <p class="box-sub-title">Confirmation</p>
-          <h1 class="box-title">You're all set!</h1>
-          <p class="box-description">Your booking has been confirmed and we are looking forward to welcoming you onboard soon.</p>
+        <header class="page-section-header">
+          <p class="section-subtitle">Confirmation</p>
+          <h1 class="section-title">You're all set!</h1>
+          <p class="section-description">Your booking has been confirmed and we are looking forward to welcoming you onboard soon.</p>
         </header>
         <a href="index.html" class="btn">Return to Main Page</a>
       </section>
@@ -52,27 +59,28 @@
     <footer>
         <div class="footer-nav-container">
           <a href="index.html">Emirates</a>
-          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <img class="chevron" src="assets/svg/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
           <a href="booking.html">Book a flight</a> 
-          <img class="chevron" src="assets/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
+          <img class="chevron" src="assets/svg/arrow_forward_ios_FILL1_wght400_GRAD0_opsz24.svg">
           <a href="#">Confirmation</a>
         </div>
         <div class="footer-container">
             <div class="ek-award-container">
-                <img src="assets/apex-world-class-airline.svg">
-                <img src="assets/fgfa-star.svg">
-                <img src="assets/skytrax-badge-2019.svg">
+                <img src="assets/svg/apex-world-class-airline.svg">
+                <img src="assets/svg/fgfa-star.svg">
+                <img src="assets/svg/skytrax-badge-2019.svg">
             </div>
             <div class="footer-information">
               <div class="copyright-disclaimer">
                 <p id="footer-disclaimer">The trademarks, logos and service marks displayed on this website are the property of The Emirates Group and their respective subsidiaries. They are used here for the purpose of reference and do not imply any affiliation with or endorsement by The Emirates Group.</p>
-                <p id="footer-copyright">© 2026 The Emirates Group. All Rights Reserved. Concept developed by <a href="https://cameroncarlyon.com">Cameron Carlyon</a>.</p>
+                <p id="footer-copyright">© YYYY The Emirates Group. All Rights Reserved. Concept developed by <a href="https://cameroncarlyon.com">Cameron Carlyon</a>.</p>
               </div>
               <div class="ek-footer-logo">
-              <img src="assets/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
+              <img src="assets/svg/emirates-airline-logo.svg" alt="Emirates Airline logo" draggable="false" />
             </div>
           </div>
         </div>
     </footer>
+    <script src="site.js" defer></script>
   </body>
 </html>
